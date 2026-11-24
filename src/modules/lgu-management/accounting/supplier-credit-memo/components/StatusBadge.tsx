@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:src/modules/lgu-management/accounting/supplier-credit-memo/components/StatusBadge.tsx
 // src/modules/lgu-management/accounting/supplier-credit-memo/components/StatusBadge.tsx
+=======
+// src/modules/lgu-management/accounting/supplier-debit-memo/components/StatusBadge.tsx
+>>>>>>> Stashed changes:src/modules/financial-management/accounting/supplier-debit-memo/components/StatusBadge.tsx
 
 "use client";
 

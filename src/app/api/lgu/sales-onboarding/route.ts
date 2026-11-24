@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:src/app/api/lgu/sales-onboarding/route.ts
 // src/app/api/lgu/sales-onboarding/route.ts
+=======
+// src/app/api/fm/sales-onboarding/route.ts
+>>>>>>> Stashed changes:src/app/api/fm/sales-onboarding/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";

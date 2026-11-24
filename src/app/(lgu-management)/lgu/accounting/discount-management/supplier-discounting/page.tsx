@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/accounting/discount-management/supplier-discounting/page.tsx
 // src/app/(lgu-management)/lgu/accounting/discount-management/supplier-discounting/page.tsx
+=======
+// src/app/(lgu-management)/fm/accounting/discount-management/supplier-discounting/page.tsx
+>>>>>>> Stashed changes:src/app/(financial-management)/fm/accounting/discount-management/supplier-discounting/page.tsx
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,7 +16,11 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 import SupplierDiscountingModule from "@/modules/lgu-management/accounting/discount-management/supplier-discounting";
+<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/accounting/discount-management/supplier-discounting/page.tsx
 import { getSupplierDiscountingModuleData } from "@/app/api/lgu/accounting/discount-management/supplier-discounting/_module-data";
+=======
+import { getSupplierDiscountingModuleData } from "@/app/api/fm/accounting/discount-management/supplier-discounting/_module-data";
+>>>>>>> Stashed changes:src/app/(financial-management)/fm/accounting/discount-management/supplier-discounting/page.tsx
 import type { SupplierDiscountModuleData } from "@/modules/lgu-management/accounting/discount-management/supplier-discounting/types";
 
 export const runtime = "nodejs";

@@ -12,7 +12,11 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
+<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/treasury/bank-reconciliation/page.tsx
 import ComingSoon from "@/app/(lgu-management)/lgu/_components/ComingSoon";
+=======
+import ComingSoon from "@/app/(lgu-management)/fm/_components/ComingSoon";
+>>>>>>> Stashed changes:src/app/(financial-management)/fm/treasury/bank-reconciliation/page.tsx
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -411,7 +411,11 @@ export default function AuditeeDetailSplitModal({
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
+<<<<<<< Updated upstream:src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
                             src={`/api/lgu/expense-assets?id=${at.url}`}
+=======
+                            src={`/api/fm/expense-assets?id=${at.url}`}
+>>>>>>> Stashed changes:src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
                             alt={at.label}
                             className="max-w-full max-h-full object-contain pointer-events-none"
                             draggable={false}
@@ -547,6 +551,7 @@ export default function AuditeeDetailSplitModal({
           {/* View-Only Context Banner */}
           {!canAct && (
             <div className={`mx-[1.5vw] mt-4 relative overflow-hidden rounded-2xl border p-4 animate-in fade-in slide-in-from-top-2 duration-300 ${isRejectedHistory
+<<<<<<< Updated upstream:src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
               ? "border-rose-200/60 dark:border-rose-900/30 bg-rose-50/40 dark:bg-rose-950/10"
               : "border-amber-200/60 dark:border-amber-900/30 bg-amber-50/40 dark:bg-amber-950/10"
               }`}>
@@ -558,6 +563,19 @@ export default function AuditeeDetailSplitModal({
                 <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border shadow-sm ${isRejectedHistory
                   ? "bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-500 shadow-rose-500/5"
                   : "bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-500 shadow-amber-500/5"
+=======
+                ? "border-rose-200/60 dark:border-rose-900/30 bg-rose-50/40 dark:bg-rose-950/10"
+                : "border-amber-200/60 dark:border-amber-900/30 bg-amber-50/40 dark:bg-amber-950/10"
+              }`}>
+              <div className={`absolute inset-0 ${isRejectedHistory
+                  ? "bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.06),transparent_40%)]"
+                  : "bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.06),transparent_40%)]"
+                }`} />
+              <div className="relative flex gap-3.5 items-start">
+                <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border shadow-sm ${isRejectedHistory
+                    ? "bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-500 shadow-rose-500/5"
+                    : "bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-500 shadow-amber-500/5"
+>>>>>>> Stashed changes:src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
                   }`}>
                   <AlertTriangle className="h-4.5 w-4.5" />
                 </div>
@@ -699,6 +717,7 @@ export default function AuditeeDetailSplitModal({
                                       </Badge>
                                       <Badge
                                         className={`text-[8px] font-bold border rounded-lg px-1.5 py-0.5 ${item.status.toLowerCase() === "rejected"
+<<<<<<< Updated upstream:src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
                                           ? "bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800/50"
                                           : item.status.toLowerCase().includes("concern")
                                             ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/50"
@@ -710,6 +729,19 @@ export default function AuditeeDetailSplitModal({
                                         {item.status.toLowerCase() === "rejected"
                                           ? "Rejected"
                                           : item.status.toLowerCase().includes("concern")
+=======
+                                            ? "bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800/50"
+                                            : item.status.toLowerCase().includes("concern")
+                                              ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/50"
+                                              : itemTier === 1
+                                                ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/50"
+                                                : "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/50"
+                                          }`}
+                                      >
+                                        {item.status.toLowerCase() === "rejected"
+                                          ? "Rejected"
+                                          : item.status.toLowerCase().includes("concern")
+>>>>>>> Stashed changes:src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
                                             ? "With Concern"
                                             : itemTier === 1
                                               ? "Submitted"

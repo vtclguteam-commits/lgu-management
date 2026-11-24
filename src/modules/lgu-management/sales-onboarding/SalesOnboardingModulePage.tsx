@@ -5,7 +5,11 @@
 import React from "react";
 import { TrendingUp } from "lucide-react";
 import { useSalesOnboarding } from "./hooks/useSalesOnboarding";
+<<<<<<< Updated upstream:src/modules/lgu-management/sales-onboarding/SalesOnboardingModulePage.tsx
 import { DataTableSkeleton } from "@/app/(lgu-management)/lgu/_components/DataTableSkeleton";
+=======
+import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
+>>>>>>> Stashed changes:src/modules/financial-management/sales-onboarding/SalesOnboardingModulePage.tsx
 import SalesOnboardingForm, { FormValues } from "./components/SalesOnboardingForm";
 import OnboardHistoryPanel from "./components/OnboardHistoryPanel";
 

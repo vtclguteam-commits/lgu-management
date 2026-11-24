@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:src/app/api/lgu/accounting/discount-management/supplier-discounting/_module-data.ts
 // src/app/api/lgu/accounting/discount-management/supplier-discounting/_module-data.ts
+=======
+// src/app/api/fm/accounting/discount-management/supplier-discounting/_module-data.ts
+>>>>>>> Stashed changes:src/app/api/fm/accounting/discount-management/supplier-discounting/_module-data.ts
 import type { SupplierDiscountModuleData } from "@/modules/lgu-management/accounting/discount-management/supplier-discounting/types";
 import {
   asNumber,

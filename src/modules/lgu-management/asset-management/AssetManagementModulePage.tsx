@@ -6,8 +6,13 @@ import { RefreshCw } from "lucide-react";
 import { useState } from "react";
 
 // Components
+<<<<<<< Updated upstream:src/modules/lgu-management/asset-management/AssetManagementModulePage.tsx
 import { DataTableSkeleton } from "@/app/(lgu-management)/lgu/_components/DataTableSkeleton";
 import { ErrorPage } from "@/app/(lgu-management)/lgu/_components/ErrorPage";
+=======
+import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
+import { ErrorPage } from "@/app/(lgu-management)/fm/_components/ErrorPage";
+>>>>>>> Stashed changes:src/modules/financial-management/asset-management/AssetManagementModulePage.tsx
 import { AssetDataTable } from "./components/data-table";
 import { columns } from "./components/data-table/columns";
 import { AssetTableData } from "./types";

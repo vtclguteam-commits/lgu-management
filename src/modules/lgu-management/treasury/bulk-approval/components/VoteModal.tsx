@@ -870,7 +870,11 @@ export default function VoteModal({ open, loading, detail, onClose, onVoteComple
                                                 size="icon"
                                                 variant="ghost"
                                                 className="h-8 w-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/40"
+<<<<<<< Updated upstream:src/modules/lgu-management/treasury/bulk-approval/components/VoteModal.tsx
                                                 onClick={() => setPreviewUrl(`/api/lgu/expense-assets?id=${p.attachment_url}`)}
+=======
+                                                onClick={() => setPreviewUrl(`/api/fm/expense-assets?id=${p.attachment_url}`)}
+>>>>>>> Stashed changes:src/modules/financial-management/treasury/bulk-approval/components/VoteModal.tsx
                                                 aria-label={`Preview evidence for expense ${p.expense_id}`}
                                                 title="Preview supporting evidence"
                                               >

@@ -1,6 +1,10 @@
 import * as React from "react";
 
+<<<<<<< Updated upstream:src/app/(lgu-management)/layout.tsx
 import { AppSidebar } from "@/app/(lgu-management)/lgu/_components/app-sidebar";
+=======
+import { AppSidebar } from "@/app/(lgu-management)/fm/_components/app-sidebar";
+>>>>>>> Stashed changes:src/app/(financial-management)/layout.tsx
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashboardLayout({

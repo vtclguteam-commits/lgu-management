@@ -25,7 +25,11 @@ import { SearchableDropdown } from "./SearchableDropdown";
 import { replaceEmptyPayablePlaceholders } from "@/modules/lgu-management/treasury/components/payable-line-state";
 import { getMemoAvailableAmount } from "@/modules/lgu-management/treasury/components/memo-cap";
 import { normalizeMemoReference, stripMemoLineMetadata } from "@/modules/lgu-management/treasury/components/memo-payable-line";
+<<<<<<< Updated upstream:src/modules/lgu-management/treasury/cash-issuance/components/CashIssuanceCreateDialog.tsx
 import { isPettyCashAccount } from "@/app/api/lgu/treasury/disbursements/_payment-method";
+=======
+import { isPettyCashAccount } from "@/app/api/fm/treasury/disbursements/_payment-method";
+>>>>>>> Stashed changes:src/modules/financial-management/treasury/cash-issuance/components/CashIssuanceCreateDialog.tsx
 import { cn } from "@/lib/utils";
 
 export interface ExtendedDisbursement extends Disbursement {

@@ -631,8 +631,13 @@ export function EditSupplierForm({
                     onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                     onDragLeave={() => setIsDragging(false)}
                     className={`relative flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 cursor-pointer transition-colors ${isDragging
+<<<<<<< Updated upstream:src/modules/lgu-management/supplier-registration/components/forms/edit-supplier-form.tsx
                       ? "border-primary bg-primary/5"
                       : "border-muted-foreground/25 hover:border-primary/50 hover:bg-muted/50"
+=======
+                        ? "border-primary bg-primary/5"
+                        : "border-muted-foreground/25 hover:border-primary/50 hover:bg-muted/50"
+>>>>>>> Stashed changes:src/modules/financial-management/supplier-registration/components/forms/edit-supplier-form.tsx
                       }`}
                   >
                     {imagePreview ? (
