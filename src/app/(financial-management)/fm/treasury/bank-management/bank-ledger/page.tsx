@@ -9,7 +9,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
-import { BankLedgerModule } from "@/modules/financial-management/treasury/bank-management/bank-ledger";
+import { BankLedgerModule } from "@/modules/lgu-management/treasury/bank-management/bank-ledger";
 import { cookies } from "next/headers";
 
 export const runtime = "nodejs";

@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import AccountManagementModule from "@/modules/financial-management/treasury/bank-management/account-management";
+import AccountManagementModule from "@/modules/lgu-management/treasury/bank-management/account-management";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/components/PrintablesFiltersBar.tsx
+// src/modules/lgu-management/printables-management/product-printables/components/PrintablesFiltersBar.tsx
 "use client";
 
 import * as React from "react";
@@ -29,16 +29,16 @@ type Props = {
     priceTypes: PriceType[];
 };
 
-const FilterSelector = ({ 
-    label, 
-    selectedIds, 
-    options, 
-    onToggle, 
-    onClear 
-}: { 
-    label: string; 
-    selectedIds: string[]; 
-    options: { label: string; value: string }[]; 
+const FilterSelector = ({
+    label,
+    selectedIds,
+    options,
+    onToggle,
+    onClear
+}: {
+    label: string;
+    selectedIds: string[];
+    options: { label: string; value: string }[];
     onToggle: (id: string) => void;
     onClear: () => void;
 }) => (
@@ -126,11 +126,11 @@ export default function PrintablesFiltersBar({
         });
     };
 
-    const activeFiltersCount = 
-        (filters.category_ids?.length || 0) + 
-        (filters.brand_ids?.length || 0) + 
-        (filters.unit_ids?.length || 0) + 
-        (filters.supplier_ids?.length || 0) + 
+    const activeFiltersCount =
+        (filters.category_ids?.length || 0) +
+        (filters.brand_ids?.length || 0) +
+        (filters.unit_ids?.length || 0) +
+        (filters.supplier_ids?.length || 0) +
         (filters.price_type_ids?.length || 0) +
         (filters.q ? 1 : 0);
 
@@ -146,7 +146,7 @@ export default function PrintablesFiltersBar({
                         onKeyDown={handleKeyDown}
                         className="pl-10 pr-12 rounded-xl border-border/50 bg-background/50 h-10 w-full"
                     />
-                    <Button 
+                    <Button
                         onClick={handleSearch}
                         size="sm"
                         className="absolute right-1 top-1 bottom-1 h-auto rounded-lg w-10 p-0 shadow-none"

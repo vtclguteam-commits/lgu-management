@@ -9,7 +9,7 @@ import {
   type ARFullPayload,
   type ARRow,
 } from './_arData';
-import { parseARTableSort, sortCustomerGroups } from '@/modules/financial-management/accounting/accounts-receivable/utils/arTableSort';
+import { parseARTableSort, sortCustomerGroups } from '@/modules/lgu-management/accounting/accounts-receivable/utils/arTableSort';
 import { summaryTotalInvoices, tableTotalInvoices } from './_arRouteCounts';
 
 export const runtime = 'nodejs';

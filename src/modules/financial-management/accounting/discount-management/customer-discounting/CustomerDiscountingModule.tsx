@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/customer-discounting/CustomerDiscountingModule.tsx
+// src/modules/lgu-management/accounting/discount-management/customer-discounting/CustomerDiscountingModule.tsx
 "use client";
 
 import { useCallback, useEffect, useState, useTransition } from "react";
@@ -249,130 +249,130 @@ export default function CustomerDiscountingModule({ userId, initialModuleData, i
       </div>
 
       {viewMode === "table" ? (
-      <div className="overflow-hidden rounded-md border bg-card">
-        <Table className="table-fixed">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[8rem] whitespace-normal">Code</TableHead>
-              <TableHead className="w-[28%] whitespace-normal">Customer</TableHead>
-              <TableHead className="w-[22%] whitespace-normal">Store</TableHead>
-              <TableHead className="w-[22%] whitespace-normal">Global Discount</TableHead>
-              <TableHead className="w-[7rem] whitespace-normal text-right">
-                Action
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {displayLoading ? (
-              Array.from({ length: 6 }).map((_, index) => (
-                <TableRow key={index}>
-                  <TableCell><Skeleton className="h-4 w-20 max-w-full" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-56 max-w-full" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-32 max-w-full" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-36 max-w-full" /></TableCell>
-                  <TableCell>
-                    <Skeleton className="ml-auto h-8 w-24 max-w-full" />
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : customers.length === 0 ? (
+        <div className="overflow-hidden rounded-md border bg-card">
+          <Table className="table-fixed">
+            <TableHeader>
               <TableRow>
-                <TableCell colSpan={5} className="h-40 text-center text-sm text-muted-foreground">
-                  No customers found.
-                </TableCell>
+                <TableHead className="w-[8rem] whitespace-normal">Code</TableHead>
+                <TableHead className="w-[28%] whitespace-normal">Customer</TableHead>
+                <TableHead className="w-[22%] whitespace-normal">Store</TableHead>
+                <TableHead className="w-[22%] whitespace-normal">Global Discount</TableHead>
+                <TableHead className="w-[7rem] whitespace-normal text-right">
+                  Action
+                </TableHead>
               </TableRow>
-            ) : (
-              customers.map((customer) => (
-                <TableRow key={customer.id}>
-                  <TableCell className="whitespace-normal break-all font-mono text-xs">{customer.customerCode}</TableCell>
-                  <TableCell className="whitespace-normal break-words font-medium">{customer.customerName}</TableCell>
-                  <TableCell className="whitespace-normal break-words text-sm text-muted-foreground">
-                    <div>{customer.storeName || "No store"}</div>
-                    <div className="text-xs">{customer.storeTypeName || "No store type"}</div>
-                  </TableCell>
-                  <TableCell className="whitespace-normal">
-                    <Badge variant="outline" className="max-w-full whitespace-normal text-left">
-                      {discountText(customer.globalDiscount)}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="whitespace-normal text-right">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full px-2"
-                      onClick={() => openCustomer(customer)}
-                    >
-                      <Settings2 className="h-4 w-4" />
-                      <span className="min-w-0 truncate">Configure</span>
-                    </Button>
+            </TableHeader>
+            <TableBody>
+              {displayLoading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell><Skeleton className="h-4 w-20 max-w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-56 max-w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-32 max-w-full" /></TableCell>
+                    <TableCell><Skeleton className="h-4 w-36 max-w-full" /></TableCell>
+                    <TableCell>
+                      <Skeleton className="ml-auto h-8 w-24 max-w-full" />
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : customers.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="h-40 text-center text-sm text-muted-foreground">
+                    No customers found.
                   </TableCell>
                 </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
+              ) : (
+                customers.map((customer) => (
+                  <TableRow key={customer.id}>
+                    <TableCell className="whitespace-normal break-all font-mono text-xs">{customer.customerCode}</TableCell>
+                    <TableCell className="whitespace-normal break-words font-medium">{customer.customerName}</TableCell>
+                    <TableCell className="whitespace-normal break-words text-sm text-muted-foreground">
+                      <div>{customer.storeName || "No store"}</div>
+                      <div className="text-xs">{customer.storeTypeName || "No store type"}</div>
+                    </TableCell>
+                    <TableCell className="whitespace-normal">
+                      <Badge variant="outline" className="max-w-full whitespace-normal text-left">
+                        {discountText(customer.globalDiscount)}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="whitespace-normal text-right">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full px-2"
+                        onClick={() => openCustomer(customer)}
+                      >
+                        <Settings2 className="h-4 w-4" />
+                        <span className="min-w-0 truncate">Configure</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
       ) : null}
 
       {viewMode === "card" ? (
-      <div className="space-y-3">
-        {displayLoading ? (
-          Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="rounded-md border bg-card p-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-5 w-44" />
+        <div className="space-y-3">
+          {displayLoading ? (
+            Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="rounded-md border bg-card p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-5 w-44" />
+                  </div>
+                  <Skeleton className="h-8 w-8" />
                 </div>
-                <Skeleton className="h-8 w-8" />
+                <div className="mt-4 grid gap-3">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-6 w-40" />
+                </div>
               </div>
-              <div className="mt-4 grid gap-3">
-                <Skeleton className="h-4 w-32" />
-                <Skeleton className="h-6 w-40" />
-              </div>
+            ))
+          ) : customers.length === 0 ? (
+            <div className="flex h-40 items-center justify-center rounded-md border bg-card text-center text-sm text-muted-foreground">
+              No customers found.
             </div>
-          ))
-        ) : customers.length === 0 ? (
-          <div className="flex h-40 items-center justify-center rounded-md border bg-card text-center text-sm text-muted-foreground">
-            No customers found.
-          </div>
-        ) : (
-          customers.map((customer) => (
-            <div key={customer.id} className="rounded-md border bg-card p-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="text-xs font-medium text-muted-foreground">Customer</div>
-                  <div className="truncate font-medium">{customer.customerName}</div>
+          ) : (
+            customers.map((customer) => (
+              <div key={customer.id} className="rounded-md border bg-card p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="text-xs font-medium text-muted-foreground">Customer</div>
+                    <div className="truncate font-medium">{customer.customerName}</div>
+                  </div>
+                  <Button variant="outline" size="icon" onClick={() => openCustomer(customer)} aria-label="Configure">
+                    <Settings2 className="h-4 w-4" />
+                  </Button>
                 </div>
-                <Button variant="outline" size="icon" onClick={() => openCustomer(customer)} aria-label="Configure">
-                  <Settings2 className="h-4 w-4" />
-                </Button>
-              </div>
 
-              <div className="mt-4 grid gap-3 text-sm">
-                <div className="grid grid-cols-[88px_1fr] gap-3">
-                  <span className="text-muted-foreground">Code</span>
-                  <span className="min-w-0 font-mono text-xs">{customer.customerCode}</span>
-                </div>
-                <div className="grid grid-cols-[88px_1fr] gap-3">
-                  <span className="text-muted-foreground">Store</span>
-                  <span className="min-w-0 truncate">{customer.storeName || "No store"}</span>
-                </div>
-                <div className="grid grid-cols-[88px_1fr] gap-3">
-                  <span className="text-muted-foreground">Type</span>
-                  <span className="min-w-0 truncate">{customer.storeTypeName || "No store type"}</span>
-                </div>
-                <div className="grid grid-cols-[88px_1fr] gap-3">
-                  <span className="text-muted-foreground">Discount</span>
-                  <Badge variant="outline" className="w-fit max-w-full truncate">
-                    {discountText(customer.globalDiscount)}
-                  </Badge>
+                <div className="mt-4 grid gap-3 text-sm">
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <span className="text-muted-foreground">Code</span>
+                    <span className="min-w-0 font-mono text-xs">{customer.customerCode}</span>
+                  </div>
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <span className="text-muted-foreground">Store</span>
+                    <span className="min-w-0 truncate">{customer.storeName || "No store"}</span>
+                  </div>
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <span className="text-muted-foreground">Type</span>
+                    <span className="min-w-0 truncate">{customer.storeTypeName || "No store type"}</span>
+                  </div>
+                  <div className="grid grid-cols-[88px_1fr] gap-3">
+                    <span className="text-muted-foreground">Discount</span>
+                    <Badge variant="outline" className="w-fit max-w-full truncate">
+                      {discountText(customer.globalDiscount)}
+                    </Badge>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        )}
-      </div>
+            ))
+          )}
+        </div>
       ) : null}
 
       {!displayLoading && pagination.total > 0 ? (

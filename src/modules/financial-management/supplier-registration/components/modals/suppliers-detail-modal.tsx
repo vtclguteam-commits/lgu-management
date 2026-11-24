@@ -17,8 +17,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useRepresentatives } from "@/modules/financial-management/supplier-registration/hooks/useRepresentatives";
-import { Supplier } from "@/modules/financial-management/supplier-registration/types/supplier.schema";
+import { useRepresentatives } from "@/modules/lgu-management/supplier-registration/hooks/useRepresentatives";
+import { Supplier } from "@/modules/lgu-management/supplier-registration/types/supplier.schema";
 import {
   CreditCard,
   Hash,
@@ -332,7 +332,7 @@ export function SupplierDetailsModal({
             )}
           </div>
         </div>
-        
+
         <DialogFooter className="mt-4 pt-4 border-t">
           <Button variant="outline" onClick={onClose}>
             Close

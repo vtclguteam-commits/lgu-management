@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/hooks/useSalesmanExpenseApproval.ts
+// src/modules/lgu-management/treasury/salesmen-expense-approval/hooks/useSalesmanExpenseApproval.ts
 "use client";
 
 import * as React from "react";

@@ -1,4 +1,4 @@
-// src/modules/financial-management/reports/vat/vat-selling/providers/fetchProvider.ts
+// src/modules/lgu-management/reports/vat/vat-selling/providers/fetchProvider.ts
 
 import { cookies } from 'next/headers';
 

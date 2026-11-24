@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-payment/utils/types.ts
+// src/modules/lgu-management/claims-management/for-payment/utils/types.ts
 export type TransmittalRow = {
     id: number;
     transmittal_no?: string | null;

@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/supplier-debit-memo/components/MemoTable.tsx
+// src/modules/lgu-management/accounting/supplier-debit-memo/components/MemoTable.tsx
 
 "use client";
 
@@ -20,13 +20,13 @@ const PAGE_SIZE = 10;
 
 // Status badge uses inline styles to avoid Tailwind JIT purging dynamic classes
 const STATUS_STYLES: Record<string, { bg: string; color: string; border: string }> = {
-  Available: { bg: "rgba(16,185,129,0.15)", color: "#047857",  border: "rgba(16,185,129,0.3)"  },
-  Applied:   { bg: "rgba(59,130,246,0.15)", color: "#1d4ed8",  border: "rgba(59,130,246,0.3)"  },
+  Available: { bg: "rgba(16,185,129,0.15)", color: "#047857", border: "rgba(16,185,129,0.3)" },
+  Applied: { bg: "rgba(59,130,246,0.15)", color: "#1d4ed8", border: "rgba(59,130,246,0.3)" },
 };
 
 
 function StatusPill({ status }: { status: string }) {
-  const key   = status ?? "";
+  const key = status ?? "";
   const style = STATUS_STYLES[key] ?? STATUS_STYLES[key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()];
 
   if (!style) {
@@ -55,16 +55,16 @@ function getPageNumbers(current: number, total: number): (number | "ellipsis")[]
 }
 
 interface MemoTableProps {
-  memos:     SupplierDebitMemo[];
-  loading:   boolean;
-  error?:    string | null;
+  memos: SupplierDebitMemo[];
+  loading: boolean;
+  error?: string | null;
   suppliers: Supplier[];
-  accounts:  ChartOfAccount[];
+  accounts: ChartOfAccount[];
 }
 
 export function MemoTable({ memos, loading, error, suppliers, accounts }: MemoTableProps) {
   const [search, setSearch] = useState("");
-  const [page,   setPage]   = useState(1);
+  const [page, setPage] = useState(1);
 
   // Lookup maps — use string keys to handle both number and string IDs from Directus
   const supplierMap: Record<string, string> = {};
@@ -83,18 +83,18 @@ export function MemoTable({ memos, loading, error, suppliers, accounts }: MemoTa
   const q = search.trim().toLowerCase();
   const filtered = q
     ? memos.filter(m =>
-        m.memo_number.toLowerCase().includes(q) ||
-        (m.reason ?? "").toLowerCase().includes(q) ||
-        (supplierMap[String(m.supplier_id)] ?? "").toLowerCase().includes(q) ||
-        (accountMap[String(m.chart_of_account)] ?? "").toLowerCase().includes(q) ||
-        m.status.toLowerCase().includes(q) ||
-        m.amount.toString().includes(q)
-      )
+      m.memo_number.toLowerCase().includes(q) ||
+      (m.reason ?? "").toLowerCase().includes(q) ||
+      (supplierMap[String(m.supplier_id)] ?? "").toLowerCase().includes(q) ||
+      (accountMap[String(m.chart_of_account)] ?? "").toLowerCase().includes(q) ||
+      m.status.toLowerCase().includes(q) ||
+      m.amount.toString().includes(q)
+    )
     : memos;
 
-  const totalPages  = Math.ceil(filtered.length / PAGE_SIZE);
-  const safePage    = Math.min(page, totalPages || 1);
-  const paged       = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const safePage = Math.min(page, totalPages || 1);
+  const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const pageNumbers = getPageNumbers(safePage, totalPages);
 
   return (

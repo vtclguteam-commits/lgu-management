@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/user-expense-limit-approval/hooks/useUserExpenseLimitApproval.ts
+// src/modules/lgu-management/treasury/budgeting/user-expense-limit-approval/hooks/useUserExpenseLimitApproval.ts
 
 "use client";
 
@@ -10,8 +10,8 @@ const APPROVAL_API_BASE = "/api/fm/treasury/expense-approval/user-expense-limit/
 
 export function usePendingLimits() {
   const [pendingList, setPendingList] = useState<PendingLimitApproval[]>([]);
-  const [loading,     setLoading]     = useState(false);
-  const [error,       setError]       = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -56,11 +56,11 @@ export function usePendingLimits() {
 
 export function useProcessLimitProposal() {
   const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const processProposal = async (payload: {
     user_id: number;
-    action:  "approve" | "reject";
+    action: "approve" | "reject";
     limits?: Record<number, number>;
     remarks?: string;
   }) => {

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-transfers/utils/printBankTransferCheck.ts
+// src/modules/lgu-management/treasury/bank-management/bank-transfers/utils/printBankTransferCheck.ts
 import type { BankTransfer } from "../types";
 
 function esc(value: unknown) {

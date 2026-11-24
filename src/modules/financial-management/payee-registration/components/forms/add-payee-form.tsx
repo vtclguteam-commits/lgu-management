@@ -23,7 +23,7 @@ import { Payee, PayeeFormSchema, PayeeFormValues } from "../../types/payee.schem
 import {
   useDeliveryTerms,
   usePaymentTerms,
-} from "@/modules/financial-management/supplier-registration/hooks/useTerms";
+} from "@/modules/lgu-management/supplier-registration/hooks/useTerms";
 import { usePayeeUsers } from "../../hooks/usePayeeUsers";
 import { UserSelect } from "./user-select";
 
@@ -527,18 +527,18 @@ export function AddPayeeForm({
                 onSelect={(user) => {
                   const userId = user.id || user.user_id || user.userId;
                   if (userId) form.setValue("user_id", userId, { shouldValidate: true });
-                  
+
                   const fname = user.firstName || user.user_fname || "";
                   const lname = user.lastName || user.user_lname || "";
                   const name = `${fname} ${lname}`.trim();
                   if (name) form.setValue("supplier_name", name, { shouldValidate: true });
-                  
+
                   const tin = user.tinNumber || user.user_tin || "";
                   if (tin) form.setValue("tin_number", tin.replace(/\D/g, "").slice(0, 12), { shouldValidate: true });
-                  
+
                   const email = user.email || user.user_email || "";
                   if (email) form.setValue("email_address", email, { shouldValidate: true });
-                  
+
                   const phone = user.contactNumber || user.user_contact || "";
                   if (phone) form.setValue("phone_number", phone, { shouldValidate: true });
                 }}
@@ -593,11 +593,10 @@ export function AddPayeeForm({
                         value={String(field.value ?? "NON-TRADE")}
                         onChange={(event) => field.onChange(event.target.value)}
                         disabled={!allowSupplierTypeSelect}
-                        className={`flex h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm ${
-                          allowSupplierTypeSelect
+                        className={`flex h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm ${allowSupplierTypeSelect
                             ? "bg-background text-foreground"
                             : "bg-muted text-muted-foreground"
-                        }`}
+                          }`}
                       >
                         {allowSupplierTypeSelect ? (
                           <>
@@ -734,20 +733,20 @@ export function AddPayeeForm({
                   )}
                 />
 
-                  {psgcError ? (
-                    <div className="flex items-center justify-between gap-3 rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
-                      <span>{psgcError}</span>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={retryPsgcOptions}
-                        disabled={Object.values(psgcLoading).some(Boolean)}
-                      >
-                        Retry
-                      </Button>
-                    </div>
-                  ) : null}
+                {psgcError ? (
+                  <div className="flex items-center justify-between gap-3 rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                    <span>{psgcError}</span>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={retryPsgcOptions}
+                      disabled={Object.values(psgcLoading).some(Boolean)}
+                    >
+                      Retry
+                    </Button>
+                  </div>
+                ) : null}
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <FormField

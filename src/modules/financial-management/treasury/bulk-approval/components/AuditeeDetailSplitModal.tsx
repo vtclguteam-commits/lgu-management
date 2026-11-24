@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
+// src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx
 "use client";
 
 import * as React from "react";
@@ -145,7 +145,7 @@ export default function AuditeeDetailSplitModal({
         return true;
       }
       if (item.target.scope === "expense_ids" && item.target.expense_ids) {
-        return item.target.expense_ids.some(id => 
+        return item.target.expense_ids.some(id =>
           data?.details.some(d => d.expense_id === id && d.employee_id === employeeId)
         );
       }
@@ -155,7 +155,7 @@ export default function AuditeeDetailSplitModal({
 
   const handleClose = React.useCallback(() => {
     const isWarningSilenced = typeof window !== "undefined" && localStorage.getItem("hide_staged_close_warning") === "true";
-    
+
     if (hasStagedDecisions && !isWarningSilenced) {
       setShowCloseConfirm(true);
     } else {
@@ -251,7 +251,7 @@ export default function AuditeeDetailSplitModal({
 
       const encoderKey = `encoder:${item.employee_id}`;
       const cellKey = `cell:${item.employee_id}:${item.coa_id}`;
-      
+
       const hasEncoderStaged = stagedDecisions && stagedDecisions[encoderKey];
       const hasCellStaged = stagedDecisions && stagedDecisions[cellKey];
 
@@ -404,19 +404,19 @@ export default function AuditeeDetailSplitModal({
                     <CarouselItem key={`${at.category}:${at.url}`} className="flex items-center justify-center h-full">
                       <div className="relative w-full h-full flex flex-col items-center justify-center gap-6">
                         <div className="relative group/img max-w-full h-[65vh] w-full flex items-center justify-center bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl select-none">                           <motion.div
-                            drag={inlineZoom > 1}
-                            dragMomentum={false}
-                            className="relative flex items-center justify-center w-full h-full select-none"
-                            style={{ scale: inlineZoom, rotate: inlineRotation }}
-                          >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={`/api/fm/expense-assets?id=${at.url}`}
-                              alt={at.label}
-                              className="max-w-full max-h-full object-contain pointer-events-none"
-                              draggable={false}
-                            />
-                          </motion.div>
+                          drag={inlineZoom > 1}
+                          dragMomentum={false}
+                          className="relative flex items-center justify-center w-full h-full select-none"
+                          style={{ scale: inlineZoom, rotate: inlineRotation }}
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`/api/fm/expense-assets?id=${at.url}`}
+                            alt={at.label}
+                            className="max-w-full max-h-full object-contain pointer-events-none"
+                            draggable={false}
+                          />
+                        </motion.div>
 
                           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/10 p-1.5 rounded-xl opacity-0 group-hover/img:opacity-100 transition-all duration-300">
                             <Button variant="ghost" size="icon" className="h-8 w-8 text-white/70 hover:text-white hover:bg-white/10" onClick={() => setInlineZoom(prev => Math.min(prev + 0.25, 3))} title="Zoom In">
@@ -546,33 +546,28 @@ export default function AuditeeDetailSplitModal({
 
           {/* View-Only Context Banner */}
           {!canAct && (
-            <div className={`mx-[1.5vw] mt-4 relative overflow-hidden rounded-2xl border p-4 animate-in fade-in slide-in-from-top-2 duration-300 ${
-              isRejectedHistory
+            <div className={`mx-[1.5vw] mt-4 relative overflow-hidden rounded-2xl border p-4 animate-in fade-in slide-in-from-top-2 duration-300 ${isRejectedHistory
                 ? "border-rose-200/60 dark:border-rose-900/30 bg-rose-50/40 dark:bg-rose-950/10"
                 : "border-amber-200/60 dark:border-amber-900/30 bg-amber-50/40 dark:bg-amber-950/10"
-            }`}>
-              <div className={`absolute inset-0 ${
-                isRejectedHistory
+              }`}>
+              <div className={`absolute inset-0 ${isRejectedHistory
                   ? "bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.06),transparent_40%)]"
                   : "bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.06),transparent_40%)]"
-              }`} />
+                }`} />
               <div className="relative flex gap-3.5 items-start">
-                <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border shadow-sm ${
-                  isRejectedHistory
+                <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border shadow-sm ${isRejectedHistory
                     ? "bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-500 shadow-rose-500/5"
                     : "bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-500 shadow-amber-500/5"
-                }`}>
+                  }`}>
                   <AlertTriangle className="h-4.5 w-4.5" />
                 </div>
                 <div className="space-y-1 text-left min-w-0 flex-1">
-                  <h4 className={`text-[11px] font-black uppercase tracking-wider leading-none ${
-                    isRejectedHistory ? "text-rose-800 dark:text-rose-400" : "text-amber-800 dark:text-amber-500"
-                  }`}>
+                  <h4 className={`text-[11px] font-black uppercase tracking-wider leading-none ${isRejectedHistory ? "text-rose-800 dark:text-rose-400" : "text-amber-800 dark:text-amber-500"
+                    }`}>
                     {isRejectedHistory ? "Rejected — View Only" : isApprovedHistory ? "Finalized — View Only" : "View-Only Staging Mode"}
                   </h4>
-                  <p className={`text-xs font-medium leading-relaxed max-w-4xl ${
-                    isRejectedHistory ? "text-rose-700/90 dark:text-rose-400/80" : "text-amber-700/90 dark:text-amber-400/80"
-                  }`}>
+                  <p className={`text-xs font-medium leading-relaxed max-w-4xl ${isRejectedHistory ? "text-rose-700/90 dark:text-rose-400/80" : "text-amber-700/90 dark:text-amber-400/80"
+                    }`}>
                     You are viewing the details for <strong className="text-slate-900 dark:text-white font-bold">{salesmantName}</strong>.{" "}
                     {isRejectedHistory ? (
                       "This submission was rejected by the final approver. No further actions can be taken on this record."
@@ -688,124 +683,123 @@ export default function AuditeeDetailSplitModal({
                             const isFinalized = item.draft_tier === 0;
                             const itemTier = item.draft_tier !== undefined ? item.draft_tier : effectiveCurrentTier;
                             return (
-                            <TableRow key={item.expense_id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
-                              <TableCell className="py-3 pl-5 text-[9px] font-black text-slate-300 dark:text-slate-600 italic">{String(idx + 1).padStart(2, "0")}</TableCell>
-                              <TableCell className="py-3">
-                                <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 line-clamp-2">{item.remarks || "—"}</p>
-                              </TableCell>
-                              <TableCell className="py-3 text-[10px] font-medium text-slate-500 dark:text-slate-400">{item.payee || "—"}</TableCell>
-                              <TableCell className="py-3 text-center text-[10px] font-bold text-slate-500 uppercase tabular-nums">{formatDate(item.transaction_date)}</TableCell>
-                              <TableCell className="py-3 text-right text-[10px] font-black text-slate-800 dark:text-slate-200 tabular-nums">{formatCurrency(item.amount)}</TableCell>
-                              <TableCell className="py-3 text-center">
-                                <div className="flex flex-col items-center justify-center gap-1.5">
-                                  <div className="flex items-center gap-1.5">
-                                    <Badge className="text-[9px] font-black border rounded-lg px-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700">
-                                      Draft
-                                    </Badge>
-                                    <Badge
-                                      className={`text-[8px] font-bold border rounded-lg px-1.5 py-0.5 ${
-                                        item.status.toLowerCase() === "rejected"
-                                          ? "bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800/50"
+                              <TableRow key={item.expense_id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
+                                <TableCell className="py-3 pl-5 text-[9px] font-black text-slate-300 dark:text-slate-600 italic">{String(idx + 1).padStart(2, "0")}</TableCell>
+                                <TableCell className="py-3">
+                                  <p className="text-[10px] font-bold text-slate-700 dark:text-slate-200 line-clamp-2">{item.remarks || "—"}</p>
+                                </TableCell>
+                                <TableCell className="py-3 text-[10px] font-medium text-slate-500 dark:text-slate-400">{item.payee || "—"}</TableCell>
+                                <TableCell className="py-3 text-center text-[10px] font-bold text-slate-500 uppercase tabular-nums">{formatDate(item.transaction_date)}</TableCell>
+                                <TableCell className="py-3 text-right text-[10px] font-black text-slate-800 dark:text-slate-200 tabular-nums">{formatCurrency(item.amount)}</TableCell>
+                                <TableCell className="py-3 text-center">
+                                  <div className="flex flex-col items-center justify-center gap-1.5">
+                                    <div className="flex items-center gap-1.5">
+                                      <Badge className="text-[9px] font-black border rounded-lg px-2 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700">
+                                        Draft
+                                      </Badge>
+                                      <Badge
+                                        className={`text-[8px] font-bold border rounded-lg px-1.5 py-0.5 ${item.status.toLowerCase() === "rejected"
+                                            ? "bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800/50"
+                                            : item.status.toLowerCase().includes("concern")
+                                              ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/50"
+                                              : itemTier === 1
+                                                ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/50"
+                                                : "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/50"
+                                          }`}
+                                      >
+                                        {item.status.toLowerCase() === "rejected"
+                                          ? "Rejected"
                                           : item.status.toLowerCase().includes("concern")
-                                          ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/50"
-                                          : itemTier === 1
-                                          ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800/50"
-                                          : "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/50"
-                                      }`}
-                                    >
-                                      {item.status.toLowerCase() === "rejected"
-                                        ? "Rejected"
-                                        : item.status.toLowerCase().includes("concern")
-                                        ? "With Concern"
-                                        : itemTier === 1
-                                        ? "Submitted"
-                                        : `L${Math.max(1, itemTier - 1)} Approved (${effectivePrevTierApproverNames.length ? effectivePrevTierApproverNames.join(', ') : 'System'})`}
-                                    </Badge>
+                                            ? "With Concern"
+                                            : itemTier === 1
+                                              ? "Submitted"
+                                              : `L${Math.max(1, itemTier - 1)} Approved (${effectivePrevTierApproverNames.length ? effectivePrevTierApproverNames.join(', ') : 'System'})`}
+                                      </Badge>
+                                    </div>
+                                    {canAct && !isAlreadyCulled && !stagedStatus && !isLowerTierLocked && !isFinalized && (
+                                      <Badge className="text-[8px] font-black border rounded-lg px-2 bg-blue-50 text-blue-600 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800 uppercase shadow-sm">
+                                        Pending Your Action
+                                      </Badge>
+                                    )}
+                                    {isLowerTierLocked && (
+                                      <Badge className="text-[8px] font-black border rounded-lg px-2 bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800 uppercase shadow-sm">
+                                        Pending Lower Tier
+                                      </Badge>
+                                    )}
+                                    {stagedStatus === "Approved" && (
+                                      <Badge className="text-[8px] font-black border rounded-lg px-2 bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800 uppercase shadow-sm mt-0.5">
+                                        Approved (Staged)
+                                      </Badge>
+                                    )}
                                   </div>
-                                  {canAct && !isAlreadyCulled && !stagedStatus && !isLowerTierLocked && !isFinalized && (
-                                    <Badge className="text-[8px] font-black border rounded-lg px-2 bg-blue-50 text-blue-600 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800 uppercase shadow-sm">
-                                      Pending Your Action
-                                    </Badge>
+                                </TableCell>
+                                <TableCell className="py-3 px-3">
+                                  {item.feedback ? (
+                                    <p className="text-[9px] font-medium text-slate-600 dark:text-slate-400 bg-amber-50 dark:bg-amber-900/20 p-1.5 rounded-lg border border-amber-100 dark:border-amber-900/50 text-left">
+                                      <span className="font-bold text-amber-700 dark:text-amber-500 uppercase">Prior Note:</span> {item.feedback}
+                                    </p>
+                                  ) : (
+                                    <span className="text-[10px] font-medium text-slate-400 dark:text-slate-600">—</span>
                                   )}
-                                  {isLowerTierLocked && (
-                                    <Badge className="text-[8px] font-black border rounded-lg px-2 bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800 uppercase shadow-sm">
-                                      Pending Lower Tier
-                                    </Badge>
-                                  )}
-                                  {stagedStatus === "Approved" && (
-                                    <Badge className="text-[8px] font-black border rounded-lg px-2 bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800 uppercase shadow-sm mt-0.5">
-                                      Approved (Staged)
-                                    </Badge>
-                                  )}
-                                </div>
-                              </TableCell>
-                              <TableCell className="py-3 px-3">
-                                {item.feedback ? (
-                                  <p className="text-[9px] font-medium text-slate-600 dark:text-slate-400 bg-amber-50 dark:bg-amber-900/20 p-1.5 rounded-lg border border-amber-100 dark:border-amber-900/50 text-left">
-                                    <span className="font-bold text-amber-700 dark:text-amber-500 uppercase">Prior Note:</span> {item.feedback}
-                                  </p>
-                                ) : (
-                                  <span className="text-[10px] font-medium text-slate-400 dark:text-slate-600">—</span>
-                                )}
-                              </TableCell>
-                              <TableCell className="py-3 text-center">
-                                <div className="flex items-center justify-center gap-1">
-                                  {canAct && !isLowerTierLocked && !isFinalized && (
-                                    <>
-                                      {!isAlreadyCulled && (
-                                        <>
-                                          <Button 
-                                            type="button" 
-                                            size="icon" 
-                                            className={`h-7 w-7 rounded-lg ${stagedStatus === 'Approved' ? 'bg-emerald-500 text-white shadow-md' : 'bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500 hover:text-white'}`} 
-                                            disabled={submitting} 
-                                            onClick={() => {
-                                              if (isAlreadyCulled) {
-                                                void onSubmitTargetDecision("Approved", { scope: "expense_ids", expense_ids: [item.expense_id] });
-                                              } else {
-                                                onToggleDecision?.("Approved", { scope: "expense_ids", expense_ids: [item.expense_id] });
-                                              }
-                                            }} 
-                                            title="Approve"
-                                          >
-                                            <CheckCircle2 size={13} />
-                                          </Button>
+                                </TableCell>
+                                <TableCell className="py-3 text-center">
+                                  <div className="flex items-center justify-center gap-1">
+                                    {canAct && !isLowerTierLocked && !isFinalized && (
+                                      <>
+                                        {!isAlreadyCulled && (
+                                          <>
+                                            <Button
+                                              type="button"
+                                              size="icon"
+                                              className={`h-7 w-7 rounded-lg ${stagedStatus === 'Approved' ? 'bg-emerald-500 text-white shadow-md' : 'bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500 hover:text-white'}`}
+                                              disabled={submitting}
+                                              onClick={() => {
+                                                if (isAlreadyCulled) {
+                                                  void onSubmitTargetDecision("Approved", { scope: "expense_ids", expense_ids: [item.expense_id] });
+                                                } else {
+                                                  onToggleDecision?.("Approved", { scope: "expense_ids", expense_ids: [item.expense_id] });
+                                                }
+                                              }}
+                                              title="Approve"
+                                            >
+                                              <CheckCircle2 size={13} />
+                                            </Button>
+                                            <Button
+                                              type="button"
+                                              size="icon"
+                                              variant="outline"
+                                              className={`h-7 w-7 rounded-lg ${item.status.toLowerCase().includes('concern') ? 'bg-amber-500 text-white border-amber-500 shadow-md' : 'border-amber-200 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20'}`}
+                                              disabled={submitting}
+                                              onClick={() => void onSubmitTargetDecision("With Concern", { scope: "expense_ids", expense_ids: [item.expense_id] })}
+                                              title="Concern"
+                                            >
+                                              <AlertTriangle size={12} />
+                                            </Button>
+                                          </>
+                                        )}
+                                        {(!isAlreadyCulled || item.status.toLowerCase().includes('concern')) && (
                                           <Button
                                             type="button"
                                             size="icon"
                                             variant="outline"
-                                            className={`h-7 w-7 rounded-lg ${item.status.toLowerCase().includes('concern') ? 'bg-amber-500 text-white border-amber-500 shadow-md' : 'border-amber-200 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20'}`}
+                                            className={`h-7 w-7 rounded-lg ${item.status.toLowerCase() === 'rejected' ? 'bg-rose-500 text-white border-rose-500 shadow-md' : 'border-rose-200 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20'}`}
                                             disabled={submitting}
-                                            onClick={() => void onSubmitTargetDecision("With Concern", { scope: "expense_ids", expense_ids: [item.expense_id] })}
-                                            title="Concern"
+                                            onClick={() => void onSubmitTargetDecision("Rejected", { scope: "expense_ids", expense_ids: [item.expense_id] })}
+                                            title="Reject"
                                           >
-                                            <AlertTriangle size={12} />
+                                            <XCircle size={13} />
                                           </Button>
-                                        </>
-                                      )}
-                                      {(!isAlreadyCulled || item.status.toLowerCase().includes('concern')) && (
-                                        <Button
-                                          type="button"
-                                          size="icon"
-                                          variant="outline"
-                                          className={`h-7 w-7 rounded-lg ${item.status.toLowerCase() === 'rejected' ? 'bg-rose-500 text-white border-rose-500 shadow-md' : 'border-rose-200 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20'}`}
-                                          disabled={submitting}
-                                          onClick={() => void onSubmitTargetDecision("Rejected", { scope: "expense_ids", expense_ids: [item.expense_id] })}
-                                          title="Reject"
-                                        >
-                                          <XCircle size={13} />
-                                        </Button>
-                                      )}
-                                    </>
-                                  )}
-                                  {item.attachment_url && (
-                                    <Button type="button" size="icon" variant="ghost" className="h-7 w-7 cursor-pointer rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" onClick={() => openEvidence({ kind: "line", expenseId: item.expense_id })} title="View expense attachment">
-                                      <FileText size={12} />
-                                    </Button>
-                                  )}
-                                </div>
-                              </TableCell>
-                            </TableRow>
+                                        )}
+                                      </>
+                                    )}
+                                    {item.attachment_url && (
+                                      <Button type="button" size="icon" variant="ghost" className="h-7 w-7 cursor-pointer rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" onClick={() => openEvidence({ kind: "line", expenseId: item.expense_id })} title="View expense attachment">
+                                        <FileText size={12} />
+                                      </Button>
+                                    )}
+                                  </div>
+                                </TableCell>
+                              </TableRow>
                             );
                           })}
                         </TableBody>

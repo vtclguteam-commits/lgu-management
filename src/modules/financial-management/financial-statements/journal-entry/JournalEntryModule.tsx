@@ -18,8 +18,8 @@ import JournalEntryTable from "./components/JournalEntryTable";
 import JournalEntryDetailModal from "./components/JournalEntryDetailModal";
 import { exportJournalToExcel, exportJournalToPdf } from "./services/export.service";
 
-import { DataTableSkeleton } from "@/app/(financial-management)/fm/_components/DataTableSkeleton";
-import { ErrorPage } from "@/app/(financial-management)/fm/_components/ErrorPage";
+import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
+import { ErrorPage } from "@/app/(lgu-management)/fm/_components/ErrorPage";
 
 /**
  * Main module component that provides the context for all sub-components.
@@ -34,14 +34,14 @@ export default function JournalEntryModule() {
 }
 
 function JournalEntryDashboard() {
-  const { 
+  const {
     paginatedGroups,
-    analytics, 
-    filters, 
-    setFilters, 
+    analytics,
+    filters,
+    setFilters,
     uniqueSourceModules,
-    isLoading, 
-    error, 
+    isLoading,
+    error,
     refresh,
     resetFilters,
     currentPage,
@@ -59,7 +59,7 @@ function JournalEntryDashboard() {
     const formattedStart = format(new Date(filters.startDate), "MMM d, yyyy");
     const formattedEnd = format(new Date(filters.endDate), "MMM d, yyyy");
     const dateRangeText = `${formattedStart} to ${formattedEnd}`;
-    
+
     // Create toast with loading state
     const toastId = toast.loading(`Preparing ${type} export for the entire range...`);
 
@@ -74,9 +74,9 @@ function JournalEntryDashboard() {
 
       const url = `/api/fm/financial-statements/journal-entry?${query.toString()}`;
       const res = await fetch(url);
-      
+
       if (!res.ok) throw new Error("Failed to fetch data for export");
-      
+
       const response = await res.json();
       const allGroups = response.data || [];
 
@@ -95,9 +95,9 @@ function JournalEntryDashboard() {
 
   const handleSort = (field: string) => {
     setFilters(prev => ({
-        ...prev,
-        sortField: field,
-        sortOrder: prev.sortField === field && prev.sortOrder === "asc" ? "desc" : "asc"
+      ...prev,
+      sortField: field,
+      sortOrder: prev.sortField === field && prev.sortOrder === "asc" ? "desc" : "asc"
     }));
   };
 
@@ -111,32 +111,32 @@ function JournalEntryDashboard() {
       <div className="bg-background px-6 py-4 border-b flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0 shadow-sm">
         <div>
           <h1 className="text-xl font-semibold tracking-tight flex items-center gap-2">
-             Journal Entry Analysis
-             <Badge variant="secondary" className="text-xs uppercase font-medium py-0 h-4">Analytics Dashboard</Badge>
+            Journal Entry Analysis
+            <Badge variant="secondary" className="text-xs uppercase font-medium py-0 h-4">Analytics Dashboard</Badge>
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">
             Real-time audit, validation, and multi-line accounting distribution tracking.
           </p>
         </div>
         <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" className="h-9 text-sm" onClick={() => handleExport("PDF")}>
-                <Printer className="mr-2 h-3.5 w-3.5" />
-                Export PDF
-            </Button>
-            <Button size="sm" className="h-9 text-sm shadow-md" onClick={() => handleExport("Excel")}>
-                <FileDown className="mr-2 h-3.5 w-3.5" />
-                Export Excel
-            </Button>
+          <Button variant="outline" size="sm" className="h-9 text-sm" onClick={() => handleExport("PDF")}>
+            <Printer className="mr-2 h-3.5 w-3.5" />
+            Export PDF
+          </Button>
+          <Button size="sm" className="h-9 text-sm shadow-md" onClick={() => handleExport("Excel")}>
+            <FileDown className="mr-2 h-3.5 w-3.5" />
+            Export Excel
+          </Button>
         </div>
       </div>
 
       <div className="flex-1 flex overflow-hidden p-6 gap-6 min-h-0">
         {/* Left Filter Panel */}
-        <FilterPanel 
-            filters={filters} 
-            setFilters={setFilters} 
-            uniqueSourceModules={uniqueSourceModules}
-            onReset={resetFilters} 
+        <FilterPanel
+          filters={filters}
+          setFilters={setFilters}
+          uniqueSourceModules={uniqueSourceModules}
+          onReset={resetFilters}
         />
 
         {/* Right Content Area */}
@@ -149,32 +149,32 @@ function JournalEntryDashboard() {
 
           {/* Grouped Table with Loading State */}
           {isLoading ? (
-              <DataTableSkeleton columnCount={13} rowCount={10} />
+            <DataTableSkeleton columnCount={13} rowCount={10} />
           ) : (
-              <JournalEntryTable 
-                groups={paginatedGroups} 
-                loading={isLoading}
-                onDrillDown={(g) => {
-                    setSelectedGroup(g);
-                    setIsDetailOpen(true);
-                }}
-                currentPage={currentPage}
-                pageSize={pageSize}
-                pageCount={pageCount}
-                totalGroupCount={totalGroupCount}
-                onPageChange={setCurrentPage}
-                onPageSizeChange={setPageSize}
-                startDate={filters.startDate}
-                endDate={filters.endDate}
-                sortField={filters.sortField}
-                sortOrder={filters.sortOrder}
-                onSort={handleSort}
-              />
+            <JournalEntryTable
+              groups={paginatedGroups}
+              loading={isLoading}
+              onDrillDown={(g) => {
+                setSelectedGroup(g);
+                setIsDetailOpen(true);
+              }}
+              currentPage={currentPage}
+              pageSize={pageSize}
+              pageCount={pageCount}
+              totalGroupCount={totalGroupCount}
+              onPageChange={setCurrentPage}
+              onPageSizeChange={setPageSize}
+              startDate={filters.startDate}
+              endDate={filters.endDate}
+              sortField={filters.sortField}
+              sortOrder={filters.sortOrder}
+              onSort={handleSort}
+            />
           )}
         </div>
       </div>
 
-      <JournalEntryDetailModal 
+      <JournalEntryDetailModal
         group={selectedGroup}
         open={isDetailOpen}
         onOpenChange={setIsDetailOpen}
@@ -185,18 +185,18 @@ function JournalEntryDashboard() {
 
 // Inline Badge for local use if UI component is not globally exposed in index
 function Badge({ variant = "default", className = "", children }: { variant?: "default" | "secondary" | "outline", className?: string, children?: React.ReactNode }) {
-    const variants: Record<string, string> = {
-        default: "bg-primary text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground",
-        outline: "border border-input bg-background",
-    };
-    return (
-        <span className={cn(
-            "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-            variants[variant],
-            className
-        )}>
-            {children}
-        </span>
-    );
+  const variants: Record<string, string> = {
+    default: "bg-primary text-primary-foreground",
+    secondary: "bg-secondary text-secondary-foreground",
+    outline: "border border-input bg-background",
+  };
+  return (
+    <span className={cn(
+      "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+      variants[variant],
+      className
+    )}>
+      {children}
+    </span>
+  );
 }

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-ledger/providers/bankLedgerApi.ts
+// src/modules/lgu-management/treasury/bank-management/bank-ledger/providers/bankLedgerApi.ts
 import type {
   BankLedgerData,
   BankLedgerQuery,

@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/components/PrintablesMatrixTable.tsx
+// src/modules/lgu-management/printables-management/product-printables/components/PrintablesMatrixTable.tsx
 "use client";
 
 import React from "react";
@@ -34,13 +34,13 @@ type Props = {
     selectedPriceTypeIds?: string[];
 };
 
-export default function PrintablesMatrixTable({ 
-    rows, 
-    loading, 
+export default function PrintablesMatrixTable({
+    rows,
+    loading,
     error,
     onRetry,
-    priceTypes, 
-    units, 
+    priceTypes,
+    units,
     usedUnitIds,
     selectedPriceTypeIds = []
 }: Props) {
@@ -108,14 +108,14 @@ export default function PrintablesMatrixTable({
                     {/* Level 1: Global Header */}
                     <TableRow className="border-b border-[#D1D5DB]">
                         <TableHead colSpan={3} className="border-r border-[#D1D5DB] sticky left-0 top-0 z-40 bg-[#F9FAFB] h-8"></TableHead>
-                        <TableHead 
-                            colSpan={totalMatrixCols || 1} 
+                        <TableHead
+                            colSpan={totalMatrixCols || 1}
                             className="text-center font-bold text-[11px] uppercase tracking-[0.2em] text-[#4B5563] py-1 border-r border-[#D1D5DB] sticky top-0 z-30 bg-[#F9FAFB]"
                         >
                             Price Type
                         </TableHead>
                     </TableRow>
-                    
+
                     {/* Level 2: Price Tiers (Selected) */}
                     <TableRow className="border-b border-[#D1D5DB]">
                         <TableHead className="font-bold sticky left-0 top-8 z-40 bg-[#F9FAFB] border-r border-[#D1D5DB] min-w-[100px] text-[10px] uppercase text-[#374151] h-10">Brand</TableHead>
@@ -124,9 +124,9 @@ export default function PrintablesMatrixTable({
                         {activePriceTypes.map((pt) => {
                             const absoluteIndex = priceTypes.indexOf(pt);
                             return (
-                                <TableHead 
-                                    key={pt.price_type_id} 
-                                    colSpan={visibleUnits.length || 1} 
+                                <TableHead
+                                    key={pt.price_type_id}
+                                    colSpan={visibleUnits.length || 1}
                                     className={cn(
                                         "text-center font-black text-xs border-r border-[#D1D5DB] py-1.5 sticky top-8 z-30",
                                         matrixPriceTypeColor(absoluteIndex).className
@@ -146,8 +146,8 @@ export default function PrintablesMatrixTable({
                         {activePriceTypes.map((pt) => (
                             <React.Fragment key={pt.price_type_id}>
                                 {visibleUnits.length > 0 ? visibleUnits.map((u) => (
-                                    <TableHead 
-                                        key={u.unit_id} 
+                                    <TableHead
+                                        key={u.unit_id}
                                         className="text-center font-bold text-[9px] uppercase text-[#6B7280] py-1 border-r border-[#E5E7EB] min-w-[70px] sticky top-[72px] z-30 bg-[#F9FAFB]"
                                     >
                                         {u.unit_shortcut}
@@ -173,7 +173,7 @@ export default function PrintablesMatrixTable({
                             </TableCell>
                             {activePriceTypes.map((pt) => {
                                 const ptSuffix = priceTypeTierKey(pt);
-                                
+
                                 return (
                                     <React.Fragment key={pt.price_type_id}>
                                         {visibleUnits.length > 0 ? visibleUnits.map((u) => {
@@ -181,8 +181,8 @@ export default function PrintablesMatrixTable({
                                             const price = (variant?.tiers as Record<string, number | null>)?.[ptSuffix];
 
                                             return (
-                                                <TableCell 
-                                                    key={u.unit_id} 
+                                                <TableCell
+                                                    key={u.unit_id}
                                                     className={cn(
                                                         "text-right border-r border-[#E5E7EB] px-3 py-2 font-mono text-[10px]",
                                                         price == null ? "bg-[#F9FAFB]/50" : ""

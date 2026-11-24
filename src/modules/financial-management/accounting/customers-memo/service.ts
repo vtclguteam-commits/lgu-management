@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/service.ts
+// src/modules/lgu-management/accounting/customers-memo/service.ts
 
 import {
     Supplier, Customer, Salesman, ChartOfAccount,

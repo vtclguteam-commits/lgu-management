@@ -1,6 +1,6 @@
 // index.ts
 // Barrel export — import from one place:
-//   import VatSellingModule from '@/modules/financial-management/reports/vat/vat-selling'
+//   import VatSellingModule from '@/modules/lgu-management/reports/vat/vat-selling'
 
 // Main module
 export { default } from './VatSellingModule';

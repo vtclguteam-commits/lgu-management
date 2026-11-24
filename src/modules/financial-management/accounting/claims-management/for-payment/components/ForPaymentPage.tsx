@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-payment/components/ForPaymentPage.tsx
+// src/modules/lgu-management/claims-management/for-payment/components/ForPaymentPage.tsx
 "use client";
 
 import * as React from "react";
@@ -348,8 +348,8 @@ export default function ForPaymentPage() {
                             <div>
                                 <span className="text-muted-foreground">Grand Total:</span>{" "}
                                 <span className="font-semibold text-foreground">
-                {formatPHP(grandTotal)}
-            </span>
+                                    {formatPHP(grandTotal)}
+                                </span>
                             </div>
                             <div className="pt-2 text-xs text-muted-foreground">
                                 Please confirm you want to proceed.

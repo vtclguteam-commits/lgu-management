@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-receiving/components/AddCCMDialog.tsx
+// src/modules/lgu-management/claims-management/for-receiving/components/AddCCMDialog.tsx
 "use client";
 
 import * as React from "react";
@@ -48,13 +48,13 @@ function getErrorMessage(e: unknown): string {
 }
 
 export default function AddCCMDialog({
-                                         open,
-                                         onOpenChange,
-                                         transmittalId,
-                                         supplierId,
-                                         existingMemoIds,
-                                         onAdded,
-                                     }: Props) {
+    open,
+    onOpenChange,
+    transmittalId,
+    supplierId,
+    existingMemoIds,
+    onAdded,
+}: Props) {
     const [q, setQ] = React.useState("");
     const [selected, setSelected] = React.useState<Record<number, boolean>>({});
     const [saving, setSaving] = React.useState(false);

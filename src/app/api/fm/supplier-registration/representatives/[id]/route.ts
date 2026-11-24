@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { deleteRepresentative } from "@/modules/financial-management/supplier-registration/services/representative";
+import { deleteRepresentative } from "@/modules/lgu-management/supplier-registration/services/representative";
 
 export async function DELETE(
   request: NextRequest,

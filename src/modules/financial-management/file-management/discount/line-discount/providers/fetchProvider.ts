@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/providers/fetchProvider.ts
+// src/modules/lgu-management/line-discount/providers/fetchProvider.ts
 import type { LineDiscountRow, LineDiscountUpsert } from "../type";
 
 type ListResponse<T> = { data: T[] };

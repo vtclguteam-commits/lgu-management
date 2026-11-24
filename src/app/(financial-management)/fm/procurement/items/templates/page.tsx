@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import ItemTemplateListPage from "@/modules/financial-management/procurement/items/templates/components/ItemTemplateListPage";
+import ItemTemplateListPage from "@/modules/lgu-management/procurement/items/templates/components/ItemTemplateListPage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

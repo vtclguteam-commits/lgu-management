@@ -11,7 +11,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
-import CashIssuanceModule from "@/modules/financial-management/treasury/cash-issuance/CashIssuanceModule";
+import CashIssuanceModule from "@/modules/lgu-management/treasury/cash-issuance/CashIssuanceModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

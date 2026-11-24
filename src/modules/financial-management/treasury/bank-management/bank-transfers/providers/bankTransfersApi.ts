@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-transfers/providers/bankTransfersApi.ts
+// src/modules/lgu-management/treasury/bank-management/bank-transfers/providers/bankTransfersApi.ts
 import type {
   BankTransfer,
   BankTransferFormValues,

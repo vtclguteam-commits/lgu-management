@@ -1,4 +1,4 @@
-// src/modules/financial-management/asset-management/hooks/useCreateAsset.tsx
+// src/modules/lgu-management/asset-management/hooks/useCreateAsset.tsx
 import { useState } from "react";
 import { assetService } from "../services/assetService";
 import { AssetFormValues } from "../types";

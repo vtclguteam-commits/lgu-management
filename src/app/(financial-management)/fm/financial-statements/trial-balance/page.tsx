@@ -71,7 +71,7 @@ function buildHeaderUserFromToken(token: string | null | undefined) {
     };
 }
 
-import { TrialBalanceView } from "@/modules/financial-management/financial-statements/trial-balance/TrialBalanceView";
+import { TrialBalanceView } from "@/modules/lgu-management/financial-statements/trial-balance/TrialBalanceView";
 
 export default async function Page() {
     // ✅ Next.js 16: cookies() is async

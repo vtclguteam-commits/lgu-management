@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/create-budget/BudgetCreationModule.tsx
+// src/modules/lgu-management/treasury/budgeting/create-budget/BudgetCreationModule.tsx
 
 "use client";
 
@@ -56,34 +56,34 @@ function CreateBudgetContent() {
                     </div>
                 </div>
             </div>
- 
-             {/* Stats Overview */}
-             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                 <StatsCard 
-                     label="Draft Amount" 
-                     value={kpiTotals.draft}
-                     icon={<PlusCircle className="h-4 w-4 text-slate-500" />}
-                     color="slate"
-                 />
-                 <StatsCard 
-                     label="Pending Approval" 
-                     value={kpiTotals.pending}
-                     icon={<Send className="h-4 w-4 text-amber-500" />}
-                     color="amber"
-                 />
-                 <StatsCard 
-                     label="Total Approved" 
-                     value={kpiTotals.approved}
-                     icon={<RefreshCw className="h-4 w-4 text-emerald-500" />}
-                     color="emerald"
-                 />
-                 <StatsCard
-                     label="Total Rejected"
-                     value={kpiTotals.rejected}
-                     icon={<Trash2 className="h-4 w-4 text-rose-500" />}
-                     color="rose"
-                 />
-             </div>
+
+            {/* Stats Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                <StatsCard
+                    label="Draft Amount"
+                    value={kpiTotals.draft}
+                    icon={<PlusCircle className="h-4 w-4 text-slate-500" />}
+                    color="slate"
+                />
+                <StatsCard
+                    label="Pending Approval"
+                    value={kpiTotals.pending}
+                    icon={<Send className="h-4 w-4 text-amber-500" />}
+                    color="amber"
+                />
+                <StatsCard
+                    label="Total Approved"
+                    value={kpiTotals.approved}
+                    icon={<RefreshCw className="h-4 w-4 text-emerald-500" />}
+                    color="emerald"
+                />
+                <StatsCard
+                    label="Total Rejected"
+                    value={kpiTotals.rejected}
+                    icon={<Trash2 className="h-4 w-4 text-rose-500" />}
+                    color="rose"
+                />
+            </div>
 
             {/* Filter Section */}
             <Card className="rounded-2xl border-border/50 shadow-sm overflow-hidden">
@@ -129,7 +129,7 @@ function CreateBudgetContent() {
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
                                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction 
+                                    <AlertDialogAction
                                         onClick={quickDelete}
                                         className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                                     >
@@ -156,9 +156,9 @@ function CreateBudgetContent() {
                                         {isRejectedTab ? "Resubmit Selected Budgets?" : "Submit Selected Budgets?"}
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        {isRejectedTab 
-                                          ? `Are you sure you want to resubmit the ${selectedIds.size} selected rejected budget entries for approval?`
-                                          : `Are you sure you want to submit the ${selectedIds.size} selected budget entries for approval? They will no longer be in draft status.`
+                                        {isRejectedTab
+                                            ? `Are you sure you want to resubmit the ${selectedIds.size} selected rejected budget entries for approval?`
+                                            : `Are you sure you want to submit the ${selectedIds.size} selected budget entries for approval? They will no longer be in draft status.`
                                         }
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>

@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/utils/generateMemoPdf.ts
+// src/modules/lgu-management/accounting/customers-memo/utils/generateMemoPdf.ts
 import { DetailedMemo, CompanyProfile } from "../types";
 import { PdfEngine } from "@/components/pdf-layout-design/PdfEngine";
 import { PdfTemplate } from "@/components/pdf-layout-design/services/pdf-template";
@@ -55,8 +55,8 @@ export async function generateMemoPdf(details: DetailedMemo, options: MemoPdfOpt
 
     const memoNo = header.memo_number || "—";
     const memoType = header.type === 1 ? "Customer Credit Memo"
-                   : header.type === 2 ? "Customer Debit Memo"
-                   : "Customer Memo";
+        : header.type === 2 ? "Customer Debit Memo"
+            : "Customer Memo";
 
     const tplConfig = selectedTemplate?.config;
     const finalPaper = tplConfig?.paperSize.toLowerCase() || "a4";
@@ -81,13 +81,13 @@ export async function generateMemoPdf(details: DetailedMemo, options: MemoPdfOpt
         doc.setFont("helvetica", "bold");
         doc.setTextColor(26, 26, 46); // Navy
         doc.text(company?.company_name?.toUpperCase() || "COMPANY NAME", finalMargins.left, y + 8);
-        
+
         doc.setFontSize(9);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(100);
         const addr = [company?.company_address, company?.company_city, company?.company_province].filter(Boolean).join(", ");
         doc.text(addr, finalMargins.left, y + 13);
-        
+
         doc.setDrawColor(26, 26, 46);
         doc.setLineWidth(0.8);
         doc.line(finalMargins.left, y + 16, doc.internal.pageSize.getWidth() - finalMargins.right, y + 16);
@@ -99,7 +99,7 @@ export async function generateMemoPdf(details: DetailedMemo, options: MemoPdfOpt
     doc.setFont("helvetica", "bold");
     doc.setTextColor(26, 26, 46);
     doc.text(memoType.toUpperCase(), finalMargins.left, y);
-    
+
     doc.setFontSize(14);
     doc.setFont("courier", "bold");
     const docNoWidth = doc.getTextWidth(memoNo);
@@ -138,11 +138,11 @@ export async function generateMemoPdf(details: DetailedMemo, options: MemoPdfOpt
     const summaryW = 65;
     const summaryX = doc.internal.pageSize.getWidth() - finalMargins.right - summaryW;
     const summaryY = infoY - 2;
-    
+
     doc.setDrawColor(200);
     doc.setLineWidth(0.2);
     doc.roundedRect(summaryX, summaryY, summaryW, 28, 2, 2, "S");
-    
+
     doc.setFillColor(26, 26, 46);
     doc.roundedRect(summaryX, summaryY, summaryW, 7, 2, 2, "F");
     doc.setFontSize(8);
@@ -154,7 +154,7 @@ export async function generateMemoPdf(details: DetailedMemo, options: MemoPdfOpt
     doc.setTextColor(60);
     const sumCol1 = summaryX + 4;
     const sumCol2 = summaryX + summaryW - 4;
-    
+
     const appliedToInvoices = (details.invoices || []).reduce((s, i) => s + (i.amount ?? 0), 0);
     const summaryData = [
         ["Memo Amount", money(header.amount)],
@@ -276,16 +276,16 @@ export async function generateMemoPdf(details: DetailedMemo, options: MemoPdfOpt
         doc.setFont("helvetica", "bold");
         doc.setTextColor(100);
         doc.text(label.toUpperCase(), x, y);
-        
+
         doc.setFontSize(9);
         doc.setFont("helvetica", "bold");
         doc.setTextColor(0);
         doc.text(name || " ", x, y + 10);
-        
+
         doc.setDrawColor(100);
         doc.setLineWidth(0.2);
         doc.line(x, y + 11, x + signW, y + 11);
-        
+
         doc.setFontSize(7);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(120);

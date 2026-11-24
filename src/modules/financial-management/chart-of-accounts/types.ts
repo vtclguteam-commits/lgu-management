@@ -1,4 +1,4 @@
-// src/modules/financial-management/chart-of-accounts/types.ts
+// src/modules/lgu-management/chart-of-accounts/types.ts
 export type DirectusListResponse<T> = {
   data: T[];
   meta?: {

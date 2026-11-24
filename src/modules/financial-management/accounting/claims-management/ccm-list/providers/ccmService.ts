@@ -1,5 +1,5 @@
 
-//src/modules/financial-management-system/claims-management/ccm-list/providers/ccmService.ts
+//src/modules/lgu-management-system/claims-management/ccm-list/providers/ccmService.ts
 import type { CCMListQuery, CCMListResponse } from "../utils/types";
 
 function qs(query: CCMListQuery) {

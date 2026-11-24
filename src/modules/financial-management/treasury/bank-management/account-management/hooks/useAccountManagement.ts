@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/account-management/hooks/useAccountManagement.ts
+// src/modules/lgu-management/treasury/bank-management/account-management/hooks/useAccountManagement.ts
 import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import {

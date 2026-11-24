@@ -1,4 +1,4 @@
-// src/modules/financial-management/service-invoicing/ServiceInvoicingModulePage.tsx
+// src/modules/lgu-management/service-invoicing/ServiceInvoicingModulePage.tsx
 
 "use client";
 
@@ -148,7 +148,7 @@ function KeyboardNavSelect({ options, value, onChange, placeholder, error, label
       <label className="text-[10px] font-black uppercase tracking-wider text-muted-foreground flex items-center gap-1 select-none">
         {icon} {label}
       </label>
-      
+
       <div className="relative w-full">
         <input
           ref={inputRef}
@@ -166,9 +166,8 @@ function KeyboardNavSelect({ options, value, onChange, placeholder, error, label
           }}
           onKeyDown={handleKeyDown}
           placeholder={selectedOption ? selectedOption.label : placeholder}
-          className={`w-full h-10 pl-3 pr-10 text-xs rounded-xl bg-background border font-semibold focus:outline-none transition-all ${
-            isOpen ? "ring-2 ring-indigo-600/20 border-indigo-500" : "border-border/60 hover:bg-muted/10"
-          } ${error ? "border-red-500" : ""}`}
+          className={`w-full h-10 pl-3 pr-10 text-xs rounded-xl bg-background border font-semibold focus:outline-none transition-all ${isOpen ? "ring-2 ring-indigo-600/20 border-indigo-500" : "border-border/60 hover:bg-muted/10"
+            } ${error ? "border-red-500" : ""}`}
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
           {value !== "" && value !== undefined && value !== null && (
@@ -208,9 +207,8 @@ function KeyboardNavSelect({ options, value, onChange, placeholder, error, label
                       setInputValue(opt.label);
                       setIsOpen(false);
                     }}
-                    className={`p-2.5 text-xs font-semibold cursor-pointer flex items-center justify-between transition-colors ${
-                      isHighlighted ? "bg-accent text-accent-foreground" : isSelected ? "bg-accent/40 text-indigo-600" : ""
-                    }`}
+                    className={`p-2.5 text-xs font-semibold cursor-pointer flex items-center justify-between transition-colors ${isHighlighted ? "bg-accent text-accent-foreground" : isSelected ? "bg-accent/40 text-indigo-600" : ""
+                      }`}
                   >
                     <div className="flex flex-col min-w-0 pr-2">
                       <span className="truncate">{opt.label}</span>
@@ -300,7 +298,7 @@ export default function ServiceInvoicingModulePage() {
       const custName = cust ? cust.customer_name.toLowerCase() : "";
       const parentInvoiceNo = h.invoice_no.toLowerCase();
       const customerCode = h.customer_code.toLowerCase();
-      const childMatch = h.children.some((child: HistoryChildInvoice) => 
+      const childMatch = h.children.some((child: HistoryChildInvoice) =>
         child.child_invoice_no.toLowerCase().includes(query)
       );
 
@@ -661,7 +659,7 @@ export default function ServiceInvoicingModulePage() {
       await saveServiceInvoiceConsolidation(payload);
 
       toast.success("Service Invoice consolidated and created successfully!");
-      
+
       // Reset page form state
       setInvoiceNo("");
       setSelectedInvoiceType("");
@@ -669,7 +667,7 @@ export default function ServiceInvoicingModulePage() {
       setRemarks("");
       setGrossAmount("0");
       setDiscountAmount("0");
-      
+
       // Refresh invoices lists
       setRefreshKey(prev => prev + 1);
 
@@ -689,7 +687,7 @@ export default function ServiceInvoicingModulePage() {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto p-4 sm:p-6 animate-in fade-in duration-500">
-      
+
       {/* HEADER SECTION */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-border/60 pb-5">
         <div>
@@ -735,20 +733,20 @@ export default function ServiceInvoicingModulePage() {
       {activeTab === "form" ? (
         /* FORM WRAPPER */
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start animate-in fade-in duration-300">
-          
+
           {/* LEFT COLUMN: CRITERIA CARD */}
           <Card className="md:col-span-2 shadow-sm rounded-2xl border border-border/50 bg-card overflow-hidden">
             <div className="px-5 py-4 border-b border-border/50 bg-muted/10">
               <h2 className="text-xs font-black uppercase tracking-wider text-foreground flex items-center gap-2">
-                <FileText className="w-4 h-4 text-indigo-500"/> Invoice Consolidation Header
+                <FileText className="w-4 h-4 text-indigo-500" /> Invoice Consolidation Header
               </h2>
             </div>
-            
+
             <CardContent className="p-5 space-y-5">
-              
+
               {/* ROW 1: INVOICE NO & SALESMAN */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
+
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-black uppercase tracking-wider text-muted-foreground flex items-center gap-1 select-none">
                     Invoice Number <span className="text-destructive">*</span>
@@ -761,7 +759,7 @@ export default function ServiceInvoicingModulePage() {
                       className={cn(
                         "h-10 text-xs font-semibold rounded-xl bg-background border transition-all",
                         invoiceNoExists ? "border-red-500 focus-visible:ring-red-500" :
-                        invoiceNoExists === false ? "border-emerald-500 focus-visible:ring-emerald-500" : ""
+                          invoiceNoExists === false ? "border-emerald-500 focus-visible:ring-emerald-500" : ""
                       )}
                     />
                     {invoiceNoChecking && (
@@ -783,7 +781,7 @@ export default function ServiceInvoicingModulePage() {
                 </div>
 
                 {loadingDropdowns ? (
-                  <div className="h-16 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin text-indigo-500"/></div>
+                  <div className="h-16 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin text-indigo-500" /></div>
                 ) : (
                   <KeyboardNavSelect
                     options={salesmanOptions}
@@ -799,7 +797,7 @@ export default function ServiceInvoicingModulePage() {
               {/* ROW 2: CUSTOMER & INVOICE TYPE */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {loadingDropdowns ? (
-                  <div className="h-16 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin text-indigo-500"/></div>
+                  <div className="h-16 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin text-indigo-500" /></div>
                 ) : (
                   <KeyboardNavSelect
                     options={customerOptions}
@@ -812,7 +810,7 @@ export default function ServiceInvoicingModulePage() {
                 )}
 
                 {loadingDropdowns ? (
-                  <div className="h-16 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin text-indigo-500"/></div>
+                  <div className="h-16 flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin text-indigo-500" /></div>
                 ) : (
                   <KeyboardNavSelect
                     options={invoiceTypeOptions}
@@ -869,7 +867,7 @@ export default function ServiceInvoicingModulePage() {
               <div className="space-y-2 pt-2">
                 <div className="flex justify-between items-center">
                   <label className="text-[10px] font-black uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-500"/> Select Child Invoices to Consolidate
+                    <Calendar className="w-3.5 h-3.5 text-indigo-500" /> Select Child Invoices to Consolidate
                   </label>
                   {selectedCustomer && (
                     <Badge variant="secondary" className="font-mono text-[9px] bg-indigo-50 dark:bg-indigo-950/20 text-indigo-700 dark:text-indigo-400 border-indigo-200/50">
@@ -905,7 +903,7 @@ export default function ServiceInvoicingModulePage() {
                       onChange={(e) => setChildSearchQuery(e.target.value)}
                       className="h-9 text-xs font-semibold rounded-xl bg-background border border-border/60 focus-visible:ring-2 focus-visible:ring-indigo-600/20 focus-visible:border-indigo-500 transition-all"
                     />
-                    
+
                     {filteredChildInvoices.length === 0 ? (
                       <div className="border border-dashed border-border rounded-xl p-8 text-center bg-muted/20 space-y-1">
                         <AlertCircle className="w-5 h-5 text-indigo-500 mx-auto" />
@@ -984,17 +982,17 @@ export default function ServiceInvoicingModulePage() {
 
           {/* RIGHT COLUMN: CALCULATION & SUBMIT ACTIONS CARD */}
           <div className="space-y-6">
-            
+
             {/* SUMMARY STATS CARD */}
             <Card className="shadow-sm rounded-2xl border border-border/50 bg-card overflow-hidden">
               <div className="px-5 py-4 border-b border-border/50 bg-muted/10">
                 <h2 className="text-xs font-black uppercase tracking-wider text-foreground flex items-center gap-2">
-                  <Calculator className="w-4 h-4 text-indigo-500"/> Consolidation Summary
+                  <Calculator className="w-4 h-4 text-indigo-500" /> Consolidation Summary
                 </h2>
               </div>
-              
+
               <CardContent className="p-5 space-y-4">
-                
+
                 <div className="flex justify-between items-center text-xs border-b border-border/40 pb-2">
                   <span className="font-bold text-muted-foreground uppercase">Selected Invoices</span>
                   <Badge variant="secondary" className="font-mono font-bold text-indigo-700 bg-indigo-50 dark:bg-indigo-950/30">
@@ -1032,7 +1030,7 @@ export default function ServiceInvoicingModulePage() {
 
                   <div className="bg-indigo-500/5 dark:bg-indigo-500/10 p-4 rounded-xl border border-indigo-500/10 space-y-1 mt-2">
                     <span className="text-[9px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
-                      <DollarSign className="w-3 h-3"/> Combined Net Amount
+                      <DollarSign className="w-3 h-3" /> Combined Net Amount
                     </span>
                     <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">
                       ₱{calculatedNet.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -1111,7 +1109,7 @@ export default function ServiceInvoicingModulePage() {
                 return (
                   <Card key={parent.invoice_id} className="shadow-sm rounded-2xl border border-border/50 bg-card overflow-hidden hover:border-border/80 transition-all">
                     {/* Parent Header Row */}
-                    <div 
+                    <div
                       onClick={() => toggleParentExpand(parent.invoice_id)}
                       className="px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-muted/10 transition-colors"
                     >

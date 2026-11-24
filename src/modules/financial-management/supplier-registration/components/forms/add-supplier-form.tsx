@@ -6,9 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   usePaymentTerms,
   useDeliveryTerms,
-} from "@/modules/financial-management/supplier-registration/hooks/useTerms";
-import { Term } from "@/modules/financial-management/supplier-registration/services/terms";
-import { SupplierFormSchema, SupplierFormValues } from "@/modules/financial-management/supplier-registration/types/supplier.schema";
+} from "@/modules/lgu-management/supplier-registration/hooks/useTerms";
+import { Term } from "@/modules/lgu-management/supplier-registration/services/terms";
+import { SupplierFormSchema, SupplierFormValues } from "@/modules/lgu-management/supplier-registration/types/supplier.schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -379,9 +379,9 @@ export function AddSupplierForm({ onSuccess, onCancel }: AddSupplierFormProps) {
                       <FormItem>
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
-                          <Input 
-                            placeholder="09XXXXXXXXX" 
-                            {...field} 
+                          <Input
+                            placeholder="09XXXXXXXXX"
+                            {...field}
                             maxLength={11}
                             onChange={(e) => {
                               const formatted = e.target.value.replace(/\D/g, "").slice(0, 11);
@@ -606,11 +606,10 @@ export function AddSupplierForm({ onSuccess, onCancel }: AddSupplierFormProps) {
                     onDrop={handleDrop}
                     onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                     onDragLeave={() => setIsDragging(false)}
-                    className={`relative flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 cursor-pointer transition-colors ${
-                      isDragging
+                    className={`relative flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 cursor-pointer transition-colors ${isDragging
                         ? "border-primary bg-primary/5"
                         : "border-muted-foreground/25 hover:border-primary/50 hover:bg-muted/50"
-                    }`}
+                      }`}
                   >
                     {imagePreview ? (
                       <div className="relative">

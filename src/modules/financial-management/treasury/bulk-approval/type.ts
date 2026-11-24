@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/services/bulkApproval.types.ts
+// src/modules/lgu-management/treasury/bulk-approval/services/bulkApproval.types.ts
 
 export type VoteStatus = "APPROVED" | "REJECTED" | "WITH_CONCERN";
 export type DraftLifecycleStatus =

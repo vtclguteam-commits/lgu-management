@@ -1,6 +1,6 @@
 // index.ts
 // Barrel export — import from one place:
-//   import EWTModule from '@/modules/financial-management/reports/ewt'
+//   import EWTModule from '@/modules/lgu-management/reports/ewt'
 
 // Main module
 export { default } from './EWTModule';

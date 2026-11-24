@@ -7,9 +7,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Representative } from "@/modules/financial-management/supplier-registration/types/representative.schema";
+import { Representative } from "@/modules/lgu-management/supplier-registration/types/representative.schema";
 import { Mail, Phone, X } from "lucide-react";
-import { formatPhoneNumber } from "@/modules/financial-management/supplier-registration/utils/utils";
+import { formatPhoneNumber } from "@/modules/lgu-management/supplier-registration/utils/utils";
 import {
   AlertDialog,
   AlertDialogAction,

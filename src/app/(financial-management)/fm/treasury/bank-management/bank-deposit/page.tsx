@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // 🚀 IMPORT YOUR NEW MODULE! Adjust the path based on where you saved it.
-import { BankDepositModule } from "@/modules/financial-management/treasury/bank-deposit/components/BankDepositModule";
+import { BankDepositModule } from "@/modules/lgu-management/treasury/bank-deposit/components/BankDepositModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

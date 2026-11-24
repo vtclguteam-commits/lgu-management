@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Term } from "@/modules/financial-management/supplier-registration/services/terms";
+import { Term } from "@/modules/lgu-management/supplier-registration/services/terms";
 
 export function usePaymentTerms() {
   const [paymentTerms, setPaymentTerms] = useState<Term[]>([]);

@@ -1,4 +1,4 @@
-// src/modules/financial-management-system/claims-management/for-receiving/components/ForReceivingPage.tsx
+// src/modules/lgu-management-system/claims-management/for-receiving/components/ForReceivingPage.tsx
 "use client";
 
 import * as React from "react";
@@ -366,8 +366,8 @@ export default function ForReceivingPage() {
                                     <div>
                                         <span className="text-muted-foreground">Grand Total:</span>{" "}
                                         <span className="font-semibold text-foreground">
-                    {formatPHP(grouped.grandTotal)}
-                </span>
+                                            {formatPHP(grouped.grandTotal)}
+                                        </span>
                                     </div>
 
                                     <div className="pt-2 text-xs text-muted-foreground">
@@ -792,10 +792,10 @@ export default function ForReceivingPage() {
                                                                                                         size="icon"
                                                                                                         className="cursor-pointer text-destructive hover:text-destructive"
                                                                                                         type="button" onClick={(e) => {
-                                                                                e.preventDefault();
-                                                                                e.stopPropagation();
-                                                                                onRemoveLine(Number(r.id));
-                                                                            }}
+                                                                                                            e.preventDefault();
+                                                                                                            e.stopPropagation();
+                                                                                                            onRemoveLine(Number(r.id));
+                                                                                                        }}
                                                                                                         disabled={sending || detailsLoading || isRemoving}
                                                                                                         title="Remove"
                                                                                                     >

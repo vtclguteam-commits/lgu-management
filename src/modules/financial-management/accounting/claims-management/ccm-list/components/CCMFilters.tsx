@@ -1,4 +1,4 @@
-//src/modules/financial-management-system/claims-management/ccm-list/components/CCMFilters.tsx
+//src/modules/lgu-management-system/claims-management/ccm-list/components/CCMFilters.tsx
 "use client";
 
 import * as React from "react";

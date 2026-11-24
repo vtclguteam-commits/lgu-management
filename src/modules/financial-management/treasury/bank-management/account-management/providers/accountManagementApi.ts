@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/account-management/providers/accountManagementApi.ts
+// src/modules/lgu-management/treasury/bank-management/account-management/providers/accountManagementApi.ts
 import type {
   AccountManagementData,
   AccountManagementFieldErrors,

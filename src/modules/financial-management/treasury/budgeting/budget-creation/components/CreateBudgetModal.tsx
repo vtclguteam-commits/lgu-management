@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/budget-creation/components/CreateBudgetModal.tsx
+// src/modules/lgu-management/treasury/budgeting/budget-creation/components/CreateBudgetModal.tsx
 
 "use client";
 
@@ -65,14 +65,14 @@ function FieldSelect({
   error,
   loading,
 }: {
-  id:          string;
-  value:       string;
-  onChange:    (val: string) => void;
+  id: string;
+  value: string;
+  onChange: (val: string) => void;
   placeholder: string;
-  options:     FieldSelectOption[];
-  disabled?:   boolean;
-  error?:      string;
-  loading?:    boolean;
+  options: FieldSelectOption[];
+  disabled?: boolean;
+  error?: string;
+  loading?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const selectedLabel = options.find(o => o.value === value)?.label;
@@ -166,34 +166,34 @@ export function CreateBudgetModal() {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       addFiles(e.dataTransfer.files);
     }
   };
 
-  const { 
-    form, existingAttachments, errors, loading, 
+  const {
+    form, existingAttachments, errors, loading,
     divisions, departments, coas, usedCoaIds, fetchingLookups,
-    setField, addFiles, removeFile, removeExistingAttachment, handleSubmit 
+    setField, addFiles, removeFile, removeExistingAttachment, handleSubmit
   } = useCreateBudgetForm(
     async (payload, names) => {
-        try {
-            if (editingBudget) {
-                await updateBudget(String(editingBudget.id), payload, names);
-            } else {
-                await addBudget(payload, names);
-            }
-            closeModal();
-        } catch (error) {
-            console.error("Submission failed:", error);
-            toast.error(error instanceof Error ? error.message : "Budget submission failed. Please try again.");
+      try {
+        if (editingBudget) {
+          await updateBudget(String(editingBudget.id), payload, names);
+        } else {
+          await addBudget(payload, names);
         }
+        closeModal();
+      } catch (error) {
+        console.error("Submission failed:", error);
+        toast.error(error instanceof Error ? error.message : "Budget submission failed. Please try again.");
+      }
     },
     editingBudget,
     supplementParent,
     (y, m, c, divId, deptId) => {
-        return isDuplicate(y, m, c, divId, deptId, editingBudget ? String(editingBudget.id) : undefined);
+      return isDuplicate(y, m, c, divId, deptId, editingBudget ? String(editingBudget.id) : undefined);
     }
   );
 
@@ -210,30 +210,30 @@ export function CreateBudgetModal() {
 
   const divisionOptions = (divisions || [])
     .filter(d => d && d.division_id)
-    .map((d, i) => ({ 
-      value: String(d.division_id), 
-      label: d.division_name || `Division ${i+1}` 
+    .map((d, i) => ({
+      value: String(d.division_id),
+      label: d.division_name || `Division ${i + 1}`
     }));
 
   const deptOptions = (departments || [])
     .filter(d => d && d.department_id)
-    .map((d, i) => ({ 
-      value: String(d.department_id), 
-      label: d.department_name || `Department ${i+1}` 
+    .map((d, i) => ({
+      value: String(d.department_id),
+      label: d.department_name || `Department ${i + 1}`
     }));
 
   const coaOptions = (coas || [])
     .filter(c => c && c.coa_id)
     .map((c, i) => {
-        const id = String(c.coa_id);
-        const isUsed = usedCoaIds.has(Number(id));
-        return { 
-          value: id, 
-          label: isUsed
-            ? `${c.account_title || `Account ${i+1}`} (${c.gl_code || "—"}) — Already budgeted`
-            : `${c.account_title || `Account ${i+1}`} (${c.gl_code || "—"})`,
-          disabled: isUsed,
-        };
+      const id = String(c.coa_id);
+      const isUsed = usedCoaIds.has(Number(id));
+      return {
+        value: id,
+        label: isUsed
+          ? `${c.account_title || `Account ${i + 1}`} (${c.gl_code || "—"}) — Already budgeted`
+          : `${c.account_title || `Account ${i + 1}`} (${c.gl_code || "—"})`,
+        disabled: isUsed,
+      };
     });
 
 
@@ -266,7 +266,7 @@ export function CreateBudgetModal() {
 
           <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
             <form id="budget-form" onSubmit={handleSubmit} className="space-y-6">
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="budget-year" className="text-xs font-medium">
@@ -362,7 +362,7 @@ export function CreateBudgetModal() {
                   />
                   {errors.coa_id && (
                     <p className="text-[11px] text-destructive font-medium bg-destructive/5 p-1.5 rounded border border-destructive/20 mt-1 animate-pulse">
-                        {errors.coa_id}
+                      {errors.coa_id}
                     </p>
                   )}
                 </div>
@@ -397,10 +397,10 @@ export function CreateBudgetModal() {
                     type="text"
                     value={form.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     onChange={e => {
-                        const val = e.target.value.replace(/,/g, "");
-                        if (/^\d*\.?\d*$/.test(val)) {
-                            setField("amount", val);
-                        }
+                      const val = e.target.value.replace(/,/g, "");
+                      if (/^\d*\.?\d*$/.test(val)) {
+                        setField("amount", val);
+                      }
                     }}
                     placeholder="0,000.00"
                     className={`h-11 pl-7 text-sm font-bold tracking-tight ${errors.amount ? "border-destructive" : ""}`}
@@ -426,7 +426,7 @@ export function CreateBudgetModal() {
 
               <div className="space-y-1.5">
                 <Label className="text-xs font-medium">Attachments</Label>
-                
+
                 {/* ── Existing Attachments ── */}
                 {existingAttachments.length > 0 && (
                   <div className="grid grid-cols-1 gap-2 mb-3">
@@ -439,13 +439,13 @@ export function CreateBudgetModal() {
                         <div className="flex items-center gap-2 overflow-hidden">
                           <FileIcon type={a.type || undefined} />
                           <div className="flex flex-col truncate">
-                            <a 
-                                href={a.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="font-medium truncate hover:text-primary transition-colors cursor-pointer"
+                            <a
+                              href={a.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium truncate hover:text-primary transition-colors cursor-pointer"
                             >
-                                {a.name}
+                              {a.name}
                             </a>
                             <span className="text-[10px] text-muted-foreground">{formatFileSize(Number(a.size || 0))}</span>
                           </div>
@@ -490,11 +490,10 @@ export function CreateBudgetModal() {
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
                   onClick={() => fileInputRef.current?.click()}
-                  className={`border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all group ${
-                    isDragging 
-                      ? "border-primary bg-primary/5" 
+                  className={`border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center gap-2 cursor-pointer transition-all group ${isDragging
+                      ? "border-primary bg-primary/5"
                       : "border-border hover:bg-muted/50"
-                  }`}
+                    }`}
                 >
                   <div className={`p-2.5 rounded-full transition-colors ${isDragging ? "bg-primary text-primary-foreground" : "bg-muted group-hover:bg-primary/10 group-hover:text-primary"}`}>
                     <Paperclip className="h-5 w-5" />

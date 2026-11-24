@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import { ProductPricingModule } from "@/modules/financial-management/product-pricing-management/product-pricing";
+import { ProductPricingModule } from "@/modules/lgu-management/product-pricing-management/product-pricing";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -15,15 +15,15 @@ import {
 } from "../types";
 import { disbursementProvider } from "../providers/fetchProvider";
 import { toast } from "sonner";
-import { AddPayeeModal } from "@/modules/financial-management/payee-registration/components/modals/add-payee-modal";
-import type { Payee } from "@/modules/financial-management/payee-registration/types/payee.schema";
+import { AddPayeeModal } from "@/modules/lgu-management/payee-registration/components/modals/add-payee-modal";
+import type { Payee } from "@/modules/lgu-management/payee-registration/types/payee.schema";
 import { formatCurrency, getManilaDateInput } from "../utils/disbursement-utils";
 import { VoucherDetailsSection } from "./VoucherDetailsSection";
 import { PayablesSection } from "./PayablesSection";
 import { StickyTableWrapper } from "./StickyTableWrapper";
-import { replaceEmptyPayablePlaceholders } from "@/modules/financial-management/treasury/components/payable-line-state";
-import { getPendingMemoUsage } from "@/modules/financial-management/treasury/components/memo-cap";
-import { normalizeMemoReference, stripMemoLineMetadata } from "@/modules/financial-management/treasury/components/memo-payable-line";
+import { replaceEmptyPayablePlaceholders } from "@/modules/lgu-management/treasury/components/payable-line-state";
+import { getPendingMemoUsage } from "@/modules/lgu-management/treasury/components/memo-cap";
+import { normalizeMemoReference, stripMemoLineMetadata } from "@/modules/lgu-management/treasury/components/memo-payable-line";
 
 export interface ExtendedDisbursement extends Disbursement {
     payeeId?: number;
@@ -48,12 +48,12 @@ const isPaymentCOA = (c: COADto) => {
 const isPayableOrExpenseCOA = (c: COADto) => !isPaymentCOA(c);
 
 export function DisbursementCreateSheet({
-                                            open,
-                                            onOpenChange,
-                                            onSubmit,
-                                            loading,
-                                            editData
-                                        }: DisbursementCreateSheetProps) {
+    open,
+    onOpenChange,
+    onSubmit,
+    loading,
+    editData
+}: DisbursementCreateSheetProps) {
     const today = getManilaDateInput();
 
     const [transactionTypeId, setTransactionTypeId] = useState<number | "">(1);
@@ -89,7 +89,7 @@ export function DisbursementCreateSheet({
 
     const [poSearchQuery, setPoSearchQuery] = useState("");
     const [isPayeeRegistrationOpen, setIsPayeeRegistrationOpen] = useState(false);
-    
+
     const [previewDocNo, setPreviewDocNo] = useState("");
     const [loadingDocNo, setLoadingDocNo] = useState(false);
     const [localSubmitting, setLocalSubmitting] = useState(false);
@@ -171,7 +171,7 @@ export function DisbursementCreateSheet({
                 setRemarks("");
                 setSupportingDocumentsUrl("");
                 // Start with one blank row for payables so the user can begin typing immediately.
-                setPayables([{referenceNo: "", date: today, amount: 0, remarks: "", divisionId: undefined}]);
+                setPayables([{ referenceNo: "", date: today, amount: 0, remarks: "", divisionId: undefined }]);
                 setTransactionDate(today);
             }
         }
@@ -211,7 +211,7 @@ export function DisbursementCreateSheet({
         };
     }, [open, payeeId]);
 
-    const handleAddPayable = useCallback(() => setPayables((prev) => [...prev, {referenceNo: "", date: "", amount: 0, remarks: "", divisionId: undefined}]), []);
+    const handleAddPayable = useCallback(() => setPayables((prev) => [...prev, { referenceNo: "", date: "", amount: 0, remarks: "", divisionId: undefined }]), []);
 
     const handlePayeeCreated = useCallback(async (createdPayee?: Payee) => {
         try {
@@ -444,7 +444,7 @@ export function DisbursementCreateSheet({
                                 {editData ? "Update voucher details and line items." : "Draft a new voucher, select a payee, and assign financial entries."}
                             </DialogDescription>
                         </div>
-                        
+
                         {/* Totals Summary on the right side of the header */}
                         <div className="flex items-center gap-6 text-xs bg-muted/40 border border-border px-4 py-2 rounded-sm select-none self-end sm:self-auto">
                             <div className="flex flex-col items-end">
@@ -517,11 +517,11 @@ export function DisbursementCreateSheet({
                         </div>
                         <div className="flex gap-2">
                             <Button variant="outline" onClick={() => onOpenChange(false)} disabled={isBusy}
-                                    className="border-input text-foreground hover:bg-accent font-bold text-xs h-9 px-5 rounded-sm">Cancel</Button>
+                                className="border-input text-foreground hover:bg-accent font-bold text-xs h-9 px-5 rounded-sm">Cancel</Button>
                             <Button onClick={handleSubmit} disabled={isBusy}
-                                    className="text-xs font-bold h-9 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm shadow-sm transition-colors">
-                                {isBusy ? <Loader2 className="w-4 h-4 animate-spin mr-2"/> :
-                                    <Save className="w-4 h-4 mr-2"/>}
+                                className="text-xs font-bold h-9 px-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-sm shadow-sm transition-colors">
+                                {isBusy ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> :
+                                    <Save className="w-4 h-4 mr-2" />}
                                 {editData ? "Save and Close" : "Save and Close"}
                             </Button>
                         </div>
@@ -540,7 +540,7 @@ export function DisbursementCreateSheet({
                 <DialogContent className="sm:max-w-[750px] bg-background border-border">
                     <DialogHeader>
                         <DialogTitle className="text-lg font-black uppercase flex items-center gap-2 text-foreground">
-                            <DownloadCloud className="w-5 h-5 text-amber-500"/>
+                            <DownloadCloud className="w-5 h-5 text-amber-500" />
                             Pending Records
                         </DialogTitle>
                         <DialogDescription
@@ -551,7 +551,7 @@ export function DisbursementCreateSheet({
 
                     {/* SEARCH BAR */}
                     <div className="mt-2 flex items-center gap-2 bg-muted/50 p-2 rounded-md border border-border">
-                        <Search className="w-4 h-4 text-muted-foreground ml-2"/>
+                        <Search className="w-4 h-4 text-muted-foreground ml-2" />
                         <Input
                             placeholder="Search by PO # or Invoice #..."
                             value={poSearchQuery}
@@ -581,12 +581,12 @@ export function DisbursementCreateSheet({
                             <TableBody>
                                 {loadingPos ? (
                                     <TableRow><TableCell colSpan={5}
-                                                         className="h-24 text-center text-sm font-medium text-muted-foreground"><Loader2
-                                        className="w-5 h-5 animate-spin mx-auto mb-2"/> Loading
+                                        className="h-24 text-center text-sm font-medium text-muted-foreground"><Loader2
+                                            className="w-5 h-5 animate-spin mx-auto mb-2" /> Loading
                                         Records...</TableCell></TableRow>
                                 ) : poLoadError ? (
                                     <TableRow><TableCell colSpan={5}
-                                                          className="h-24 text-center text-sm font-medium text-destructive">
+                                        className="h-24 text-center text-sm font-medium text-destructive">
                                         {poLoadError}
                                     </TableCell></TableRow>
                                 ) : unpaidPos.filter(po => {
@@ -596,7 +596,7 @@ export function DisbursementCreateSheet({
                                     return matchesSearch && !isAlreadyImported;
                                 }).length === 0 ? (
                                     <TableRow><TableCell colSpan={5}
-                                                         className="h-24 text-center text-sm font-medium text-muted-foreground">No
+                                        className="h-24 text-center text-sm font-medium text-muted-foreground">No
                                         matching records found.</TableCell></TableRow>
                                 ) : (
                                     unpaidPos.filter(po => {
@@ -606,32 +606,32 @@ export function DisbursementCreateSheet({
                                         return matchesSearch && !isAlreadyImported;
                                     }).map(po => (
                                         <TableRow key={po.uniqueKey}
-                                                  className="cursor-pointer hover:bg-muted/50 border-border"
-                                                  onClick={() => {
-                                                      const isChecking = !selectedPoIds.includes(po.uniqueKey);
-                                                      setSelectedPoIds(prev => isChecking ? [...prev, po.uniqueKey] : prev.filter(id => id !== po.uniqueKey));
-                                                      if (isChecking && !taxTypes[po.uniqueKey]) {
-                                                          setTaxTypes(prev => ({...prev, [po.uniqueKey]: "VAT"}));
-                                                      }
-                                                  }}>
+                                            className="cursor-pointer hover:bg-muted/50 border-border"
+                                            onClick={() => {
+                                                const isChecking = !selectedPoIds.includes(po.uniqueKey);
+                                                setSelectedPoIds(prev => isChecking ? [...prev, po.uniqueKey] : prev.filter(id => id !== po.uniqueKey));
+                                                if (isChecking && !taxTypes[po.uniqueKey]) {
+                                                    setTaxTypes(prev => ({ ...prev, [po.uniqueKey]: "VAT" }));
+                                                }
+                                            }}>
                                             <TableCell className="text-center" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
                                                 <Checkbox checked={selectedPoIds.includes(po.uniqueKey)}
-                                                          onCheckedChange={(checked: boolean | "indeterminate") => {
-                                                              if (checked === true) {
-                                                                  setSelectedPoIds(prev => prev.includes(po.uniqueKey) ? prev : [...prev, po.uniqueKey]);
-                                                                  if (!taxTypes[po.uniqueKey]) setTaxTypes(prev => ({
-                                                                      ...prev,
-                                                                      [po.uniqueKey]: "VAT"
-                                                                  }));
-                                                              } else {
-                                                                  setSelectedPoIds(prev => prev.filter(id => id !== po.uniqueKey));
-                                                              }
-                                                          }}/>
+                                                    onCheckedChange={(checked: boolean | "indeterminate") => {
+                                                        if (checked === true) {
+                                                            setSelectedPoIds(prev => prev.includes(po.uniqueKey) ? prev : [...prev, po.uniqueKey]);
+                                                            if (!taxTypes[po.uniqueKey]) setTaxTypes(prev => ({
+                                                                ...prev,
+                                                                [po.uniqueKey]: "VAT"
+                                                            }));
+                                                        } else {
+                                                            setSelectedPoIds(prev => prev.filter(id => id !== po.uniqueKey));
+                                                        }
+                                                    }} />
                                             </TableCell>
                                             <TableCell
                                                 className="font-bold text-xs uppercase flex flex-col gap-1 text-foreground mt-1.5 border-none">
                                                 <div className="flex items-center gap-1.5"><FileText
-                                                    className="w-3 h-3 text-muted-foreground"/> {po.poNo}</div>
+                                                    className="w-3 h-3 text-muted-foreground" /> {po.poNo}</div>
                                                 <span
                                                     className="text-[9px] text-muted-foreground font-medium ml-4.5">{po.date ? format(new Date(po.date), "MMM dd, yyyy") : "No Date"}</span>
                                             </TableCell>
@@ -639,7 +639,7 @@ export function DisbursementCreateSheet({
                                                 <div className="flex flex-col gap-1">
                                                     {po.receiptNo}
                                                     {po.type === 'CWO' && <Badge variant="outline"
-                                                                                 className="w-fit text-[8px] bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800">Cash
+                                                        className="w-fit text-[8px] bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800">Cash
                                                         With Order</Badge>}
                                                 </div>
                                             </TableCell>
@@ -656,7 +656,7 @@ export function DisbursementCreateSheet({
                                                 </select>
                                             </TableCell>
                                             <TableCell
-                                                className="text-xs font-black text-right text-emerald-600 dark:text-emerald-500">₱ {po.amountDue.toLocaleString('en-US', {minimumFractionDigits: 2})}</TableCell>
+                                                className="text-xs font-black text-right text-emerald-600 dark:text-emerald-500">₱ {po.amountDue.toLocaleString('en-US', { minimumFractionDigits: 2 })}</TableCell>
                                         </TableRow>
                                     ))
                                 )}
@@ -666,9 +666,9 @@ export function DisbursementCreateSheet({
 
                     <DialogFooter className="mt-4 border-t border-border pt-4">
                         <Button variant="outline" onClick={() => setIsPoModalOpen(false)}
-                                className="text-[10px] font-black uppercase tracking-widest">Cancel</Button>
+                            className="text-[10px] font-black uppercase tracking-widest">Cancel</Button>
                         <Button onClick={handleImportPos} disabled={selectedPoIds.length === 0}
-                                className="text-[10px] font-black uppercase tracking-widest bg-amber-500 hover:bg-amber-600 text-white">
+                            className="text-[10px] font-black uppercase tracking-widest bg-amber-500 hover:bg-amber-600 text-white">
                             Import {selectedPoIds.length} Record(s)
                         </Button>
                     </DialogFooter>
@@ -679,7 +679,7 @@ export function DisbursementCreateSheet({
                 <DialogContent className="sm:max-w-[700px] bg-background border-border">
                     <DialogHeader>
                         <DialogTitle className="text-lg font-black uppercase flex items-center gap-2 text-foreground">
-                            <FileText className="w-5 h-5 text-purple-500"/>
+                            <FileText className="w-5 h-5 text-purple-500" />
                             Available Supplier Memos
                         </DialogTitle>
                         <DialogDescription
@@ -709,12 +709,12 @@ export function DisbursementCreateSheet({
                             <TableBody>
                                 {loadingMemos ? (
                                     <TableRow><TableCell colSpan={5}
-                                                         className="h-24 text-center text-sm font-medium text-muted-foreground"><Loader2
-                                        className="w-5 h-5 animate-spin mx-auto mb-2"/> Fetching
+                                        className="h-24 text-center text-sm font-medium text-muted-foreground"><Loader2
+                                            className="w-5 h-5 animate-spin mx-auto mb-2" /> Fetching
                                         Memos...</TableCell></TableRow>
                                 ) : memos.filter(memo => !payables.some(p => p.referenceNo === memo.memo_number)).length === 0 ? (
                                     <TableRow><TableCell colSpan={5}
-                                                         className="h-24 text-center text-sm font-medium text-muted-foreground">No
+                                        className="h-24 text-center text-sm font-medium text-muted-foreground">No
                                         available memos found for this supplier.</TableCell></TableRow>
                                 ) : (
                                     memos.filter(memo => !payables.some(p => p.referenceNo === memo.memo_number)).map(memo => (
@@ -723,7 +723,7 @@ export function DisbursementCreateSheet({
                                                 className="font-bold text-xs uppercase text-foreground">{memo.memo_number}</TableCell>
                                             <TableCell>
                                                 <Badge variant="outline"
-                                                       className={`text-[9px] uppercase ${memo.type === 1 ? 'text-emerald-600 border-emerald-200 bg-emerald-50' : 'text-red-600 border-red-200 bg-red-50'}`}>
+                                                    className={`text-[9px] uppercase ${memo.type === 1 ? 'text-emerald-600 border-emerald-200 bg-emerald-50' : 'text-red-600 border-red-200 bg-red-50'}`}>
                                                     {memo.memo_type_name}
                                                 </Badge>
                                                 <div
@@ -737,8 +737,8 @@ export function DisbursementCreateSheet({
                                             </TableCell>
                                             <TableCell
                                                 className={`text-xs font-black text-right ${memo.type === 1 ? 'text-emerald-600' : 'text-red-600'}`}>
-                                                <div>{memo.type === 1 ? '-' : '+'} ₱{memo.amount.toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
-                                                <div className="text-[9px] font-bold text-muted-foreground">Remaining: ₱{(memo.remaining_amount ?? memo.amount).toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
+                                                <div>{memo.type === 1 ? '-' : '+'} ₱{memo.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
+                                                <div className="text-[9px] font-bold text-muted-foreground">Remaining: ₱{(memo.remaining_amount ?? memo.amount).toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
                                                 <Input
                                                     type="number"
                                                     min="0.01"
@@ -751,7 +751,7 @@ export function DisbursementCreateSheet({
                                             </TableCell>
                                             <TableCell className="text-right">
                                                 <Button size="sm" onClick={() => handleApplyMemo(memo)}
-                                                        className="h-7 text-[10px] font-black uppercase tracking-widest bg-purple-600 hover:bg-purple-700 text-white">
+                                                    className="h-7 text-[10px] font-black uppercase tracking-widest bg-purple-600 hover:bg-purple-700 text-white">
                                                     Apply
                                                 </Button>
                                             </TableCell>

@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
-import AnalyticsSubmodule from "@/modules/financial-management/treasury/disbursement/analytics/AnalyticsSubmodule";
+import AnalyticsSubmodule from "@/modules/lgu-management/treasury/disbursement/analytics/AnalyticsSubmodule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

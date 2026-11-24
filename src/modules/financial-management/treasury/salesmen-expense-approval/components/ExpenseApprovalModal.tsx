@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
+// src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
 "use client";
 
 import * as React from "react";
@@ -636,322 +636,200 @@ export default function ExpenseApprovalModal({
 
         <div className={`flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-2xl transition-all duration-300 dark:bg-slate-950 ${previewUrl ? "w-full lg:w-[60vw]" : "w-[95vw]"}`}>
 
-        <div className="px-[2vw] py-[2.5vh] bg-[#1a4f95] text-white shrink-0 relative overflow-hidden">
-          <div className="flex items-center justify-between relative z-10">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
-                <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
-                  <ShieldCheck size={26} />
-                </div>
-                Salesman Expense Verification & Approval
-              </h2>
-              <p className="text-[10px] text-white/70 font-black uppercase tracking-[0.2em]">
-                Review salesman submittals and convert approved Drafts items into treasury
-                disbursements.
-              </p>
-            </div>
-            <div className="flex flex-col items-end gap-2 text-right">
-              <Badge className="bg-white/20 text-white border-white/30 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest backdrop-blur-sm shadow-xl">
-                {hasEditableHeaderExpenses ? "Treasury Audit Phase" : "View Only Mode"}
-              </Badge>
-              {selectedHeader && (
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/90 bg-white/10 px-3 py-1 rounded-full border border-white/10">
-                  <Calendar size={12} className="text-white/60" />
-                  {formatDate(selectedHeader.period_from)} — {formatDate(selectedHeader.period_to)}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-4 gap-6 px-[2vw] py-[2vh] bg-white dark:bg-slate-900 border-b dark:border-slate-800 shadow-sm shrink-0">
-          <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100 shadow-inner">
-              <User size={24} />
-            </div>
-            <div>
-              <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1">
-                Salesman
-              </p>
-              <p className="font-black text-sm text-foreground">
-                {detail?.salesman.salesman_name || "Loading..."}
-              </p>
-              <p className="text-[10px] text-muted-foreground font-mono">
-                ID: {detail?.salesman.salesman_code || "N/A"}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 pl-6 border-l border-muted/50">
-            <div className="h-12 w-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100 shadow-inner">
-              <Building2 size={24} />
-            </div>
-            <div>
-              <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1">
-                Position & Department
-              </p>
-              <p className="font-black text-sm text-foreground">
-                {detail?.salesman.user?.user_position || "Field Representative"}
-              </p>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-tighter">
-                {detail?.salesman.department_name || "Sales & Distribution"}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 pl-6 border-l border-muted/50">
-            <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 border border-emerald-100 shadow-inner">
-              <Wallet size={24} />
-            </div>
-            <div>
-              <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1">
-                Budget Ceiling
-              </p>
-              <p className="font-black text-sm text-emerald-700">
-                {formatCurrency(detail?.expense_limit || 0)}
-              </p>
-              <p className="text-[10px] text-muted-foreground italic">
-                Applied to current submittal
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 pl-6 border-l border-muted/50">
-            <div className="flex flex-col gap-1 w-full">
-              <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1 text-right">
-                Selected Submittal
-              </p>
-              <div className="flex justify-end gap-2 flex-wrap">
-                <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-[10px] font-black">
-                  {headerExpenses.length} Items
-                </Badge>
-                <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-[10px] font-black">
-                  {editableHeaderExpenses.length} Drafts
-                </Badge>
-                {viewOnlyHeaderExpensesCount > 0 && (
-                  <Badge className="bg-slate-100 text-slate-600 border-slate-200 text-[10px] font-black">
-                    {viewOnlyHeaderExpensesCount} View Only
-                  </Badge>
-                )}
-                <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-[10px] font-black">
-                  {formatCurrency(headerTotalAmount)}
-                </Badge>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {loading ? (
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 animate-pulse">
-            <Loader2 className="h-10 w-10 animate-spin text-primary" />
-            <span className="font-black text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              Syncing Details...
-            </span>
-          </div>
-        ) : (
-          <>
-            <div className="px-[2vw] py-4 bg-muted/5 dark:bg-slate-800/50 border-b dark:border-slate-800 flex items-center justify-between shrink-0">
-              <div className="flex items-center gap-8">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3 text-slate-800 dark:text-slate-200">
-                  <Receipt className="h-4 w-4 text-primary" />
-                  Line-Item Expense Breakdown
-                </h3>
-
-                {hasEditableHeaderExpenses ? (
-                  <div className="flex items-center gap-6">
-                    <button
-                      type="button"
-                      className="flex items-center gap-2 cursor-pointer group disabled:cursor-not-allowed disabled:opacity-50"
-                      onClick={approveAll}
-                      disabled={isInteractionDisabled}
-                    >
-                      <span className="h-4 w-4 rounded border-2 border-primary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                        <Check className="h-3 w-3 text-primary" />
-                      </span>
-                      <span className="text-[10px] font-black uppercase tracking-widest">
-                        Approve All Drafts
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="flex items-center gap-2 cursor-pointer group disabled:cursor-not-allowed disabled:opacity-50"
-                      onClick={uncheckAll}
-                      disabled={isInteractionDisabled}
-                    >
-                      <span className="h-4 w-4 rounded border-2 border-slate-300 flex items-center justify-center group-hover:border-primary transition-colors" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                        Uncheck Drafts
-                      </span>
-                    </button>
+          <div className="px-[2vw] py-[2.5vh] bg-[#1a4f95] text-white shrink-0 relative overflow-hidden">
+            <div className="flex items-center justify-between relative z-10">
+              <div className="space-y-1">
+                <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
+                  <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
+                    <ShieldCheck size={26} />
                   </div>
-                ) : (
-                  <Badge className="bg-slate-100 text-slate-600 border-slate-200 text-[10px] font-black uppercase tracking-widest">
-                    No Drafts items. This modal is view-only.
-                  </Badge>
+                  Salesman Expense Verification & Approval
+                </h2>
+                <p className="text-[10px] text-white/70 font-black uppercase tracking-[0.2em]">
+                  Review salesman submittals and convert approved Drafts items into treasury
+                  disbursements.
+                </p>
+              </div>
+              <div className="flex flex-col items-end gap-2 text-right">
+                <Badge className="bg-white/20 text-white border-white/30 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest backdrop-blur-sm shadow-xl">
+                  {hasEditableHeaderExpenses ? "Treasury Audit Phase" : "View Only Mode"}
+                </Badge>
+                {selectedHeader && (
+                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/90 bg-white/10 px-3 py-1 rounded-full border border-white/10">
+                    <Calendar size={12} className="text-white/60" />
+                    {formatDate(selectedHeader.period_from)} — {formatDate(selectedHeader.period_to)}
+                  </div>
                 )}
               </div>
+            </div>
+          </div>
 
-              <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
-                <span className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm" />
-                  Approved
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-sm" />
-                  Draft Editable
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-300 shadow-sm" />
-                  View Only
-                </span>
+          <div className="grid grid-cols-4 gap-6 px-[2vw] py-[2vh] bg-white dark:bg-slate-900 border-b dark:border-slate-800 shadow-sm shrink-0">
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100 shadow-inner">
+                <User size={24} />
+              </div>
+              <div>
+                <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1">
+                  Salesman
+                </p>
+                <p className="font-black text-sm text-foreground">
+                  {detail?.salesman.salesman_name || "Loading..."}
+                </p>
+                <p className="text-[10px] text-muted-foreground font-mono">
+                  ID: {detail?.salesman.salesman_code || "N/A"}
+                </p>
               </div>
             </div>
 
-            <div className="flex-1 flex min-h-0 bg-slate-50/50 dark:bg-slate-950/50">
-              <div className="hidden">
-                <Table>
-                  <TableHeader className="bg-slate-50 dark:bg-slate-900 sticky top-0 z-10 shadow-sm dark:shadow-none border-b dark:border-slate-800">
-                    <TableRow>
-                      <TableHead className="text-[10px] font-black uppercase tracking-widest py-4 pl-8">
-                        Particulars / COA
-                      </TableHead>
-                      <TableHead className="text-[10px] font-black uppercase tracking-widest py-4 text-right pr-4">
-                        Amount
-                      </TableHead>
-                      <TableHead className="text-[10px] font-black uppercase tracking-widest py-4 text-center w-24">
-                        Batch Approve
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {groupedExpenses.map((group) => {
-                      const groupId = String(group.particulars);
-                      const isSelected = selectedGroupId === groupId;
-                      const total = group.items.reduce(
-                        (acc, expense) => acc + Number(localAmounts[expense.id] || 0),
-                        0
-                      );
-                      const editableGroupItems = group.items.filter(isDraftExpense);
-                      const allEditableApproved =
-                        editableGroupItems.length > 0 &&
-                        editableGroupItems.every(
-                          (item) => itemDecisions[item.id] === "Approved"
-                        );
-                      const allGroupItemsProcessed = group.items.every(
-                        (item) => !isDraftExpense(item)
-                      );
+            <div className="flex items-center gap-4 pl-6 border-l border-muted/50">
+              <div className="h-12 w-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100 shadow-inner">
+                <Building2 size={24} />
+              </div>
+              <div>
+                <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1">
+                  Position & Department
+                </p>
+                <p className="font-black text-sm text-foreground">
+                  {detail?.salesman.user?.user_position || "Field Representative"}
+                </p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-tighter">
+                  {detail?.salesman.department_name || "Sales & Distribution"}
+                </p>
+              </div>
+            </div>
 
-                      return (
-                        <TableRow
-                          key={groupId}
-                          className={`cursor-pointer group transition-all ${
-                            isSelected ? "bg-blue-50/80 dark:bg-blue-900/20" : "hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                          }`}
-                          onClick={() => setSelectedGroupId(groupId)}
-                        >
-                          <TableCell className="pl-8 py-4 relative">
-                            {isSelected && (
-                              <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 shadow-[2px_0_5px_rgba(37,99,235,0.3)]" />
-                            )}
-                            <div className="flex items-center gap-3">
-                              <div
-                                className={`h-8 w-8 rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm transition-all ${
-                                  isSelected
-                                    ? "bg-blue-600 text-white scale-110 shadow-blue-200"
-                                    : "bg-slate-100 text-slate-500"
-                                }`}
-                              >
-                                #
-                              </div>
-                              <div>
-                                <p className="text-[11px] font-black uppercase tracking-tight text-slate-800 dark:text-slate-200 leading-none mb-1 line-clamp-1">
-                                  {group.particulars_name}
-                                </p>
-                                <p className="text-[9px] font-bold text-muted-foreground uppercase">
-                                  {group.items.length} line item{group.items.length !== 1 ? "s" : ""}
-                                  {editableGroupItems.length > 0
-                                    ? ` • ${editableGroupItems.length} Drafts`
-                                    : " • View only"}
-                                </p>
-                              </div>
-                            </div>
-                          </TableCell>
-                          <TableCell className="text-right py-4 pr-4">
-                            <p className="text-xs font-black tabular-nums text-slate-800 dark:text-slate-200">
-                              {formatCurrency(total)}
-                            </p>
-                            <p className="text-[9px] text-muted-foreground font-bold italic">
-                              {allGroupItemsProcessed
-                                ? "Already processed"
-                                : allEditableApproved
-                                  ? "Drafts verified"
-                                  : "Pending Drafts review"}
-                            </p>
-                          </TableCell>
-                          <TableCell className="text-center py-4">
-                            <Button
-                              variant={allEditableApproved ? "default" : "outline"}
-                              size="sm"
-                              disabled={isInteractionDisabled || editableGroupItems.length === 0}
-                              className={`h-7 px-3 rounded-full text-[9px] font-black uppercase tracking-tighter transition-all ${
-                                allEditableApproved
-                                  ? "bg-emerald-500 hover:bg-emerald-600 text-white border-none shadow-md shadow-emerald-200 dark:shadow-none"
-                                  : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 border-slate-200 dark:border-slate-700"
-                              } disabled:opacity-50 disabled:cursor-not-allowed`}
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                toggleGroupStatus(group.items, "Approved");
-                              }}
-                            >
-                              {allEditableApproved ? (
-                                <div className="flex items-center gap-1">
-                                  <CheckCircle2 size={10} />
-                                  <span>Approved</span>
-                                </div>
-                              ) : editableGroupItems.length === 0 ? (
-                                "Locked"
-                              ) : (
-                                "Approve"
-                              )}
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  </TableBody>
-                </Table>
+            <div className="flex items-center gap-4 pl-6 border-l border-muted/50">
+              <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 border border-emerald-100 shadow-inner">
+                <Wallet size={24} />
+              </div>
+              <div>
+                <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1">
+                  Budget Ceiling
+                </p>
+                <p className="font-black text-sm text-emerald-700">
+                  {formatCurrency(detail?.expense_limit || 0)}
+                </p>
+                <p className="text-[10px] text-muted-foreground italic">
+                  Applied to current submittal
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 pl-6 border-l border-muted/50">
+              <div className="flex flex-col gap-1 w-full">
+                <p className="text-[9px] uppercase font-black text-muted-foreground tracking-widest leading-none mb-1 text-right">
+                  Selected Submittal
+                </p>
+                <div className="flex justify-end gap-2 flex-wrap">
+                  <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-[10px] font-black">
+                    {headerExpenses.length} Items
+                  </Badge>
+                  <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-[10px] font-black">
+                    {editableHeaderExpenses.length} Drafts
+                  </Badge>
+                  {viewOnlyHeaderExpensesCount > 0 && (
+                    <Badge className="bg-slate-100 text-slate-600 border-slate-200 text-[10px] font-black">
+                      {viewOnlyHeaderExpensesCount} View Only
+                    </Badge>
+                  )}
+                  <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-[10px] font-black">
+                    {formatCurrency(headerTotalAmount)}
+                  </Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {loading ? (
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 animate-pulse">
+              <Loader2 className="h-10 w-10 animate-spin text-primary" />
+              <span className="font-black text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                Syncing Details...
+              </span>
+            </div>
+          ) : (
+            <>
+              <div className="px-[2vw] py-4 bg-muted/5 dark:bg-slate-800/50 border-b dark:border-slate-800 flex items-center justify-between shrink-0">
+                <div className="flex items-center gap-8">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3 text-slate-800 dark:text-slate-200">
+                    <Receipt className="h-4 w-4 text-primary" />
+                    Line-Item Expense Breakdown
+                  </h3>
+
+                  {hasEditableHeaderExpenses ? (
+                    <div className="flex items-center gap-6">
+                      <button
+                        type="button"
+                        className="flex items-center gap-2 cursor-pointer group disabled:cursor-not-allowed disabled:opacity-50"
+                        onClick={approveAll}
+                        disabled={isInteractionDisabled}
+                      >
+                        <span className="h-4 w-4 rounded border-2 border-primary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                          <Check className="h-3 w-3 text-primary" />
+                        </span>
+                        <span className="text-[10px] font-black uppercase tracking-widest">
+                          Approve All Drafts
+                        </span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className="flex items-center gap-2 cursor-pointer group disabled:cursor-not-allowed disabled:opacity-50"
+                        onClick={uncheckAll}
+                        disabled={isInteractionDisabled}
+                      >
+                        <span className="h-4 w-4 rounded border-2 border-slate-300 flex items-center justify-center group-hover:border-primary transition-colors" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                          Uncheck Drafts
+                        </span>
+                      </button>
+                    </div>
+                  ) : (
+                    <Badge className="bg-slate-100 text-slate-600 border-slate-200 text-[10px] font-black uppercase tracking-widest">
+                      No Drafts items. This modal is view-only.
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                  <span className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm" />
+                    Approved
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-sm" />
+                    Draft Editable
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300 shadow-sm" />
+                    View Only
+                  </span>
+                </div>
               </div>
 
-              <div className="flex-1 bg-white dark:bg-slate-900 flex flex-col overflow-hidden">
-                <div className="flex-1 overflow-auto p-3 sm:p-5">
-                  <Table className="min-w-[760px] border dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm dark:shadow-none">
-                    <TableHeader className="bg-slate-50/50 dark:bg-slate-900/80 sticky top-0 z-10 backdrop-blur-sm border-b dark:border-slate-800">
+              <div className="flex-1 flex min-h-0 bg-slate-50/50 dark:bg-slate-950/50">
+                <div className="hidden">
+                  <Table>
+                    <TableHeader className="bg-slate-50 dark:bg-slate-900 sticky top-0 z-10 shadow-sm dark:shadow-none border-b dark:border-slate-800">
                       <TableRow>
-                        <TableHead className="w-8 text-center text-[10px] font-black">
-                          #
+                        <TableHead className="text-[10px] font-black uppercase tracking-widest py-4 pl-8">
+                          Particulars / COA
                         </TableHead>
-                        <TableHead className="min-w-[180px] text-[10px] font-black uppercase tracking-widest py-4">
-                          Encoded Particulars & Remarks
+                        <TableHead className="text-[10px] font-black uppercase tracking-widest py-4 text-right pr-4">
+                          Amount
                         </TableHead>
-                        <TableHead className="w-20 text-center text-[10px] font-black uppercase tracking-widest py-4">
-                          Verify Amount
-                        </TableHead>
-                        <TableHead className="w-12 text-center text-[10px] font-black uppercase tracking-widest py-4">
-                          Docs
-                        </TableHead>
-                        <TableHead className="w-20 text-center text-[10px] font-black uppercase tracking-widest py-4">
-                          Date
-                        </TableHead>
-                        <TableHead className="text-center text-[10px] font-black uppercase tracking-widest py-4 w-40">
-                          Status Decision
+                        <TableHead className="text-[10px] font-black uppercase tracking-widest py-4 text-center w-24">
+                          Batch Approve
                         </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {groupedExpenses.map((group) => {
-                        const groupTotal = group.items.reduce(
-                          (sum, expense) => sum + Number(localAmounts[expense.id] || 0),
+                        const groupId = String(group.particulars);
+                        const isSelected = selectedGroupId === groupId;
+                        const total = group.items.reduce(
+                          (acc, expense) => acc + Number(localAmounts[expense.id] || 0),
                           0
                         );
                         const editableGroupItems = group.items.filter(isDraftExpense);
@@ -960,321 +838,432 @@ export default function ExpenseApprovalModal({
                           editableGroupItems.every(
                             (item) => itemDecisions[item.id] === "Approved"
                           );
-
-                        return (
-                          <React.Fragment key={group.particulars}>
-                            <TableRow className="border-none bg-slate-950 hover:bg-slate-950 dark:bg-slate-950">
-                              <TableCell colSpan={6} className="px-5 py-3 text-white">
-                                <div className="flex flex-wrap items-center justify-between gap-3">
-                                  <div className="min-w-0">
-                                    <p className="text-[9px] font-black uppercase tracking-[0.18em] text-slate-400">Account</p>
-                                    <p className="truncate text-sm font-black">{group.particulars_name}</p>
-                                  </div>
-                                  <div className="flex items-center gap-3">
-                                    <span className="text-sm font-black tabular-nums text-emerald-400">
-                                      {formatCurrency(groupTotal)}
-                                    </span>
-                                    {editableGroupItems.length > 0 && (
-                                      <Button
-                                        size="sm"
-                                        variant={allEditableApproved ? "default" : "secondary"}
-                                        disabled={isInteractionDisabled}
-                                        className="h-7 rounded-full px-3 text-[9px] font-black uppercase tracking-wider"
-                                        onClick={() => toggleGroupStatus(group.items, "Approved")}
-                                      >
-                                        {allEditableApproved ? "Approved" : "Approve Group"}
-                                      </Button>
-                                    )}
-                                  </div>
-                                </div>
-                              </TableCell>
-                            </TableRow>
-                            {group.items.map((expense, index) => {
-                        const status = itemDecisions[expense.id] || "PENDING";
-                        const isReadOnly = !isDraftExpense(expense);
-                        const isBusy = isInteractionDisabled;
-
-                        return (
-                          <React.Fragment key={expense.id}>
-                            <TableRow
-                              className={`group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 transition-all ${
-                                isReadOnly ? "opacity-80" : ""
-                              } ${
-                                status === "Approved"
-                                  ? "bg-emerald-50/20 dark:bg-emerald-900/10"
-                                  : status === "Rejected"
-                                    ? "bg-rose-50/20 dark:bg-rose-900/10"
-                                    : status === "With Concern"
-                                      ? "bg-amber-50/20 dark:bg-amber-900/10"
-                                      : ""
-                              }`}
-                            >
-                              <TableCell className="text-center py-4 text-[10px] font-black text-slate-300 dark:text-slate-600 italic">
-                                {(index + 1).toString().padStart(2, "0")}
-                              </TableCell>
-                              <TableCell className="py-4">
-                                <div className="space-y-1">
-                                  <div className="min-w-0">
-                                    <p className="text-xs font-black text-slate-800 dark:text-slate-200 leading-none mb-1">
-                                      {expense.remarks || "No remarks provided"}
-                                    </p>
-                                  </div>
-                                  <div className="flex flex-wrap items-center gap-2">
-                                    <span className="text-[9px] text-muted-foreground font-mono uppercase">
-                                      Batch: {expense.header_id}
-                                    </span>
-                                    <Badge
-                                      variant="outline"
-                                      className={`text-[9px] font-black uppercase tracking-widest ${getStatusBadgeClass(
-                                        status
-                                      )}`}
-                                    >
-                                      {isReadOnly ? expense.status : status === "PENDING" ? "Drafts" : status}
-                                    </Badge>
-                                  </div>
-                                </div>
-                              </TableCell>
-                              <TableCell className="py-4 text-center">
-                                <Input
-                                  className={`h-8 w-28 text-center text-xs font-black tabular-nums transition-all ${
-                                    isReadOnly
-                                      ? "bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed"
-                                      : Number(localAmounts[expense.id]) !== Number(expense.amount)
-                                        ? "bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700/50 text-amber-700 dark:text-amber-400 shadow-inner"
-                                        : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
-                                  }`}
-                                  value={localAmounts[expense.id] || ""}
-                                  disabled={isBusy || isReadOnly}
-                                  onChange={(event) => {
-                                    const value = event.target.value;
-                                    if (/^\d*\.?\d*$/.test(value)) {
-                                      setLocalAmounts((prev) => ({
-                                        ...prev,
-                                        [expense.id]: value,
-                                      }));
-                                    }
-                                  }}
-                                />
-                              </TableCell>
-                              <TableCell className="py-4 text-center">
-                                {expense.attachment_url ? (
-                                  <Button
-                                    type="button"
-                                    size="icon"
-                                    variant="ghost"
-                                    className="h-8 w-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm dark:shadow-none"
-                                    onClick={() => {
-                                      const attachmentIndex = attachments.findIndex(
-                                        (attachment) => attachment.expenseId === expense.id
-                                      );
-                                      showAttachment(attachmentIndex >= 0 ? attachmentIndex : 0);
-                                      setFocusedPreviewUrl(
-                                        `/api/fm/expense-assets?id=${String(expense.attachment_url)}`
-                                      );
-                                    }}
-                                    aria-label={`Preview evidence for expense ${expense.id}`}
-                                    title="Preview supporting evidence"
-                                  >
-                                    <ExternalLink size={14} />
-                                  </Button>
-                                ) : (
-                                  <Badge
-                                    variant="outline"
-                                    className="whitespace-nowrap border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide text-slate-400 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-500"
-                                  >
-                                    No attachment
-                                  </Badge>
-                                )}
-                              </TableCell>
-                              <TableCell className="py-4 text-center text-[10px] font-bold text-slate-500 uppercase">
-                                {formatDate(expense.transaction_date)}
-                              </TableCell>
-                              <TableCell className="py-4 text-center">
-                                <div className="flex items-center justify-center gap-1.5">
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Button
-                                          size="icon"
-                                          className={`h-8 w-8 rounded-lg shadow-sm transition-all ${
-                                            status === "Approved"
-                                              ? "bg-emerald-500 text-white"
-                                              : "bg-slate-100 text-slate-400 hover:bg-emerald-50"
-                                          } disabled:opacity-50 disabled:cursor-not-allowed`}
-                                          onClick={() => setItemStatus(expense, "Approved")}
-                                          disabled={isBusy || isReadOnly}
-                                        >
-                                          <Check size={16} strokeWidth={3} />
-                                        </Button>
-                                      </TooltipTrigger>
-                                      <TooltipContent className="text-[9px] font-black uppercase">
-                                        {isReadOnly ? "View Only" : "Approve Item"}
-                                      </TooltipContent>
-                                    </Tooltip>
-
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Button
-                                          size="icon"
-                                          className={`h-8 w-8 rounded-lg shadow-sm transition-all ${
-                                            status === "With Concern"
-                                              ? "bg-amber-500 text-white"
-                                              : "bg-slate-100 text-slate-400 hover:bg-amber-50"
-                                          } disabled:opacity-50 disabled:cursor-not-allowed`}
-                                          onClick={() => setItemStatus(expense, "With Concern")}
-                                          disabled={isBusy || isReadOnly}
-                                        >
-                                          <MessageSquareWarning size={14} />
-                                        </Button>
-                                      </TooltipTrigger>
-                                      <TooltipContent className="text-[9px] font-black uppercase">
-                                        {isReadOnly ? "View Only" : "Raise Concern"}
-                                      </TooltipContent>
-                                    </Tooltip>
-
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Button
-                                          size="icon"
-                                          className={`h-8 w-8 rounded-lg shadow-sm transition-all ${
-                                            status === "Rejected"
-                                              ? "bg-rose-500 text-white"
-                                              : "bg-slate-100 text-slate-400 hover:bg-rose-50"
-                                          } disabled:opacity-50 disabled:cursor-not-allowed`}
-                                          onClick={() => setItemStatus(expense, "Rejected")}
-                                          disabled={isBusy || isReadOnly}
-                                        >
-                                          <X size={16} strokeWidth={3} />
-                                        </Button>
-                                      </TooltipTrigger>
-                                      <TooltipContent className="text-[9px] font-black uppercase">
-                                        {isReadOnly ? "View Only" : "Hard Reject"}
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
-                                </div>
-                              </TableCell>
-                            </TableRow>
-
-                            {needsFeedback(status) && (
-                              <TableRow
-                                className={
-                                  status === "Rejected" ? "bg-rose-50/30" : "bg-amber-50/30"
-                                }
-                              >
-                                <TableCell colSpan={6} className="px-8 py-3">
-                                  <div className="flex items-center gap-4 pl-12 flex-1">
-                                    <span
-                                      className={`text-[10px] font-black uppercase tracking-widest ${
-                                        status === "Rejected" ? "text-rose-600" : "text-amber-600"
-                                      } shrink-0`}
-                                    >
-                                      Audit Feedback:
-                                    </span>
-                                    <Input
-                                      placeholder="Provide mandatory reason for rejection/concern..."
-                                      className={`h-8 text-xs font-medium border-2 focus:border-primary bg-white shadow-inner flex-1 ${
-                                        isReadOnly ? "cursor-not-allowed text-slate-500" : ""
-                                      }`}
-                                      value={itemRemarks[expense.id] || ""}
-                                      onChange={(event) =>
-                                        setItemRemarks((prev) => ({
-                                          ...prev,
-                                          [expense.id]: event.target.value,
-                                        }))
-                                      }
-                                      disabled={isBusy || isReadOnly}
-                                    />
-
-                                    {!isReadOnly && (
-                                      <Button
-                                        size="sm"
-                                        className="h-8 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-[10px] uppercase tracking-widest rounded-lg shadow-md gap-2"
-                                        disabled={
-                                          isInteractionDisabled ||
-                                          !itemRemarks[expense.id]?.trim()
-                                        }
-                                        onClick={() => handleSingleItemSubmit(expense)}
-                                      >
-                                        {processingItem === expense.id ? (
-                                          <Loader2 size={12} className="animate-spin" />
-                                        ) : (
-                                          <Send size={12} />
-                                        )}
-                                        Submit Decision
-                                      </Button>
-                                    )}
-                                  </div>
-                                </TableCell>
-                              </TableRow>
-                            )}
-                          </React.Fragment>
+                        const allGroupItemsProcessed = group.items.every(
+                          (item) => !isDraftExpense(item)
                         );
-                            })}
-                          </React.Fragment>
+
+                        return (
+                          <TableRow
+                            key={groupId}
+                            className={`cursor-pointer group transition-all ${isSelected ? "bg-blue-50/80 dark:bg-blue-900/20" : "hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                              }`}
+                            onClick={() => setSelectedGroupId(groupId)}
+                          >
+                            <TableCell className="pl-8 py-4 relative">
+                              {isSelected && (
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 shadow-[2px_0_5px_rgba(37,99,235,0.3)]" />
+                              )}
+                              <div className="flex items-center gap-3">
+                                <div
+                                  className={`h-8 w-8 rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm transition-all ${isSelected
+                                      ? "bg-blue-600 text-white scale-110 shadow-blue-200"
+                                      : "bg-slate-100 text-slate-500"
+                                    }`}
+                                >
+                                  #
+                                </div>
+                                <div>
+                                  <p className="text-[11px] font-black uppercase tracking-tight text-slate-800 dark:text-slate-200 leading-none mb-1 line-clamp-1">
+                                    {group.particulars_name}
+                                  </p>
+                                  <p className="text-[9px] font-bold text-muted-foreground uppercase">
+                                    {group.items.length} line item{group.items.length !== 1 ? "s" : ""}
+                                    {editableGroupItems.length > 0
+                                      ? ` • ${editableGroupItems.length} Drafts`
+                                      : " • View only"}
+                                  </p>
+                                </div>
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-right py-4 pr-4">
+                              <p className="text-xs font-black tabular-nums text-slate-800 dark:text-slate-200">
+                                {formatCurrency(total)}
+                              </p>
+                              <p className="text-[9px] text-muted-foreground font-bold italic">
+                                {allGroupItemsProcessed
+                                  ? "Already processed"
+                                  : allEditableApproved
+                                    ? "Drafts verified"
+                                    : "Pending Drafts review"}
+                              </p>
+                            </TableCell>
+                            <TableCell className="text-center py-4">
+                              <Button
+                                variant={allEditableApproved ? "default" : "outline"}
+                                size="sm"
+                                disabled={isInteractionDisabled || editableGroupItems.length === 0}
+                                className={`h-7 px-3 rounded-full text-[9px] font-black uppercase tracking-tighter transition-all ${allEditableApproved
+                                    ? "bg-emerald-500 hover:bg-emerald-600 text-white border-none shadow-md shadow-emerald-200 dark:shadow-none"
+                                    : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 border-slate-200 dark:border-slate-700"
+                                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                  toggleGroupStatus(group.items, "Approved");
+                                }}
+                              >
+                                {allEditableApproved ? (
+                                  <div className="flex items-center gap-1">
+                                    <CheckCircle2 size={10} />
+                                    <span>Approved</span>
+                                  </div>
+                                ) : editableGroupItems.length === 0 ? (
+                                  "Locked"
+                                ) : (
+                                  "Approve"
+                                )}
+                              </Button>
+                            </TableCell>
+                          </TableRow>
                         );
                       })}
                     </TableBody>
                   </Table>
                 </div>
 
-                <div className="sticky bottom-0 z-20 flex items-center border-t bg-slate-50/95 px-5 py-3 shadow-[0_-5px_15px_rgba(0,0,0,0.04)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/95">
-                  <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
-                    <div className="flex flex-1 flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-2 dark:border-slate-700 dark:bg-slate-800">
-                      <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-400">
-                        <span>Consolidation Summary</span>
-                        <span className="text-blue-600">
-                          {approvedCount} Draft Line{approvedCount !== 1 ? "s" : ""} Verified
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                          Approved Draft Total:
-                        </span>
-                        <span className="ml-3 text-lg font-black tabular-nums text-blue-700 dark:text-blue-400 tracking-tighter">
-                          {formatCurrency(totalSelected)}
-                        </span>
-                      </div>
-                      <Button
-                        disabled={isInteractionDisabled || !hasEditableHeaderExpenses}
-                        className="h-10 shrink-0 bg-blue-600 px-5 hover:bg-blue-700 text-white rounded-xl font-black uppercase tracking-[0.16em] shadow-lg shadow-blue-200 gap-2 active:scale-[0.98] transition-all disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed"
-                        onClick={() => {
-                          if (!hasEditableHeaderExpenses) {
-                            return toast.info(
-                              "This submittal is view-only because there are no Drafts items."
+                <div className="flex-1 bg-white dark:bg-slate-900 flex flex-col overflow-hidden">
+                  <div className="flex-1 overflow-auto p-3 sm:p-5">
+                    <Table className="min-w-[760px] border dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm dark:shadow-none">
+                      <TableHeader className="bg-slate-50/50 dark:bg-slate-900/80 sticky top-0 z-10 backdrop-blur-sm border-b dark:border-slate-800">
+                        <TableRow>
+                          <TableHead className="w-8 text-center text-[10px] font-black">
+                            #
+                          </TableHead>
+                          <TableHead className="min-w-[180px] text-[10px] font-black uppercase tracking-widest py-4">
+                            Encoded Particulars & Remarks
+                          </TableHead>
+                          <TableHead className="w-20 text-center text-[10px] font-black uppercase tracking-widest py-4">
+                            Verify Amount
+                          </TableHead>
+                          <TableHead className="w-12 text-center text-[10px] font-black uppercase tracking-widest py-4">
+                            Docs
+                          </TableHead>
+                          <TableHead className="w-20 text-center text-[10px] font-black uppercase tracking-widest py-4">
+                            Date
+                          </TableHead>
+                          <TableHead className="text-center text-[10px] font-black uppercase tracking-widest py-4 w-40">
+                            Status Decision
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {groupedExpenses.map((group) => {
+                          const groupTotal = group.items.reduce(
+                            (sum, expense) => sum + Number(localAmounts[expense.id] || 0),
+                            0
+                          );
+                          const editableGroupItems = group.items.filter(isDraftExpense);
+                          const allEditableApproved =
+                            editableGroupItems.length > 0 &&
+                            editableGroupItems.every(
+                              (item) => itemDecisions[item.id] === "Approved"
                             );
-                          }
 
-                          if (!hasAnyEditableDecision) {
-                            return toast.warning(
-                              "Please make at least one decision for a Drafts item before finalizing."
-                            );
-                          }
+                          return (
+                            <React.Fragment key={group.particulars}>
+                              <TableRow className="border-none bg-slate-950 hover:bg-slate-950 dark:bg-slate-950">
+                                <TableCell colSpan={6} className="px-5 py-3 text-white">
+                                  <div className="flex flex-wrap items-center justify-between gap-3">
+                                    <div className="min-w-0">
+                                      <p className="text-[9px] font-black uppercase tracking-[0.18em] text-slate-400">Account</p>
+                                      <p className="truncate text-sm font-black">{group.particulars_name}</p>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                      <span className="text-sm font-black tabular-nums text-emerald-400">
+                                        {formatCurrency(groupTotal)}
+                                      </span>
+                                      {editableGroupItems.length > 0 && (
+                                        <Button
+                                          size="sm"
+                                          variant={allEditableApproved ? "default" : "secondary"}
+                                          disabled={isInteractionDisabled}
+                                          className="h-7 rounded-full px-3 text-[9px] font-black uppercase tracking-wider"
+                                          onClick={() => toggleGroupStatus(group.items, "Approved")}
+                                        >
+                                          {allEditableApproved ? "Approved" : "Approve Group"}
+                                        </Button>
+                                      )}
+                                    </div>
+                                  </div>
+                                </TableCell>
+                              </TableRow>
+                              {group.items.map((expense, index) => {
+                                const status = itemDecisions[expense.id] || "PENDING";
+                                const isReadOnly = !isDraftExpense(expense);
+                                const isBusy = isInteractionDisabled;
 
-                          setConfirmOpen(true);
-                        }}
+                                return (
+                                  <React.Fragment key={expense.id}>
+                                    <TableRow
+                                      className={`group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 transition-all ${isReadOnly ? "opacity-80" : ""
+                                        } ${status === "Approved"
+                                          ? "bg-emerald-50/20 dark:bg-emerald-900/10"
+                                          : status === "Rejected"
+                                            ? "bg-rose-50/20 dark:bg-rose-900/10"
+                                            : status === "With Concern"
+                                              ? "bg-amber-50/20 dark:bg-amber-900/10"
+                                              : ""
+                                        }`}
+                                    >
+                                      <TableCell className="text-center py-4 text-[10px] font-black text-slate-300 dark:text-slate-600 italic">
+                                        {(index + 1).toString().padStart(2, "0")}
+                                      </TableCell>
+                                      <TableCell className="py-4">
+                                        <div className="space-y-1">
+                                          <div className="min-w-0">
+                                            <p className="text-xs font-black text-slate-800 dark:text-slate-200 leading-none mb-1">
+                                              {expense.remarks || "No remarks provided"}
+                                            </p>
+                                          </div>
+                                          <div className="flex flex-wrap items-center gap-2">
+                                            <span className="text-[9px] text-muted-foreground font-mono uppercase">
+                                              Batch: {expense.header_id}
+                                            </span>
+                                            <Badge
+                                              variant="outline"
+                                              className={`text-[9px] font-black uppercase tracking-widest ${getStatusBadgeClass(
+                                                status
+                                              )}`}
+                                            >
+                                              {isReadOnly ? expense.status : status === "PENDING" ? "Drafts" : status}
+                                            </Badge>
+                                          </div>
+                                        </div>
+                                      </TableCell>
+                                      <TableCell className="py-4 text-center">
+                                        <Input
+                                          className={`h-8 w-28 text-center text-xs font-black tabular-nums transition-all ${isReadOnly
+                                              ? "bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed"
+                                              : Number(localAmounts[expense.id]) !== Number(expense.amount)
+                                                ? "bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700/50 text-amber-700 dark:text-amber-400 shadow-inner"
+                                                : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
+                                            }`}
+                                          value={localAmounts[expense.id] || ""}
+                                          disabled={isBusy || isReadOnly}
+                                          onChange={(event) => {
+                                            const value = event.target.value;
+                                            if (/^\d*\.?\d*$/.test(value)) {
+                                              setLocalAmounts((prev) => ({
+                                                ...prev,
+                                                [expense.id]: value,
+                                              }));
+                                            }
+                                          }}
+                                        />
+                                      </TableCell>
+                                      <TableCell className="py-4 text-center">
+                                        {expense.attachment_url ? (
+                                          <Button
+                                            type="button"
+                                            size="icon"
+                                            variant="ghost"
+                                            className="h-8 w-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm dark:shadow-none"
+                                            onClick={() => {
+                                              const attachmentIndex = attachments.findIndex(
+                                                (attachment) => attachment.expenseId === expense.id
+                                              );
+                                              showAttachment(attachmentIndex >= 0 ? attachmentIndex : 0);
+                                              setFocusedPreviewUrl(
+                                                `/api/fm/expense-assets?id=${String(expense.attachment_url)}`
+                                              );
+                                            }}
+                                            aria-label={`Preview evidence for expense ${expense.id}`}
+                                            title="Preview supporting evidence"
+                                          >
+                                            <ExternalLink size={14} />
+                                          </Button>
+                                        ) : (
+                                          <Badge
+                                            variant="outline"
+                                            className="whitespace-nowrap border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide text-slate-400 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-500"
+                                          >
+                                            No attachment
+                                          </Badge>
+                                        )}
+                                      </TableCell>
+                                      <TableCell className="py-4 text-center text-[10px] font-bold text-slate-500 uppercase">
+                                        {formatDate(expense.transaction_date)}
+                                      </TableCell>
+                                      <TableCell className="py-4 text-center">
+                                        <div className="flex items-center justify-center gap-1.5">
+                                          <TooltipProvider>
+                                            <Tooltip>
+                                              <TooltipTrigger asChild>
+                                                <Button
+                                                  size="icon"
+                                                  className={`h-8 w-8 rounded-lg shadow-sm transition-all ${status === "Approved"
+                                                      ? "bg-emerald-500 text-white"
+                                                      : "bg-slate-100 text-slate-400 hover:bg-emerald-50"
+                                                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                                  onClick={() => setItemStatus(expense, "Approved")}
+                                                  disabled={isBusy || isReadOnly}
+                                                >
+                                                  <Check size={16} strokeWidth={3} />
+                                                </Button>
+                                              </TooltipTrigger>
+                                              <TooltipContent className="text-[9px] font-black uppercase">
+                                                {isReadOnly ? "View Only" : "Approve Item"}
+                                              </TooltipContent>
+                                            </Tooltip>
+
+                                            <Tooltip>
+                                              <TooltipTrigger asChild>
+                                                <Button
+                                                  size="icon"
+                                                  className={`h-8 w-8 rounded-lg shadow-sm transition-all ${status === "With Concern"
+                                                      ? "bg-amber-500 text-white"
+                                                      : "bg-slate-100 text-slate-400 hover:bg-amber-50"
+                                                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                                  onClick={() => setItemStatus(expense, "With Concern")}
+                                                  disabled={isBusy || isReadOnly}
+                                                >
+                                                  <MessageSquareWarning size={14} />
+                                                </Button>
+                                              </TooltipTrigger>
+                                              <TooltipContent className="text-[9px] font-black uppercase">
+                                                {isReadOnly ? "View Only" : "Raise Concern"}
+                                              </TooltipContent>
+                                            </Tooltip>
+
+                                            <Tooltip>
+                                              <TooltipTrigger asChild>
+                                                <Button
+                                                  size="icon"
+                                                  className={`h-8 w-8 rounded-lg shadow-sm transition-all ${status === "Rejected"
+                                                      ? "bg-rose-500 text-white"
+                                                      : "bg-slate-100 text-slate-400 hover:bg-rose-50"
+                                                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                                  onClick={() => setItemStatus(expense, "Rejected")}
+                                                  disabled={isBusy || isReadOnly}
+                                                >
+                                                  <X size={16} strokeWidth={3} />
+                                                </Button>
+                                              </TooltipTrigger>
+                                              <TooltipContent className="text-[9px] font-black uppercase">
+                                                {isReadOnly ? "View Only" : "Hard Reject"}
+                                              </TooltipContent>
+                                            </Tooltip>
+                                          </TooltipProvider>
+                                        </div>
+                                      </TableCell>
+                                    </TableRow>
+
+                                    {needsFeedback(status) && (
+                                      <TableRow
+                                        className={
+                                          status === "Rejected" ? "bg-rose-50/30" : "bg-amber-50/30"
+                                        }
+                                      >
+                                        <TableCell colSpan={6} className="px-8 py-3">
+                                          <div className="flex items-center gap-4 pl-12 flex-1">
+                                            <span
+                                              className={`text-[10px] font-black uppercase tracking-widest ${status === "Rejected" ? "text-rose-600" : "text-amber-600"
+                                                } shrink-0`}
+                                            >
+                                              Audit Feedback:
+                                            </span>
+                                            <Input
+                                              placeholder="Provide mandatory reason for rejection/concern..."
+                                              className={`h-8 text-xs font-medium border-2 focus:border-primary bg-white shadow-inner flex-1 ${isReadOnly ? "cursor-not-allowed text-slate-500" : ""
+                                                }`}
+                                              value={itemRemarks[expense.id] || ""}
+                                              onChange={(event) =>
+                                                setItemRemarks((prev) => ({
+                                                  ...prev,
+                                                  [expense.id]: event.target.value,
+                                                }))
+                                              }
+                                              disabled={isBusy || isReadOnly}
+                                            />
+
+                                            {!isReadOnly && (
+                                              <Button
+                                                size="sm"
+                                                className="h-8 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-[10px] uppercase tracking-widest rounded-lg shadow-md gap-2"
+                                                disabled={
+                                                  isInteractionDisabled ||
+                                                  !itemRemarks[expense.id]?.trim()
+                                                }
+                                                onClick={() => handleSingleItemSubmit(expense)}
+                                              >
+                                                {processingItem === expense.id ? (
+                                                  <Loader2 size={12} className="animate-spin" />
+                                                ) : (
+                                                  <Send size={12} />
+                                                )}
+                                                Submit Decision
+                                              </Button>
+                                            )}
+                                          </div>
+                                        </TableCell>
+                                      </TableRow>
+                                    )}
+                                  </React.Fragment>
+                                );
+                              })}
+                            </React.Fragment>
+                          );
+                        })}
+                      </TableBody>
+                    </Table>
+                  </div>
+
+                  <div className="sticky bottom-0 z-20 flex items-center border-t bg-slate-50/95 px-5 py-3 shadow-[0_-5px_15px_rgba(0,0,0,0.04)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/95">
+                    <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
+                      <div className="flex flex-1 flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-2 dark:border-slate-700 dark:bg-slate-800">
+                        <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          <span>Consolidation Summary</span>
+                          <span className="text-blue-600">
+                            {approvedCount} Draft Line{approvedCount !== 1 ? "s" : ""} Verified
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            Approved Draft Total:
+                          </span>
+                          <span className="ml-3 text-lg font-black tabular-nums text-blue-700 dark:text-blue-400 tracking-tighter">
+                            {formatCurrency(totalSelected)}
+                          </span>
+                        </div>
+                        <Button
+                          disabled={isInteractionDisabled || !hasEditableHeaderExpenses}
+                          className="h-10 shrink-0 bg-blue-600 px-5 hover:bg-blue-700 text-white rounded-xl font-black uppercase tracking-[0.16em] shadow-lg shadow-blue-200 gap-2 active:scale-[0.98] transition-all disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed"
+                          onClick={() => {
+                            if (!hasEditableHeaderExpenses) {
+                              return toast.info(
+                                "This submittal is view-only because there are no Drafts items."
+                              );
+                            }
+
+                            if (!hasAnyEditableDecision) {
+                              return toast.warning(
+                                "Please make at least one decision for a Drafts item before finalizing."
+                              );
+                            }
+
+                            setConfirmOpen(true);
+                          }}
+                        >
+                          {submitting ? (
+                            <Loader2 className="animate-spin" />
+                          ) : (
+                            <ShieldCheck size={20} />
+                          )}
+                          {hasEditableHeaderExpenses ? "Submit Decision" : "View Only"}
+                        </Button>
+                      </div>
+                      <button
+                        type="button"
+                        className="shrink-0 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-600 transition-colors"
+                        onClick={onClose}
                       >
-                        {submitting ? (
-                          <Loader2 className="animate-spin" />
-                        ) : (
-                          <ShieldCheck size={20} />
-                        )}
-                        {hasEditableHeaderExpenses ? "Submit Decision" : "View Only"}
-                      </Button>
+                        {hasEditableHeaderExpenses ? "Discard Changes" : "Close"}
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className="shrink-0 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-600 transition-colors"
-                      onClick={onClose}
-                    >
-                      {hasEditableHeaderExpenses ? "Discard Changes" : "Close"}
-                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
         </div>
       </DialogContent>
 
@@ -1450,11 +1439,10 @@ export default function ExpenseApprovalModal({
                             {item.particulars_name}
                           </span>
                           <span
-                            className={`text-[8px] font-black px-2 py-0.5 rounded-full uppercase ${
-                              itemDecisions[item.id] === "Rejected"
+                            className={`text-[8px] font-black px-2 py-0.5 rounded-full uppercase ${itemDecisions[item.id] === "Rejected"
                                 ? "bg-rose-100 text-rose-600"
                                 : "bg-amber-100 text-amber-600"
-                            }`}
+                              }`}
                           >
                             {itemDecisions[item.id]}
                           </span>

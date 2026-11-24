@@ -14,7 +14,7 @@ import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 // Import the Cash Issuance Module
-import CashIssuanceModule from "@/modules/financial-management/treasury/cash-issuance/CashIssuanceModule";
+import CashIssuanceModule from "@/modules/lgu-management/treasury/cash-issuance/CashIssuanceModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

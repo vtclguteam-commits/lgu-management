@@ -1,4 +1,4 @@
-//src/modules/financial-management/chart-of-accounts/providers/fetchProvider.ts
+//src/modules/lgu-management/chart-of-accounts/providers/fetchProvider.ts
 import type {
   AccountTypeRow,
   BalanceTypeRow,

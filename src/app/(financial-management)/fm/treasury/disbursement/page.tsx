@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // 🚀 FIX: Import the new DisbursementModule instead of ComingSoon
-import DisbursementModule from "@/modules/financial-management/treasury/disbursement/DisbursementModule";
+import DisbursementModule from "@/modules/lgu-management/treasury/disbursement/DisbursementModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

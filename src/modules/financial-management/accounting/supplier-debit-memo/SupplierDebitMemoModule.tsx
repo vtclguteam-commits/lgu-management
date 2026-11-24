@@ -1,14 +1,14 @@
-// src/modules/financial-management/accounting/supplier-debit-memo/SupplierDebitMemoModule.tsx
+// src/modules/lgu-management/accounting/supplier-debit-memo/SupplierDebitMemoModule.tsx
 
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSupplierDebitMemo, useSuppliers, useChartOfAccounts } from "./hooks/useSupplierDebitMemo";
-import { StatsCards }     from "./components/StatsCards";
+import { StatsCards } from "./components/StatsCards";
 import { MemoFiltersBar } from "./components/MemoFilters";
-import { MemoTable }      from "./components/MemoTable";
-import { AddMemoModal }   from "./components/AddMemoModal";
+import { MemoTable } from "./components/MemoTable";
+import { AddMemoModal } from "./components/AddMemoModal";
 
 export default function SupplierDebitMemoModule() {
   const {
@@ -20,7 +20,7 @@ export default function SupplierDebitMemoModule() {
   } = useSupplierDebitMemo();
 
   const { suppliers } = useSuppliers();
-  const { accounts  } = useChartOfAccounts();
+  const { accounts } = useChartOfAccounts();
 
   if (loading && memos.length === 0) return (
     <div className="p-4 md:p-6 space-y-4">

@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/supplier-debit-memo/components/MemoFilters.tsx
+// src/modules/lgu-management/accounting/supplier-debit-memo/components/MemoFilters.tsx
 
 "use client";
 
@@ -13,13 +13,13 @@ import type { MemoFilters as FiltersType } from "../types";
 import { MEMO_STATUSES } from "../utils";
 
 interface MemoFiltersProps {
-  filters:    FiltersType;
-  suppliers:  { id: number; supplier_name: string }[];
-  accounts:   { coa_id: number; account_title: string | null; id?: number }[];
+  filters: FiltersType;
+  suppliers: { id: number; supplier_name: string }[];
+  accounts: { coa_id: number; account_title: string | null; id?: number }[];
   hasFilters: boolean;
-  onChange:   <K extends keyof FiltersType>(key: K, value: FiltersType[K]) => void;
-  onClear:    () => void;
-  onAddNew:   () => void;
+  onChange: <K extends keyof FiltersType>(key: K, value: FiltersType[K]) => void;
+  onClear: () => void;
+  onAddNew: () => void;
 }
 
 export function MemoFiltersBar({
@@ -28,7 +28,7 @@ export function MemoFiltersBar({
   const [supplierSearch, setSupplierSearch] = useState("");
   const [accountSearch, setAccountSearch] = useState("");
 
-  const filteredSuppliers = suppliers.filter(s => 
+  const filteredSuppliers = suppliers.filter(s =>
     s.supplier_name?.toLowerCase().includes(supplierSearch.toLowerCase())
   );
 
@@ -65,89 +65,89 @@ export function MemoFiltersBar({
         </div>
 
         {/* Supplier with search */}
-<Select
-  key={`supplier-${filters.supplier_id}`}
-  value={filters.supplier_id || ""}
-  onValueChange={val => onChange("supplier_id", val === 'all' ? '' : val)}
->
-  <SelectTrigger className="h-9 w-[180px] text-xs">
-    <SelectValue placeholder="All Suppliers" />
-  </SelectTrigger>
-  <SelectContent
-    className="max-h-60 z-50"
-    position="popper"
-    side="bottom"
-    avoidCollisions={false}
-    onCloseAutoFocus={(e) => e.preventDefault()}
-  >
-    <div
-      className="px-2 py-1.5 sticky top-0 z-10 bg-background border-b"
-      onMouseDown={(e) => e.stopPropagation()}
-      onWheel={(e) => e.stopPropagation()}
-      onTouchMove={(e) => e.stopPropagation()}
-    >
-      <Input
-        placeholder="Search supplier…"
-        className="h-7 text-xs"
-        value={supplierSearch}
-        onChange={(e) => setSupplierSearch(e.target.value)}
-        onMouseDown={(e) => e.stopPropagation()}
-        onKeyDown={(e) => e.stopPropagation()}
-        autoFocus
-      />
-    </div>
-    <SelectItem key="all" value="all" className="text-xs">All Suppliers</SelectItem>
-    {filteredSuppliers.filter(s => s.supplier_name?.trim()).map(s => (
-      <SelectItem key={s.id} value={String(s.id)} className="text-xs">
-        {s.supplier_name}
-      </SelectItem>
-    ))}
-  </SelectContent>
-</Select>
+        <Select
+          key={`supplier-${filters.supplier_id}`}
+          value={filters.supplier_id || ""}
+          onValueChange={val => onChange("supplier_id", val === 'all' ? '' : val)}
+        >
+          <SelectTrigger className="h-9 w-[180px] text-xs">
+            <SelectValue placeholder="All Suppliers" />
+          </SelectTrigger>
+          <SelectContent
+            className="max-h-60 z-50"
+            position="popper"
+            side="bottom"
+            avoidCollisions={false}
+            onCloseAutoFocus={(e) => e.preventDefault()}
+          >
+            <div
+              className="px-2 py-1.5 sticky top-0 z-10 bg-background border-b"
+              onMouseDown={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              <Input
+                placeholder="Search supplier…"
+                className="h-7 text-xs"
+                value={supplierSearch}
+                onChange={(e) => setSupplierSearch(e.target.value)}
+                onMouseDown={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+                autoFocus
+              />
+            </div>
+            <SelectItem key="all" value="all" className="text-xs">All Suppliers</SelectItem>
+            {filteredSuppliers.filter(s => s.supplier_name?.trim()).map(s => (
+              <SelectItem key={s.id} value={String(s.id)} className="text-xs">
+                {s.supplier_name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-{/* Chart of Account with search */}
-<Select
-  key={`account-${filters.chart_of_account}`}
-  value={filters.chart_of_account || ""}
-  onValueChange={val => onChange("chart_of_account", val === 'all' ? '' : val)}
->
-  <SelectTrigger className="h-9 w-[180px] text-xs">
-    <SelectValue placeholder="All Accounts" />
-  </SelectTrigger>
-  <SelectContent
-    className="max-h-60 z-50"
-    position="popper"
-    side="bottom"
-    avoidCollisions={false}
-    onCloseAutoFocus={(e) => e.preventDefault()}
-  >
-    <div
-      className="px-2 py-1.5 sticky top-0 z-10 bg-background border-b"
-      onMouseDown={(e) => e.stopPropagation()}
-      onWheel={(e) => e.stopPropagation()}
-      onTouchMove={(e) => e.stopPropagation()}
-    >
-      <Input
-        placeholder="Search account…"
-        className="h-7 text-xs"
-        value={accountSearch}
-        onChange={(e) => setAccountSearch(e.target.value)}
-        onMouseDown={(e) => e.stopPropagation()}
-        onKeyDown={(e) => e.stopPropagation()}
-        autoFocus
-      />
-    </div>
-    <SelectItem key="all" value="all" className="text-xs">All Accounts</SelectItem>
-    {filteredAccounts.map(a => {
-      const id = ('id' in a && typeof (a as { id?: number }).id === 'number') ? (a as { id: number }).id : a.coa_id;
-      return (
-        <SelectItem key={id} value={String(id)} className="text-xs">
-          {a.account_title ?? String(id)}
-        </SelectItem>
-      );
-    })}
-  </SelectContent>
-</Select>
+        {/* Chart of Account with search */}
+        <Select
+          key={`account-${filters.chart_of_account}`}
+          value={filters.chart_of_account || ""}
+          onValueChange={val => onChange("chart_of_account", val === 'all' ? '' : val)}
+        >
+          <SelectTrigger className="h-9 w-[180px] text-xs">
+            <SelectValue placeholder="All Accounts" />
+          </SelectTrigger>
+          <SelectContent
+            className="max-h-60 z-50"
+            position="popper"
+            side="bottom"
+            avoidCollisions={false}
+            onCloseAutoFocus={(e) => e.preventDefault()}
+          >
+            <div
+              className="px-2 py-1.5 sticky top-0 z-10 bg-background border-b"
+              onMouseDown={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              <Input
+                placeholder="Search account…"
+                className="h-7 text-xs"
+                value={accountSearch}
+                onChange={(e) => setAccountSearch(e.target.value)}
+                onMouseDown={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+                autoFocus
+              />
+            </div>
+            <SelectItem key="all" value="all" className="text-xs">All Accounts</SelectItem>
+            {filteredAccounts.map(a => {
+              const id = ('id' in a && typeof (a as { id?: number }).id === 'number') ? (a as { id: number }).id : a.coa_id;
+              return (
+                <SelectItem key={id} value={String(id)} className="text-xs">
+                  {a.account_title ?? String(id)}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
 
         {/* Status */}
         <Select

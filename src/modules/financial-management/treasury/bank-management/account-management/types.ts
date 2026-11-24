@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/account-management/types.ts
+// src/modules/lgu-management/treasury/bank-management/account-management/types.ts
 export type BankAccount = {
   bankId: number;
   bankName: string;
@@ -99,7 +99,7 @@ export type AccountManagementFieldErrors = Partial<
 export type AccountManagementSaveResult =
   | { ok: true }
   | {
-      ok: false;
-      message: string;
-      fieldErrors?: AccountManagementFieldErrors;
-    };
+    ok: false;
+    message: string;
+    fieldErrors?: AccountManagementFieldErrors;
+  };

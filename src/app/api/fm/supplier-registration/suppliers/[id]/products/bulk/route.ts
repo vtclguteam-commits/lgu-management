@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createBulkSupplierProducts } from "@/modules/financial-management/supplier-registration/services/products-per-suppliers";
+import { createBulkSupplierProducts } from "@/modules/lgu-management/supplier-registration/services/products-per-suppliers";
 
 /**
  * POST /api/fm/supplier-registration/suppliers/[id]/products/bulk

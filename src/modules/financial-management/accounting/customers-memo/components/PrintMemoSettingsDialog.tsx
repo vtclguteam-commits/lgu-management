@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/components/PrintMemoSettingsDialog.tsx
+// src/modules/lgu-management/accounting/customers-memo/components/PrintMemoSettingsDialog.tsx
 "use client";
 
 import * as React from "react";

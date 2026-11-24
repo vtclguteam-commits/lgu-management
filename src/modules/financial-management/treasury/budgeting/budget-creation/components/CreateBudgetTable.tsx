@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/create-budget/components/CreateBudgetTable.tsx
+// src/modules/lgu-management/treasury/budgeting/create-budget/components/CreateBudgetTable.tsx
 
 "use client";
 
@@ -25,23 +25,23 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { 
-  Popover, 
-  PopoverContent, 
-  PopoverTrigger 
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger
 } from "@/components/ui/popover";
-import { 
-  Loader2, 
-  Send, 
-  Pencil, 
-  Trash2, 
-  Plus,
-  Paperclip,
-  Image as ImageIcon,
-  FileSpreadsheet,
-  FileText,
-  ExternalLink,
-  Download
+import {
+    Loader2,
+    Send,
+    Pencil,
+    Trash2,
+    Plus,
+    Paperclip,
+    Image as ImageIcon,
+    FileSpreadsheet,
+    FileText,
+    ExternalLink,
+    Download
 } from "lucide-react";
 import { useCreateBudgetContext } from "../providers/CreateBudgetProvider";
 import { getMonthName, getBudgetStatusColor } from "../utils";
@@ -202,23 +202,22 @@ export function CreateBudgetTable() {
                                                                             const isImg = file.type?.includes("image");
                                                                             const isExcel = file.type?.includes("spreadsheet") || file.type?.includes("excel") || file.name?.endsWith(".xlsx") || file.name?.endsWith(".xls");
                                                                             const isPdf = file.type?.includes("pdf") || file.name?.endsWith(".pdf");
-                                                                            
+
                                                                             return (
-                                                                                <div 
-                                                                                    key={file.id || file.directus_id} 
+                                                                                <div
+                                                                                    key={file.id || file.directus_id}
                                                                                     className="flex items-start gap-2.5 p-2 rounded-xl bg-muted/40 hover:bg-muted/80 border border-border/30 transition-colors group"
                                                                                 >
-                                                                                    <div className={`p-1.5 rounded-lg shrink-0 mt-0.5 ${
-                                                                                        isImg ? "bg-orange-50 text-orange-600 dark:bg-orange-950/30 dark:text-orange-400" :
-                                                                                        isExcel ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400" :
-                                                                                        isPdf ? "bg-rose-50 text-rose-600 dark:bg-rose-950/30 dark:text-rose-400" :
-                                                                                        "bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400"
-                                                                                    }`}>
+                                                                                    <div className={`p-1.5 rounded-lg shrink-0 mt-0.5 ${isImg ? "bg-orange-50 text-orange-600 dark:bg-orange-950/30 dark:text-orange-400" :
+                                                                                            isExcel ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400" :
+                                                                                                isPdf ? "bg-rose-50 text-rose-600 dark:bg-rose-950/30 dark:text-rose-400" :
+                                                                                                    "bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-400"
+                                                                                        }`}>
                                                                                         {isImg ? <ImageIcon className="h-3.5 w-3.5" /> :
-                                                                                         isExcel ? <FileSpreadsheet className="h-3.5 w-3.5" /> :
-                                                                                         <FileText className="h-3.5 w-3.5" />}
+                                                                                            isExcel ? <FileSpreadsheet className="h-3.5 w-3.5" /> :
+                                                                                                <FileText className="h-3.5 w-3.5" />}
                                                                                     </div>
-                                                                                    
+
                                                                                     <div className="flex-1 min-w-0">
                                                                                         <p className="text-xs font-bold text-foreground truncate leading-tight" title={file.name}>
                                                                                             {file.name}
@@ -229,17 +228,17 @@ export function CreateBudgetTable() {
                                                                                     </div>
 
                                                                                     <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 self-center">
-                                                                                        <a 
-                                                                                            href={file.url} 
-                                                                                            target="_blank" 
+                                                                                        <a
+                                                                                            href={file.url}
+                                                                                            target="_blank"
                                                                                             rel="noopener noreferrer"
                                                                                             className="p-1 text-muted-foreground hover:text-primary transition-colors rounded"
                                                                                             title="Open External Link"
                                                                                         >
                                                                                             <ExternalLink className="h-3 w-3" />
                                                                                         </a>
-                                                                                        <a 
-                                                                                            href={file.url} 
+                                                                                        <a
+                                                                                            href={file.url}
                                                                                             download={file.name}
                                                                                             className="p-1 text-muted-foreground hover:text-primary transition-colors rounded"
                                                                                             title="Download File"
@@ -373,11 +372,10 @@ export function CreateBudgetTable() {
                                                         onClick={() => openSupplementModal(budget)}
                                                         disabled={inFlight}
                                                         title={inFlight ? "A supplement for this budget is already Draft or Pending" : "Request additional funding"}
-                                                        className={`h-8 px-2 text-xs gap-1.5 transition-all active:scale-95 ${
-                                                            inFlight
+                                                        className={`h-8 px-2 text-xs gap-1.5 transition-all active:scale-95 ${inFlight
                                                                 ? "opacity-50 cursor-not-allowed text-muted-foreground"
                                                                 : "hover:bg-blue-50 hover:text-blue-600 text-muted-foreground"
-                                                        }`}
+                                                            }`}
                                                     >
                                                         <Plus className="h-3.5 w-3.5" />
                                                         {inFlight ? "Supplement Pending" : "Request Supplement"}

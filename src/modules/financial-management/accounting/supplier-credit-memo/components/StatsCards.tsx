@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/supplier-credit-memo/components/StatsCards.tsx
+// src/modules/lgu-management/accounting/supplier-credit-memo/components/StatsCards.tsx
 
 "use client";
 
@@ -8,15 +8,15 @@ import { PhilippinePeso, TrendingUp, FileText } from "lucide-react";
 import { formatPeso } from "../utils";
 
 interface Stats {
-  total:          number;
-  available:      number;
-  pendingSOA:     number;
+  total: number;
+  available: number;
+  pendingSOA: number;
   totalAvailable: number;
-  totalAmount:    number;
+  totalAmount: number;
 }
 
 interface StatsCardsProps {
-  stats:   Stats;
+  stats: Stats;
   loading: boolean;
 }
 

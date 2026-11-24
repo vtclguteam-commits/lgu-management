@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getJournalEntryDrillDown } from "@/modules/financial-management/financial-statements/journal-entry/services/journal-entry.service";
+import { getJournalEntryDrillDown } from "@/modules/lgu-management/financial-statements/journal-entry/services/journal-entry.service";
 
 /**
  * Proxy API route to the external drill-down API.
@@ -8,7 +8,7 @@ import { getJournalEntryDrillDown } from "@/modules/financial-management/financi
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const jeNo = searchParams.get("jeNo");
-  
+
   if (!jeNo) {
     return NextResponse.json({ error: "jeNo is required" }, { status: 400 });
   }

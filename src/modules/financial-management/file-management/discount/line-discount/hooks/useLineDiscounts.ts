@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/hooks/useLineDiscounts.ts
+// src/modules/lgu-management/line-discount/hooks/useLineDiscounts.ts
 "use client";
 
 import * as React from "react";

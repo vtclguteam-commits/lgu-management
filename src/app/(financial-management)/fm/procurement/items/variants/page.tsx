@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import ItemVariantListPage from "@/modules/financial-management/procurement/items/variants/components/ItemVariantListPage";
+import ItemVariantListPage from "@/modules/lgu-management/procurement/items/variants/components/ItemVariantListPage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

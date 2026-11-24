@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/supplier-discounting/providers/supplierDiscountingApi.ts
+// src/modules/lgu-management/accounting/discount-management/supplier-discounting/providers/supplierDiscountingApi.ts
 import type {
   SupplierDiscountBulkResult,
   SupplierDiscountFilterState,

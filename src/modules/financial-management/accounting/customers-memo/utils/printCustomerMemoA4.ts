@@ -1,116 +1,116 @@
-// src/modules/financial-management/accounting/customers-memo/utils/printCustomerMemoA4.ts
+// src/modules/lgu-management/accounting/customers-memo/utils/printCustomerMemoA4.ts
 import { DetailedMemo, CompanyProfile } from "../types";
 
 function esc(v: unknown): string {
-    return String(v ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+  return String(v ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function safeText(v: unknown): string {
-    return typeof v === "string" ? v.trim() : v == null ? "" : String(v).trim();
+  return typeof v === "string" ? v.trim() : v == null ? "" : String(v).trim();
 }
 
 function companyLineJoin(parts: Array<string | null | undefined>, sep = " • "): string {
-    return parts.map((p) => safeText(p)).filter(Boolean).join(sep);
+  return parts.map((p) => safeText(p)).filter(Boolean).join(sep);
 }
 
 function fmtNum(amount: number | string | null | undefined): string {
-    const val = Number(amount) || 0;
-    return val.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const val = Number(amount) || 0;
+  return val.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtDate(dateStr: string | null | undefined): string {
-    if (!dateStr) return "—";
-    try {
-        return new Date(dateStr).toLocaleDateString("en-PH", {
-            year: "numeric", month: "short", day: "2-digit"
-        });
-    } catch {
-        return dateStr;
-    }
+  if (!dateStr) return "—";
+  try {
+    return new Date(dateStr).toLocaleDateString("en-PH", {
+      year: "numeric", month: "short", day: "2-digit"
+    });
+  } catch {
+    return dateStr;
+  }
 }
 
 function fmtDateTime(dateStr: string | null | undefined): string {
-    if (!dateStr) return "—";
-    try {
-        return new Date(dateStr).toLocaleString("en-PH", {
-            year: "numeric", month: "short", day: "2-digit",
-            hour: "2-digit", minute: "2-digit"
-        });
-    } catch {
-        return dateStr;
-    }
+  if (!dateStr) return "—";
+  try {
+    return new Date(dateStr).toLocaleString("en-PH", {
+      year: "numeric", month: "short", day: "2-digit",
+      hour: "2-digit", minute: "2-digit"
+    });
+  } catch {
+    return dateStr;
+  }
 }
 
 export function printCustomerMemoA4(details: DetailedMemo, company: CompanyProfile | null = null): void {
-    const header = details.header;
+  const header = details.header;
 
-    const memoNo   = safeText(header.memo_number) || "—";
-    const memoType = header.type === 1 ? "Customer Credit Memo"
-                   : header.type === 2 ? "Customer Debit Memo"
-                   : "Customer Memo";
+  const memoNo = safeText(header.memo_number) || "—";
+  const memoType = header.type === 1 ? "Customer Credit Memo"
+    : header.type === 2 ? "Customer Debit Memo"
+      : "Customer Memo";
 
-    const customer  = safeText(header.customer_id?.customer_name) || "—";
-    const supplier  = safeText(header.supplier_id?.supplier_name)  || "—";
-    const salesman  = header.salesman_id
-        ? `${header.salesman_id.salesman_code} — ${header.salesman_id.salesman_name}`
-        : "—";
-    const glAccount = safeText(header.chart_of_account?.account_title) || "—";
-    const reason    = safeText(header.reason) || "—";
+  const customer = safeText(header.customer_id?.customer_name) || "—";
+  const supplier = safeText(header.supplier_id?.supplier_name) || "—";
+  const salesman = header.salesman_id
+    ? `${header.salesman_id.salesman_code} — ${header.salesman_id.salesman_name}`
+    : "—";
+  const glAccount = safeText(header.chart_of_account?.account_title) || "—";
+  const reason = safeText(header.reason) || "—";
 
-    const createdAt = fmtDateTime(header.created_at);
-    const printedAt = fmtDateTime(new Date().toISOString());
+  const createdAt = fmtDateTime(header.created_at);
+  const printedAt = fmtDateTime(new Date().toISOString());
 
-    let encoder = "—";
-    if (header.encoder_id && typeof header.encoder_id === "object" && header.encoder_id.user_fname) {
-        encoder = `${header.encoder_id.user_fname} ${header.encoder_id.user_lname || ""}`.trim();
-    }
+  let encoder = "—";
+  if (header.encoder_id && typeof header.encoder_id === "object" && header.encoder_id.user_fname) {
+    encoder = `${header.encoder_id.user_fname} ${header.encoder_id.user_lname || ""}`.trim();
+  }
 
-    // Applied-to-Invoices amount (sum of all invoice applications)
-    const appliedToInvoices = (details.invoices || []).reduce((s, i) => s + (i.amount ?? 0), 0);
-    const linkedToCollections = header.applied_amount ?? 0;
-    const unappliedBalance = header.amount - header.applied_amount;
+  // Applied-to-Invoices amount (sum of all invoice applications)
+  const appliedToInvoices = (details.invoices || []).reduce((s, i) => s + (i.amount ?? 0), 0);
+  const linkedToCollections = header.applied_amount ?? 0;
+  const unappliedBalance = header.amount - header.applied_amount;
 
-    // ── Company Data Formatting ──────────────────────────────────────────────────
-    const companyName = safeText(company?.company_name) || "—";
-    const companyAddress = companyLineJoin(
-        [
-            company?.company_address,
-            company?.company_brgy,
-            company?.company_city,
-            company?.company_province,
-            company?.company_zipCode,
-        ],
-        ", "
-    );
+  // ── Company Data Formatting ──────────────────────────────────────────────────
+  const companyName = safeText(company?.company_name) || "—";
+  const companyAddress = companyLineJoin(
+    [
+      company?.company_address,
+      company?.company_brgy,
+      company?.company_city,
+      company?.company_province,
+      company?.company_zipCode,
+    ],
+    ", "
+  );
 
-    const companyLegal = companyLineJoin(
-        [
-            safeText(company?.company_tin) ? `TIN: ${safeText(company?.company_tin)}` : "",
-            safeText(company?.company_registrationNumber)
-                ? `Reg No: ${safeText(company?.company_registrationNumber)}`
-                : "",
-        ],
-        " • "
-    );
+  const companyLegal = companyLineJoin(
+    [
+      safeText(company?.company_tin) ? `TIN: ${safeText(company?.company_tin)}` : "",
+      safeText(company?.company_registrationNumber)
+        ? `Reg No: ${safeText(company?.company_registrationNumber)}`
+        : "",
+    ],
+    " • "
+  );
 
-    const companyContact = companyLineJoin(
-        [
-            safeText(company?.company_contact) ? `Tel: ${safeText(company?.company_contact)}` : "",
-            safeText(company?.company_email),
-        ],
-        " • "
-    );
+  const companyContact = companyLineJoin(
+    [
+      safeText(company?.company_contact) ? `Tel: ${safeText(company?.company_contact)}` : "",
+      safeText(company?.company_email),
+    ],
+    " • "
+  );
 
-    // ── Invoice rows ────────────────────────────────────────────────────────────
-    const invoiceRowsHtml = (details.invoices || []).length > 0
-        ? (details.invoices || []).map((inv, idx) => {
-            const bg = idx % 2 === 1 ? ' style="background:#f9f9f9;"' : "";
-            return `<tr${bg}>
+  // ── Invoice rows ────────────────────────────────────────────────────────────
+  const invoiceRowsHtml = (details.invoices || []).length > 0
+    ? (details.invoices || []).map((inv, idx) => {
+      const bg = idx % 2 === 1 ? ' style="background:#f9f9f9;"' : "";
+      return `<tr${bg}>
               <td class="mono">${esc(inv.invoice_id?.invoice_no || "—")}</td>
               <td>${esc(fmtDate(inv.invoice_id?.invoice_date))}</td>
               <td>${esc(fmtDate(inv.invoice_id?.due_date))}</td>
@@ -118,26 +118,26 @@ export function printCustomerMemoA4(details: DetailedMemo, company: CompanyProfi
               <td class="num muted">—</td>
               <td class="num bold">${esc(fmtNum(inv.amount))}</td>
             </tr>`;
-          }).join("")
-        : `<tr><td colspan="6" class="empty-row">No invoices applied to this memo.</td></tr>`;
+    }).join("")
+    : `<tr><td colspan="6" class="empty-row">No invoices applied to this memo.</td></tr>`;
 
-    // ── Collection rows ─────────────────────────────────────────────────────────
-    const collectionRowsHtml = (details.collections || []).length > 0
-        ? (details.collections || []).map((c, idx) => {
-            const bg = idx % 2 === 1 ? ' style="background:#f9f9f9;"' : "";
-            const colRef = esc(c.collection_id?.docNo || "—");
-            const linked = esc(fmtNum(c.amount));
-            return `<tr${bg}>
+  // ── Collection rows ─────────────────────────────────────────────────────────
+  const collectionRowsHtml = (details.collections || []).length > 0
+    ? (details.collections || []).map((c, idx) => {
+      const bg = idx % 2 === 1 ? ' style="background:#f9f9f9;"' : "";
+      const colRef = esc(c.collection_id?.docNo || "—");
+      const linked = esc(fmtNum(c.amount));
+      return `<tr${bg}>
               <td class="muted">—</td>
               <td class="mono">${colRef}</td>
               <td class="num muted">—</td>
               <td class="num muted">—</td>
               <td class="num bold">${linked}</td>
             </tr>`;
-          }).join("")
-        : `<tr><td colspan="5" class="empty-row">No collections linked to this memo.</td></tr>`;
+    }).join("")
+    : `<tr><td colspan="5" class="empty-row">No collections linked to this memo.</td></tr>`;
 
-    const html = `<!doctype html>
+  const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -441,9 +441,9 @@ export function printCustomerMemoA4(details: DetailedMemo, company: CompanyProfi
 </body>
 </html>`;
 
-    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-    const url  = URL.createObjectURL(blob);
-    const w    = window.open(url, "_blank");
-    if (!w) return;
-    setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const w = window.open(url, "_blank");
+  if (!w) return;
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
 }

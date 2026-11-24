@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-receiving/components/TransmittalDetailsSheet.tsx
+// src/modules/lgu-management/claims-management/for-receiving/components/TransmittalDetailsSheet.tsx
 "use client";
 
 import * as React from "react";
@@ -92,11 +92,11 @@ function pickCreatedByName(transmittal: TransmittalRow | null): string {
 }
 
 export function TransmittalDetailsSheet({
-                                            open,
-                                            onOpenChange,
-                                            transmittal,
-                                            onAfterUpdate,
-                                        }: {
+    open,
+    onOpenChange,
+    transmittal,
+    onAfterUpdate,
+}: {
     open: boolean;
     onOpenChange: (v: boolean) => void;
     transmittal: TransmittalRow | null;
@@ -411,10 +411,10 @@ export function TransmittalDetailsSheet({
                                                                         className="h-8 w-8 text-destructive hover:text-destructive"
                                                                         disabled={sending || loading || isRemoving}
                                                                         onClick={(e) => {
-                                                            e.preventDefault();
-                                                            e.stopPropagation();
-                                                            onRemove(rowIdSafe);
-                                                        }}
+                                                                            e.preventDefault();
+                                                                            e.stopPropagation();
+                                                                            onRemove(rowIdSafe);
+                                                                        }}
                                                                         title="Remove"
                                                                     >
                                                                         {isRemoving ? (

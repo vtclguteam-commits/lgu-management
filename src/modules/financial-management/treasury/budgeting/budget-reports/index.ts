@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/budget-reports/index.ts
+// src/modules/lgu-management/treasury/budgeting/budget-reports/index.ts
 
 export { default as BudgetReportsModule } from "./BudgetReportsModule";
 export * from "./constants";

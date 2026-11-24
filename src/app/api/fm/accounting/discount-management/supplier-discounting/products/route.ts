@@ -12,7 +12,7 @@ import {
   relationId,
   relationName,
 } from "../_utils";
-import type { SupplierDiscountFilterState } from "@/modules/financial-management/accounting/discount-management/supplier-discounting/types";
+import type { SupplierDiscountFilterState } from "@/modules/lgu-management/accounting/discount-management/supplier-discounting/types";
 
 type ProductRow = {
   product_id?: unknown;
@@ -273,8 +273,8 @@ export async function GET(request: NextRequest) {
     const [res, filterOptions] = await Promise.all([
       query.supplierId
         ? directusFetch<DirectusList<ProductSupplierRow>>(
-            `/items/product_per_supplier?${buildSupplierProductParams({ ...query, supplierId: query.supplierId }).toString()}`,
-          )
+          `/items/product_per_supplier?${buildSupplierProductParams({ ...query, supplierId: query.supplierId }).toString()}`,
+        )
         : directusFetch<DirectusList<ProductRow>>(`/items/products?${buildProductParams(query).toString()}`),
       supplierFilterOptions(query.supplierId),
     ]);
@@ -283,10 +283,10 @@ export async function GET(request: NextRequest) {
     const products = (res.data ?? [])
       .map((row) => query.supplierId
         ? normalizeProduct(
-            relationProduct(row.product_id),
-            discountLabel((row as ProductSupplierRow).discount_type),
-            asNumber((row as ProductSupplierRow).id),
-          )
+          relationProduct(row.product_id),
+          discountLabel((row as ProductSupplierRow).discount_type),
+          asNumber((row as ProductSupplierRow).id),
+        )
         : normalizeProduct(row as ProductRow))
       .filter((row) => row.productId > 0);
 
@@ -294,10 +294,10 @@ export async function GET(request: NextRequest) {
       products.length === 0 && query.supplierId && query.discountState !== "all"
         ? "No parent products match the selected discount filter."
         : products.length === 0 && query.supplierId
-        ? "No parent products found for this supplier."
-        : products.length === 0 && query.search
-        ? "No results found. Please select the parent product to apply discounts."
-        : null;
+          ? "No parent products found for this supplier."
+          : products.length === 0 && query.search
+            ? "No results found. Please select the parent product to apply discounts."
+            : null;
 
     return NextResponse.json({
       products,

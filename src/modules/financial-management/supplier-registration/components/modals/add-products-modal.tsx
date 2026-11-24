@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useProducts } from "@/modules/financial-management/supplier-registration/hooks/useProducts";
+import { useProducts } from "@/modules/lgu-management/supplier-registration/hooks/useProducts";
 import { Loader2, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 

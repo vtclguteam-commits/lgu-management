@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import { PriceTypeCreationModule } from "@/modules/financial-management/product-pricing-management/price-type-creation";
+import { PriceTypeCreationModule } from "@/modules/lgu-management/product-pricing-management/price-type-creation";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

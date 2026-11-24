@@ -1,4 +1,4 @@
-// src/modules/financial-management/sales-onboarding/types.ts
+// src/modules/lgu-management/sales-onboarding/types.ts
 
 export interface Operation {
   id: number;

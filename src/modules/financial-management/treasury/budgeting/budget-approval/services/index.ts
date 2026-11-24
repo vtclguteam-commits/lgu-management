@@ -1,3 +1,3 @@
-// src/modules/financial-management/treasury/budgeting/budget-approval/services/index.ts
+// src/modules/lgu-management/treasury/budgeting/budget-approval/services/index.ts
 
 export * from "./budgetService";

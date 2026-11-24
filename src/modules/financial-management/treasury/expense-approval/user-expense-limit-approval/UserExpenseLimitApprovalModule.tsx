@@ -1,10 +1,10 @@
-// src/modules/financial-management/treasury/budgeting/user-expense-limit-approval/UserExpenseLimitApprovalModule.tsx
+// src/modules/lgu-management/treasury/budgeting/user-expense-limit-approval/UserExpenseLimitApprovalModule.tsx
 
 "use client";
 
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button }   from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { usePendingLimits } from "./hooks/useUserExpenseLimitApproval";
 import { ApprovalTable } from "./components/ApprovalTable";
 import { ReviewProposalModal } from "./components/ReviewProposalModal";
@@ -33,7 +33,7 @@ export default function UserExpenseLimitApprovalModule() {
 
   return (
     <div className="p-4 md:p-6 bg-background text-foreground min-h-screen space-y-6 w-full box-border overflow-hidden">
-      
+
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>

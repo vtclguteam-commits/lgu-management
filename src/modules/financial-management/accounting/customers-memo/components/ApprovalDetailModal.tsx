@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/components/ApprovalDetailModal.tsx
+// src/modules/lgu-management/accounting/customers-memo/components/ApprovalDetailModal.tsx
 
 "use client";
 
@@ -79,7 +79,7 @@ export function ApprovalDetailModal({ memoId, open, onOpenChange, onApproved, re
         }
     };
 
-    const formatCurrency = (val: number) => 
+    const formatCurrency = (val: number) =>
         new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(val);
 
     return (
@@ -180,8 +180,8 @@ export function ApprovalDetailModal({ memoId, open, onOpenChange, onApproved, re
                 </div>
 
                 <DialogFooter className="p-6 bg-white border-t border-slate-100 flex items-center justify-end gap-3">
-                    <Button 
-                        variant="ghost" 
+                    <Button
+                        variant="ghost"
                         onClick={() => onOpenChange(false)}
                         className="rounded-xl font-bold text-slate-500 hover:text-slate-900"
                     >
@@ -198,8 +198,8 @@ export function ApprovalDetailModal({ memoId, open, onOpenChange, onApproved, re
                         </Button>
                     )}
                     {(!readOnly && details?.header.status === "FOR APPROVAL") && (
-                        <Button 
-                            onClick={handleApprove} 
+                        <Button
+                            onClick={handleApprove}
                             disabled={approving || loading}
                             className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-8 font-black tracking-tight shadow-lg shadow-blue-500/20 active:scale-95 transition-all h-11"
                         >

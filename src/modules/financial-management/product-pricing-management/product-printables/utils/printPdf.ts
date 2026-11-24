@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/utils/printPdf.ts
+// src/modules/lgu-management/printables-management/product-printables/utils/printPdf.ts
 
 import type { MatrixRow, PriceType, Unit, Supplier } from "../types";
 import { PdfEngine } from "@/components/pdf-layout-design/PdfEngine";
@@ -406,7 +406,7 @@ export async function generateProductMatrixPdf(rows: MatrixRow[], options: Matri
 
             metaY += metaRowStep;
         }
-        
+
         // Update y for table start
         y = Math.max(y, metaY + 2);
 
@@ -451,7 +451,7 @@ export async function generateProductMatrixPdf(rows: MatrixRow[], options: Matri
         if (filterSummary) {
             y += 6;
             const filterLines = filterSummary.split("\n");
-            
+
             // Calculate max label width for filters
             let maxFilterLabelW = 0;
             doc.setFont("helvetica", "bold");
@@ -471,10 +471,10 @@ export async function generateProductMatrixPdf(rows: MatrixRow[], options: Matri
                 if (colonIndex !== -1) {
                     const label = line.substring(0, colonIndex + 1);
                     const value = line.substring(colonIndex + 1);
-                    
+
                     doc.setFont("helvetica", "bold");
                     doc.text(label, finalMargins.left + 5, y);
-                    
+
                     doc.setFont("helvetica", "normal");
                     const valueX = finalMargins.left + 5 + maxFilterLabelW;
                     const splitValue = doc.splitTextToSize(value, availableWidth - maxFilterLabelW);

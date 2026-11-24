@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { useSuppliers } from "@/modules/financial-management/supplier-registration/hooks/useSuppliers";
+import { useSuppliers } from "@/modules/lgu-management/supplier-registration/hooks/useSuppliers";
 import { SupplierDataTable } from "./components/data-table";
 import { createColumns } from "./components/data-table/columns";
-import { SupplierDetailsModal } from "@/modules/financial-management/supplier-registration/components/modals/suppliers-detail-modal";
+import { SupplierDetailsModal } from "@/modules/lgu-management/supplier-registration/components/modals/suppliers-detail-modal";
 import { Button } from "@/components/ui/button";
-import { Supplier } from "@/modules/financial-management/supplier-registration/types/supplier.schema";
+import { Supplier } from "@/modules/lgu-management/supplier-registration/types/supplier.schema";
 import { Plus, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { EditSupplierModal } from "./components/modals/edit-supplier-modal";
-import { DataTableSkeleton } from "@/app/(financial-management)/fm/_components/DataTableSkeleton";
+import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
 import { AddSupplierModal } from "./components/modals/add-supplier-modal";
-import { ErrorPage } from "@/app/(financial-management)/fm/_components/ErrorPage";
+import { ErrorPage } from "@/app/(lgu-management)/fm/_components/ErrorPage";
 
 export default function SupplierRepresentativeModulePage() {
   const { suppliers, isLoading, error, refresh, setSearchQuery } =

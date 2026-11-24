@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import POListPage from "@/modules/financial-management/procurement/purchase-order/components/POListPage";
+import POListPage from "@/modules/lgu-management/procurement/purchase-order/components/POListPage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

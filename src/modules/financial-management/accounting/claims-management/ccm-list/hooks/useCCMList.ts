@@ -1,4 +1,4 @@
-// src/modules/financial-management-system/claims-management/ccm-list/hooks/useCCMList.ts
+// src/modules/lgu-management-system/claims-management/ccm-list/hooks/useCCMList.ts
 "use client";
 
 import * as React from "react";

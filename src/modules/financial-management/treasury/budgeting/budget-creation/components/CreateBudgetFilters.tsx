@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/create-budget/components/CreateBudgetFilters.tsx
+// src/modules/lgu-management/treasury/budgeting/create-budget/components/CreateBudgetFilters.tsx
 
 "use client";
 
@@ -24,16 +24,16 @@ export function CreateBudgetFilters() {
 
   useEffect(() => {
     async function loadDivs() {
-        try {
-            setLoading(true);
-            const data = await budgetService.getDivisions();
-            setDivisions(Array.isArray(data) ? data : []);
-        } catch (e) {
-            console.error(e);
-            toast.error("Failed to load divisions for filters");
-        } finally {
-            setLoading(false);
-        }
+      try {
+        setLoading(true);
+        const data = await budgetService.getDivisions();
+        setDivisions(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.error(e);
+        toast.error("Failed to load divisions for filters");
+      } finally {
+        setLoading(false);
+      }
     }
     loadDivs();
   }, []);
@@ -41,35 +41,35 @@ export function CreateBudgetFilters() {
   useEffect(() => {
     let active = true;
     async function loadDepts() {
-        if (!filters.division_id) {
-            await Promise.resolve();
-            if (active) setDepartments([]);
-            return;
+      if (!filters.division_id) {
+        await Promise.resolve();
+        if (active) setDepartments([]);
+        return;
+      }
+      try {
+        setLoading(true);
+        const data = await budgetService.getDepartments(Number(filters.division_id));
+        if (active) {
+          setDepartments(Array.isArray(data) ? data : []);
         }
-        try {
-            setLoading(true);
-            const data = await budgetService.getDepartments(Number(filters.division_id));
-            if (active) {
-                setDepartments(Array.isArray(data) ? data : []);
-            }
-        } catch (e) {
-            console.error(e);
-            toast.error("Failed to load departments for filters");
-        } finally {
-            if (active) setLoading(false);
-        }
+      } catch (e) {
+        console.error(e);
+        toast.error("Failed to load departments for filters");
+      } finally {
+        if (active) setLoading(false);
+      }
     }
     loadDepts();
     return () => {
-        active = false;
+      active = false;
     };
   }, [filters.division_id]);
 
   const divisionOptions = (divisions || [])
     .filter(d => d && d.division_id)
-    .map((d, i) => ({ 
-      value: String(d.division_id), 
-      label: d.division_name || `Division ${i+1}` 
+    .map((d, i) => ({
+      value: String(d.division_id),
+      label: d.division_name || `Division ${i + 1}`
     }));
   const divisionFilterOptions = [
     { value: "", label: loading && divisions.length === 0 ? "Loading..." : "All Divisions" },
@@ -78,9 +78,9 @@ export function CreateBudgetFilters() {
 
   const deptOptions = (departments || [])
     .filter(d => d && d.department_id)
-    .map((d, i) => ({ 
-      value: String(d.department_id), 
-      label: d.department_name || `Department ${i+1}` 
+    .map((d, i) => ({
+      value: String(d.department_id),
+      label: d.department_name || `Department ${i + 1}`
     }));
   const deptFilterOptions = [
     { value: "", label: loading && filters.division_id !== "" ? "Loading..." : "All Depts." },

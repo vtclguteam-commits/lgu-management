@@ -1,4 +1,4 @@
-//src/modules/financial-management/claims-management/for-receiving/utils/format.ts
+//src/modules/lgu-management/claims-management/for-receiving/utils/format.ts
 export function toNumberSafe(v: unknown): number {
     const n =
         typeof v === "string" ? Number(v) : typeof v === "number" ? v : 0;

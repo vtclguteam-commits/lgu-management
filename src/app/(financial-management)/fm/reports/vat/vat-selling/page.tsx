@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import VatSellingModule from "@/modules/financial-management/reports/vat/vat-selling/VatSellingModule";
+import VatSellingModule from "@/modules/lgu-management/reports/vat/vat-selling/VatSellingModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

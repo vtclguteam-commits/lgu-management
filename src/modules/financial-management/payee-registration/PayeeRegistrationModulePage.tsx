@@ -10,9 +10,9 @@ import { Payee } from "./types/payee.schema";
 import { Plus, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { EditPayeeModal } from "./components/modals/edit-payee-modal";
-import { DataTableSkeleton } from "@/app/(financial-management)/fm/_components/DataTableSkeleton";
+import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
 import { AddPayeeModal } from "./components/modals/add-payee-modal";
-import { ErrorPage } from "@/app/(financial-management)/fm/_components/ErrorPage";
+import { ErrorPage } from "@/app/(lgu-management)/fm/_components/ErrorPage";
 
 export default function PayeeRegistrationModulePage() {
   const { payees, isLoading, error, refresh } =

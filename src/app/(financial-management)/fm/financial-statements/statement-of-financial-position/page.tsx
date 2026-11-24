@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import { StatementOfFinancialPositionClient } from "@/modules/financial-management/financial-statements/statement-of-financial-position/components/statement-of-financial-position-client";
+import { StatementOfFinancialPositionClient } from "@/modules/lgu-management/financial-statements/statement-of-financial-position/components/statement-of-financial-position-client";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

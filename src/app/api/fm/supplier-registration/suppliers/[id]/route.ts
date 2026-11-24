@@ -3,7 +3,7 @@ import {
   updateSupplier,
   // deleteSupplier,
   fetchSupplierById, // Assuming you have these in your supplier service
-} from "@/modules/financial-management/supplier-registration/services/supplier";
+} from "@/modules/lgu-management/supplier-registration/services/supplier";
 
 type RouteParams = { params: Promise<{ id: string }> };
 

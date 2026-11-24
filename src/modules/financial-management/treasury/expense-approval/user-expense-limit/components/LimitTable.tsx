@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/expense-approval/user-expense-limit/components/LimitTable.tsx
+// src/modules/lgu-management/treasury/expense-approval/user-expense-limit/components/LimitTable.tsx
 
 "use client";
 
@@ -82,21 +82,21 @@ export function getCoaConfig(coaId: number, name: string = "", glCode: string = 
 }
 
 interface LimitTableProps {
-  limits:  UserExpenseLimit[];
+  limits: UserExpenseLimit[];
   loading: boolean;
-  error:   string | null;
-  onEdit:  (limit: UserExpenseLimit) => void;
+  error: string | null;
+  onEdit: (limit: UserExpenseLimit) => void;
 }
 
 export function LimitTable({ limits, loading, error, onEdit }: LimitTableProps) {
-  const [page,   setPage]   = useState(1);
+  const [page, setPage] = useState(1);
   const [expandedUserId, setExpandedUserId] = useState<number | null>(null);
   const { coas } = useCoas();
 
   const filtered = limits;
-  const totalPages  = Math.ceil(filtered.length / PAGE_SIZE);
-  const safePage    = Math.min(page, totalPages || 1);
-  const paged       = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const safePage = Math.min(page, totalPages || 1);
+  const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const pageNumbers = getPageNumbers(safePage, totalPages);
 
   // Sum active or pending limits
@@ -198,7 +198,7 @@ export function LimitTable({ limits, loading, error, onEdit }: LimitTableProps) 
                   const allCeilings = getAllCeilings(l);
                   const isExpanded = expandedUserId === l.user_id;
                   const customCeilings = allCeilings.filter(c => c.isCustom && (c.activeVal || c.pendingVal));
-                  
+
                   let statusBadge = <Badge variant="outline" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full">Active</Badge>;
                   if (l.pending_limits) {
                     if (!l.limits) {
@@ -227,7 +227,7 @@ export function LimitTable({ limits, loading, error, onEdit }: LimitTableProps) 
                         <TableCell className="text-xs text-muted-foreground font-semibold py-4">
                           {l.user_department ?? "—"}
                         </TableCell>
-                        
+
                         {/* 5 COA columns */}
                         {BUDGET_COAS.map(coa => {
                           const amt = displayLimits ? displayLimits[coa.id] : undefined;
@@ -283,20 +283,19 @@ export function LimitTable({ limits, loading, error, onEdit }: LimitTableProps) 
                                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                                 <p className="text-[11px] font-black text-muted-foreground uppercase tracking-wider">Detailed Ceiling Limits Breakdown</p>
                               </div>
-                              
+
                               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                                 {allCeilings.map(c => {
                                   const hasVal = c.activeVal || c.pendingVal;
                                   return (
-                                    <div 
-                                      key={c.id} 
-                                      className={`relative p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden group bg-background shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-md ${
-                                        c.isCustom ? 'border-violet-500/20 hover:border-violet-500/40' : 'border-border hover:border-border-hover'
-                                      } ${!hasVal ? 'opacity-40 hover:opacity-100' : ''}`}
+                                    <div
+                                      key={c.id}
+                                      className={`relative p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden group bg-background shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-md ${c.isCustom ? 'border-violet-500/20 hover:border-violet-500/40' : 'border-border hover:border-border-hover'
+                                        } ${!hasVal ? 'opacity-40 hover:opacity-100' : ''}`}
                                     >
                                       {/* Accent color top line/corner gradient */}
                                       <div className={`absolute top-0 right-0 w-12 h-12 bg-gradient-to-br opacity-5 rounded-bl-full pointer-events-none ${c.accentColor}`} />
-                                      
+
                                       <div className="flex items-start gap-3">
                                         <div className={`p-2 rounded-xl border shrink-0 ${c.colorClass}`}>
                                           <c.icon className="h-4 w-4" />
@@ -311,7 +310,7 @@ export function LimitTable({ limits, loading, error, onEdit }: LimitTableProps) 
                                           </div>
                                         </div>
                                       </div>
-                                      
+
                                       <div className="mt-4 pt-3 border-t border-border/40">
                                         <span className="text-[9px] text-muted-foreground/80 block font-bold uppercase tracking-wider">Assigned Ceiling</span>
                                         {c.hasPendingDiff ? (

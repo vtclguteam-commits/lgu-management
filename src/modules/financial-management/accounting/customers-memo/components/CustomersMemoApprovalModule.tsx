@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/components/CustomersMemoApprovalModule.tsx
+// src/modules/lgu-management/accounting/customers-memo/components/CustomersMemoApprovalModule.tsx
 
 "use client";
 
@@ -450,9 +450,9 @@ export default function CustomersMemoApprovalModule() {
                                                     </Badge>
                                                     <Badge variant="secondary" className={cn(
                                                         "text-[9px] font-black uppercase tracking-widest",
-                                                        memo.type === 1 ? "bg-indigo-100 text-indigo-700" : 
-                                                        memo.type === 2 ? "bg-rose-100 text-rose-700" :
-                                                        "bg-slate-100 text-slate-700"
+                                                        memo.type === 1 ? "bg-indigo-100 text-indigo-700" :
+                                                            memo.type === 2 ? "bg-rose-100 text-rose-700" :
+                                                                "bg-slate-100 text-slate-700"
                                                     )}>
                                                         {memo.type === 1 ? "CREDIT" : memo.type === 2 ? "DEBIT" : "UNKNOWN"}
                                                     </Badge>

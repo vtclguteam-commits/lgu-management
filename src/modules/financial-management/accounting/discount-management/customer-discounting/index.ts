@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/customer-discounting/index.ts
+// src/modules/lgu-management/accounting/discount-management/customer-discounting/index.ts
 /**
  * Barrel exports for the customer discounting module entrypoint and shared types.
  */

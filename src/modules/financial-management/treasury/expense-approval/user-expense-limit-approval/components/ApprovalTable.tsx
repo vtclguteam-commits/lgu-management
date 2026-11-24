@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/expense-approval/user-expense-limit-approval/components/ApprovalTable.tsx
+// src/modules/lgu-management/treasury/expense-approval/user-expense-limit-approval/components/ApprovalTable.tsx
 
 "use client";
 
@@ -31,9 +31,9 @@ function getPageNumbers(current: number, total: number): (number | "ellipsis")[]
 
 interface ApprovalTableProps {
   pendingList: PendingLimitApproval[];
-  loading:     boolean;
-  error:       string | null;
-  onReview:    (proposal: PendingLimitApproval) => void;
+  loading: boolean;
+  error: string | null;
+  onReview: (proposal: PendingLimitApproval) => void;
 }
 
 export function ApprovalTable({ pendingList, loading, error, onReview }: ApprovalTableProps) {
@@ -207,20 +207,19 @@ export function ApprovalTable({ pendingList, loading, error, onReview }: Approva
                                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                                 <p className="text-[11px] font-black text-muted-foreground uppercase tracking-wider">Proposed Ceiling Limits Breakdown</p>
                               </div>
-                              
+
                               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                                 {allCeilings.map(c => {
                                   const hasVal = c.val !== null;
                                   return (
-                                    <div 
-                                      key={c.id} 
-                                      className={`relative p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden group bg-background shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-md ${
-                                        c.isCustom ? 'border-violet-500/20 hover:border-violet-500/40' : 'border-border hover:border-border-hover'
-                                      } ${!hasVal ? 'opacity-40 hover:opacity-100' : ''}`}
+                                    <div
+                                      key={c.id}
+                                      className={`relative p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between overflow-hidden group bg-background shadow-[0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-md ${c.isCustom ? 'border-violet-500/20 hover:border-violet-500/40' : 'border-border hover:border-border-hover'
+                                        } ${!hasVal ? 'opacity-40 hover:opacity-100' : ''}`}
                                     >
                                       {/* Accent color gradient */}
                                       <div className={`absolute top-0 right-0 w-12 h-12 bg-gradient-to-br opacity-5 rounded-bl-full pointer-events-none ${c.accentColor}`} />
-                                      
+
                                       <div className="flex items-start gap-3">
                                         <div className={`p-2 rounded-xl border shrink-0 ${c.colorClass}`}>
                                           <c.icon className="h-4 w-4" />
@@ -235,7 +234,7 @@ export function ApprovalTable({ pendingList, loading, error, onReview }: Approva
                                           </div>
                                         </div>
                                       </div>
-                                      
+
                                       <div className="mt-4 pt-3 border-t border-border/40">
                                         <span className="text-[9px] text-muted-foreground/80 block font-bold uppercase tracking-wider">Proposed Ceiling</span>
                                         <span className="text-xs font-black text-foreground/90 mt-1 block">

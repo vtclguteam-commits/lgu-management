@@ -1,6 +1,6 @@
 // index.ts
 // Barrel export — import from one place:
-//   import CWTModule from '@/modules/financial-management/reports/cwt'
+//   import CWTModule from '@/modules/lgu-management/reports/cwt'
 
 // Main module
 export { default } from './CWTModule';

@@ -1,4 +1,4 @@
-//src/modules/financial-management/claims-management/generate-transmittals/hooks/useAvailableCCMs.ts
+//src/modules/lgu-management/claims-management/generate-transmittals/hooks/useAvailableCCMs.ts
 "use client";
 
 import * as React from "react";

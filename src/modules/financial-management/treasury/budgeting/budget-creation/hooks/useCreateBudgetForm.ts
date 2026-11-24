@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/budget-creation/hooks/useCreateBudgetForm.ts
+// src/modules/lgu-management/treasury/budgeting/budget-creation/hooks/useCreateBudgetForm.ts
 
 "use client";
 
@@ -8,20 +8,20 @@ import { budgetService } from "../services/budgetService";
 import { toast } from "sonner";
 
 const MONTH_NAMES = [
-  "January", "February", "March", "April", "May", "June", 
+  "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
 interface FormState {
-  year:          string;
-  month:         string;
-  division_id:   string;
+  year: string;
+  month: string;
+  division_id: string;
   department_id: string;
-  coa_id:        string;
-  gl_code:       string;
-  amount:        string;
-  remarks:       string;
-  attachments:   File[];
+  coa_id: string;
+  gl_code: string;
+  amount: string;
+  remarks: string;
+  attachments: File[];
 }
 
 export function useCreateBudgetForm(
@@ -31,15 +31,15 @@ export function useCreateBudgetForm(
   checkDuplicate: (year: number, month: number, coaId: number, divisionId: number, departmentId: number) => Promise<boolean>
 ) {
   const [form, setForm] = useState<FormState>({
-    year:          String(new Date().getFullYear()),
-    month:         String(new Date().getMonth() + 1),
-    division_id:   "",
+    year: String(new Date().getFullYear()),
+    month: String(new Date().getMonth() + 1),
+    division_id: "",
     department_id: "",
-    coa_id:        "",
-    gl_code:       "",
-    amount:        "",
-    remarks:       "",
-    attachments:   [],
+    coa_id: "",
+    gl_code: "",
+    amount: "",
+    remarks: "",
+    attachments: [],
   });
 
   const [existingAttachments, setExistingAttachments] = useState<BudgetAttachment[]>([]);
@@ -58,15 +58,15 @@ export function useCreateBudgetForm(
     if (initialData) {
       const monthIdx = MONTH_NAMES.indexOf(initialData.month) + 1;
       setForm({
-        year:          String(initialData.year || ""),
-        month:         monthIdx > 0 ? String(monthIdx) : String(initialData.month || ""),
-        division_id:   String(initialData.division_id || ""),
+        year: String(initialData.year || ""),
+        month: monthIdx > 0 ? String(monthIdx) : String(initialData.month || ""),
+        division_id: String(initialData.division_id || ""),
         department_id: String(initialData.department_id || ""),
-        coa_id:        String(initialData.coa_id || ""),
-        gl_code:       initialData.gl_code || "",
-        amount:        String(initialData.amount || ""),
-        remarks:       initialData.remarks || "",
-        attachments:   [],
+        coa_id: String(initialData.coa_id || ""),
+        gl_code: initialData.gl_code || "",
+        amount: String(initialData.amount || ""),
+        remarks: initialData.remarks || "",
+        attachments: [],
       });
 
       // Fetch existing attachments
@@ -76,15 +76,15 @@ export function useCreateBudgetForm(
       const monthIdx = MONTH_NAMES.indexOf(supplementParent.month) + 1;
       setForm(prev => ({
         ...prev,
-        year:          String(supplementParent.year),
-        month:         monthIdx > 0 ? String(monthIdx) : String(supplementParent.month),
-        division_id:   String(supplementParent.division_id),
+        year: String(supplementParent.year),
+        month: monthIdx > 0 ? String(monthIdx) : String(supplementParent.month),
+        division_id: String(supplementParent.division_id),
         department_id: String(supplementParent.department_id),
-        coa_id:        String(supplementParent.coa_id),
-        gl_code:       supplementParent.gl_code || "",
-        amount:        "",
-        remarks:       "",
-        attachments:   [],
+        coa_id: String(supplementParent.coa_id),
+        gl_code: supplementParent.gl_code || "",
+        amount: "",
+        remarks: "",
+        attachments: [],
       }));
     }
   }, [initialData, supplementParent]);
@@ -132,12 +132,12 @@ export function useCreateBudgetForm(
         // Find the dept_div_id from departments lookup
         const dept = departments.find(d => String(d.department_id) === form.department_id);
         const deptDivId = dept?.dept_div_id;
-        
+
         if (deptDivId) {
-            const coaList = await budgetService.getCOAs(deptDivId);
-            setCoas(coaList);
+          const coaList = await budgetService.getCOAs(deptDivId);
+          setCoas(coaList);
         } else {
-            setCoas([]);
+          setCoas([]);
         }
       } finally {
         setFetchingLookups(false);
@@ -165,10 +165,10 @@ export function useCreateBudgetForm(
     async function loadUsedCoas() {
       const monthName = MONTH_NAMES[Number(form.month) - 1];
       if (!monthName) return;
-      
+
       const excludeId = initialData ? String(initialData.id) : undefined;
       const ids = await budgetService.getUsedCoaIds(
-        Number(form.year), 
+        Number(form.year),
         monthName,
         Number(form.division_id),
         Number(form.department_id),
@@ -205,7 +205,7 @@ export function useCreateBudgetForm(
 
   const addFiles = (files: FileList | null) => {
     if (!files) return;
-    
+
     const MAX_SIZE_MB = 25;
     const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
     const ALLOWED_EXTENSIONS = new Set([
@@ -242,7 +242,7 @@ export function useCreateBudgetForm(
       const extension = file.name.split(".").pop()?.toLowerCase() || "";
       return file.type.startsWith("image/") || ALLOWED_MIME_TYPES.has(file.type) || ALLOWED_EXTENSIONS.has(extension);
     };
-    
+
     const allFiles = Array.from(files);
     const oversizedFiles = allFiles.filter(f => f.size > MAX_SIZE_BYTES);
     const unsupportedFiles = allFiles.filter(f => f.size <= MAX_SIZE_BYTES && !isAllowedFile(f));
@@ -292,23 +292,23 @@ export function useCreateBudgetForm(
     if (!form.amount || Number(form.amount) <= 0) newErrors.amount = "Amount must be greater than 0";
 
     if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
-        return false;
+      setErrors(newErrors);
+      return false;
     }
 
     // Only check duplicate for Original budgets
     if (!initialData && !supplementParent) {
-        const isDup = await checkDuplicate(
-            Number(form.year), 
-            Number(form.month), 
-            Number(form.coa_id),
-            Number(form.division_id),
-            Number(form.department_id)
-        );
-        if (isDup) {
-            setErrors({ coa_id: "This account is already budgeted for this period and department." });
-            return false;
-        }
+      const isDup = await checkDuplicate(
+        Number(form.year),
+        Number(form.month),
+        Number(form.coa_id),
+        Number(form.division_id),
+        Number(form.department_id)
+      );
+      if (isDup) {
+        setErrors({ coa_id: "This account is already budgeted for this period and department." });
+        return false;
+      }
     }
 
     return true;
@@ -322,29 +322,29 @@ export function useCreateBudgetForm(
 
     setLoading(true);
     try {
-        const payload: CreateBudgetPayload = {
-            parent_budget_id: supplementParent?.id ? Number(supplementParent.id) : initialData?.parent_budget_id ? Number(initialData.parent_budget_id) : null,
-            entry_type:       supplementParent ? 'supplemental' : (initialData?.entry_type || 'original'),
-            year:             Number(form.year),
-            month:            Number(form.month),
-            division_id:      Number(form.division_id),
-            department_id:    Number(form.department_id),
-            coa_id:           Number(form.coa_id),
-            amount:           Number(form.amount),
-            remarks:          form.remarks,
-            attachments:      form.attachments,
-        };
-        const divName = divisions.find(d => String(d.division_id) === form.division_id)?.division_name;
-        const deptName = departments.find(d => String(d.department_id) === form.department_id)?.department_name;
-        const coaName = coas.find(c => String(c.coa_id) === form.coa_id)?.account_title;
+      const payload: CreateBudgetPayload = {
+        parent_budget_id: supplementParent?.id ? Number(supplementParent.id) : initialData?.parent_budget_id ? Number(initialData.parent_budget_id) : null,
+        entry_type: supplementParent ? 'supplemental' : (initialData?.entry_type || 'original'),
+        year: Number(form.year),
+        month: Number(form.month),
+        division_id: Number(form.division_id),
+        department_id: Number(form.department_id),
+        coa_id: Number(form.coa_id),
+        amount: Number(form.amount),
+        remarks: form.remarks,
+        attachments: form.attachments,
+      };
+      const divName = divisions.find(d => String(d.division_id) === form.division_id)?.division_name;
+      const deptName = departments.find(d => String(d.department_id) === form.department_id)?.department_name;
+      const coaName = coas.find(c => String(c.coa_id) === form.coa_id)?.account_title;
 
-        await onSuccess(payload, {
-            division_name: divName || undefined,
-            department_name: deptName || undefined,
-            coa_name: coaName || undefined,
-        });
+      await onSuccess(payload, {
+        division_name: divName || undefined,
+        department_name: deptName || undefined,
+        coa_name: coaName || undefined,
+      });
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 

@@ -1,4 +1,4 @@
-// src/modules/financial-management/chart-of-accounts/components/COAFormDialog.tsx
+// src/modules/lgu-management/chart-of-accounts/components/COAFormDialog.tsx
 "use client";
 
 import * as React from "react";

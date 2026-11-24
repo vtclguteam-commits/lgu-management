@@ -1,30 +1,30 @@
-// src/modules/financial-management/sales-onboarding/hooks/useSalesOnboarding.ts
+// src/modules/lgu-management/sales-onboarding/hooks/useSalesOnboarding.ts
 
 import { useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { Salesman, Customer, SalesInvoiceType, SalesInvoice, DiscountType } from "../types";
- 
+
 export function useSalesOnboarding() {
   const [salesmen, setSalesmen] = useState<Salesman[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [invoiceTypes, setInvoiceTypes] = useState<SalesInvoiceType[]>([]);
   const [recentInvoices, setRecentInvoices] = useState<SalesInvoice[]>([]);
   const [discountTypes, setDiscountTypes] = useState<DiscountType[]>([]);
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
- 
+
   const loadInitialData = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
-      
+
       const res = await fetch("/api/fm/sales-onboarding");
       if (!res.ok) throw new Error("Failed to load dashboard data");
-      
+
       const data = await res.json();
-      
+
       setSalesmen(data.salesmen || []);
       setCustomers(data.customers || []);
       setInvoiceTypes(data.invoiceTypes || []);
@@ -62,7 +62,7 @@ export function useSalesOnboarding() {
       const order_id = `${invoiceData.salesman_code}${Date.now()}`;
       const transaction_status = "Onboarded";
       const payment_status = "Unpaid";
-      
+
       // 2. Perform lookups for relational dependencies
       const sm = salesmen.find((s) => s.id === invoiceData.salesman_id);
       const cust = customers.find((c) => c.customer_code === invoiceData.customer_code);
@@ -77,7 +77,7 @@ export function useSalesOnboarding() {
       // 3. Remove salesman_code since we don't want to submit it to DB
       const payloadFields = { ...invoiceData } as Partial<typeof invoiceData>;
       delete payloadFields.salesman_code;
-      
+
       const payload: SalesInvoice = {
         ...(payloadFields as Omit<SalesInvoice, "order_id" | "transaction_status" | "payment_status">),
         order_id,
@@ -103,7 +103,7 @@ export function useSalesOnboarding() {
       }
 
       toast.success(`Invoice ${payload.invoice_no} onboarded successfully!`);
-      
+
       // 4. Refresh recent invoices list
       await refreshRecent();
       return true;

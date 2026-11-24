@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/hooks/useProductPrintables.ts
+// src/modules/lgu-management/printables-management/product-printables/hooks/useProductPrintables.ts
 "use client";
 
 import * as React from "react";
@@ -68,7 +68,7 @@ export function useProductPrintables(
 
             const productIds = products.map((p) => pickId(p.product_id)).filter((id): id is number => id !== null);
             let priceMap = new Map<number, Record<string, number | null>>();
-            
+
             if (productIds.length > 0) {
                 const priceRes = await getPricesForProducts(productIds);
                 priceMap = pivotPrices(priceTypes, priceRes.data ?? []);
@@ -101,7 +101,7 @@ export function useProductPrintables(
                 for (const v of variants) {
                     const uomId = Number(v.unit_of_measurement);
                     if (!Number.isFinite(uomId)) continue;
-                    
+
                     const pid = pickId(v.product_id);
                     const piv = pid ? (priceMap.get(pid) ?? emptyTierValues) : emptyTierValues;
 

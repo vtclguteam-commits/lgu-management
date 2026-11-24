@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/LineDiscountModule.tsx
+// src/modules/lgu-management/line-discount/LineDiscountModule.tsx
 "use client";
 
 import * as React from "react";

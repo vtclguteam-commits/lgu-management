@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/components/BalancingBar.tsx
+// src/modules/lgu-management/accounting/customers-memo/components/BalancingBar.tsx
 
 "use client";
 
@@ -16,12 +16,12 @@ export const BalancingBar = React.memo(function BalancingBar({
     isBalanced, amount, totalApplied
 }: BalancingBarProps) {
     const difference = Math.abs(amount - totalApplied);
-    
+
     return (
         <div className={cn(
             "relative overflow-hidden rounded-[2.5rem] border p-2 transition-all duration-700 shadow-2xl",
-            isBalanced 
-                ? "bg-emerald-500/5 border-emerald-500/20 shadow-emerald-500/10" 
+            isBalanced
+                ? "bg-emerald-500/5 border-emerald-500/20 shadow-emerald-500/10"
                 : "bg-amber-500/5 border-amber-500/20 shadow-amber-500/10"
         )}>
             {/* Background Decorative Glow */}
@@ -34,13 +34,13 @@ export const BalancingBar = React.memo(function BalancingBar({
                 {/* Status Indicator Section */}
                 <div className={cn(
                     "flex items-center gap-6 px-6 md:px-10 py-6 rounded-[2rem] transition-all duration-700",
-                    isBalanced 
-                        ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30" 
+                    isBalanced
+                        ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
                         : "bg-amber-500 text-white shadow-lg shadow-amber-500/30"
                 )}>
                     <div className="flex-shrink-0 bg-white/20 p-3 rounded-2xl">
-                        {isBalanced 
-                            ? <CheckCircle2 className="h-10 w-10 animate-in zoom-in spin-in-90 duration-700" /> 
+                        {isBalanced
+                            ? <CheckCircle2 className="h-10 w-10 animate-in zoom-in spin-in-90 duration-700" />
                             : <CircleAlert className="h-10 w-10 animate-pulse" />
                         }
                     </div>
@@ -85,8 +85,8 @@ export const BalancingBar = React.memo(function BalancingBar({
                     {/* Difference Card */}
                     <div className={cn(
                         "group flex items-center gap-4 px-6 py-5 rounded-[1.75rem] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 border",
-                        isBalanced 
-                            ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-700" 
+                        isBalanced
+                            ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-700"
                             : "bg-orange-500/10 border-orange-500/20 text-orange-700"
                     )}>
                         <div className={cn(

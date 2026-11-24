@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/customer-discounting/providers/customerDiscountingApi.ts
+// src/modules/lgu-management/accounting/discount-management/customer-discounting/providers/customerDiscountingApi.ts
 import type {
   CustomerDiscountingModuleData,
   CustomerDiscountPricingResult,

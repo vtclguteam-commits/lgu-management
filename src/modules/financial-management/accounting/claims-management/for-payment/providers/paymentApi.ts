@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-payment/providers/paymentApi.ts
+// src/modules/lgu-management/claims-management/for-payment/providers/paymentApi.ts
 import type { TransmittalDetailRow, TransmittalRow } from "../utils/types";
 import type { CompanyProfile } from "../utils/printTransmittalPaymentA4";
 

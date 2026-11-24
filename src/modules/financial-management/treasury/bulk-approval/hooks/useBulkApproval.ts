@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/hooks/useBulkApproval.ts
+// src/modules/lgu-management/treasury/bulk-approval/hooks/useBulkApproval.ts
 "use client";
 
 import * as React from "react";

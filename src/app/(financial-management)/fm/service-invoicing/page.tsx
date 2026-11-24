@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/service-invoicing/page.tsx
+// src/app/(lgu-management)/fm/service-invoicing/page.tsx
 
 import {
     Breadcrumb,
@@ -14,7 +14,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import ServiceInvoicingModulePage from "@/modules/financial-management/service-invoicing/ServiceInvoicingModulePage";
+import ServiceInvoicingModulePage from "@/modules/lgu-management/service-invoicing/ServiceInvoicingModulePage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

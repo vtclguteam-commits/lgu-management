@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchPaymentTerms } from "@/modules/financial-management/supplier-registration/services/terms";
+import { fetchPaymentTerms } from "@/modules/lgu-management/supplier-registration/services/terms";
 
 export async function GET() {
   try {

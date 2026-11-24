@@ -11,7 +11,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
-import { TransactionCancellationModule } from "@/modules/financial-management/accounting/transaction-cancellation";
+import { TransactionCancellationModule } from "@/modules/lgu-management/accounting/transaction-cancellation";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

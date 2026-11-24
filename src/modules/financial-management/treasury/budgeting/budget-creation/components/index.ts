@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/budget-creation/components/index.ts
+// src/modules/lgu-management/treasury/budgeting/budget-creation/components/index.ts
 
 export * from "./CreateBudgetFilters";
 export * from "./CreateBudgetGroupedTable";

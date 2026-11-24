@@ -1,12 +1,12 @@
-// src/modules/financial-management/treasury/expense-approval/user-expense-limit/components/AddLimitModal.tsx
+// src/modules/lgu-management/treasury/expense-approval/user-expense-limit/components/AddLimitModal.tsx
 
 "use client";
 
 import { useState, useMemo, useRef } from "react";
-import { Button }   from "@/components/ui/button";
-import { Input }    from "@/components/ui/input";
-import { Label }    from "@/components/ui/label";
-import { Badge }    from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import { X, Loader2, Plus, Search, ChevronDown, Check, Trash2 } from "lucide-react";
 import { useCreateLimit, useUsersWithoutLimit, useCoas } from "../hooks/useUserExpenseLimit";
 import type { CreateLimitPayload, Coa } from "../types";
@@ -15,23 +15,23 @@ import { getCoaConfig } from "./LimitTable";
 
 // ─── Searchable select for Users ───────────────────────────────────────────────
 interface SearchableUserSelectProps {
-  loading:  boolean;
-  options:  { value: string; label: string; sub: string }[];
-  value:    string;
+  loading: boolean;
+  options: { value: string; label: string; sub: string }[];
+  value: string;
   onChange: (val: string) => void;
 }
 
 function SearchableUserSelect({ loading, options, value, onChange }: SearchableUserSelectProps) {
-  const [open,   setOpen]   = useState(false);
+  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const inputRef            = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filtered = useMemo(() =>
     search.trim()
       ? options.filter(o =>
-          o.label.toLowerCase().includes(search.toLowerCase()) ||
-          o.sub.toLowerCase().includes(search.toLowerCase())
-        )
+        o.label.toLowerCase().includes(search.toLowerCase()) ||
+        o.sub.toLowerCase().includes(search.toLowerCase())
+      )
       : options,
     [options, search]
   );
@@ -99,18 +99,18 @@ function SearchableUserSelect({ loading, options, value, onChange }: SearchableU
 
 // ─── Searchable select for COAs ────────────────────────────────────────────────
 interface SearchableCoaSelectProps {
-  loading:  boolean;
-  options:  Coa[];
+  loading: boolean;
+  options: Coa[];
   onSelect: (coa: Coa) => void;
   excludeIds: Set<number>;
 }
 
 function SearchableCoaSelect({ loading, options, onSelect, excludeIds }: SearchableCoaSelectProps) {
-  const [open,   setOpen]   = useState(false);
+  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const inputRef            = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const availableOptions = useMemo(() => 
+  const availableOptions = useMemo(() =>
     options.filter(o => !excludeIds.has(o.coa_id)),
     [options, excludeIds]
   );
@@ -118,9 +118,9 @@ function SearchableCoaSelect({ loading, options, onSelect, excludeIds }: Searcha
   const filtered = useMemo(() =>
     search.trim()
       ? availableOptions.filter(o =>
-          (o.account_title || "").toLowerCase().includes(search.toLowerCase()) ||
-          String(o.gl_code || "").includes(search)
-        )
+        (o.account_title || "").toLowerCase().includes(search.toLowerCase()) ||
+        String(o.gl_code || "").includes(search)
+      )
       : availableOptions,
     [availableOptions, search]
   );
@@ -185,7 +185,7 @@ function SearchableCoaSelect({ loading, options, onSelect, excludeIds }: Searcha
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
 interface AddLimitModalProps {
-  onClose:   () => void;
+  onClose: () => void;
   onSuccess: (message: string) => void;
 }
 
@@ -193,7 +193,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
   const { submit, loading, error } = useCreateLimit();
   const { users, loading: usersLoading } = useUsersWithoutLimit();
   const { coas, loading: coasLoading } = useCoas();
-  
+
   const [userId, setUserId] = useState("");
   const [customCoas, setCustomCoas] = useState<Coa[]>([]);
   const [limitsState, setLimitsState] = useState<Record<number, string>>(() => {
@@ -208,7 +208,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
     users.map(u => ({
       value: String(u.user_id),
       label: getFullName(u),
-      sub:   u.user_department_name ? `${u.user_email || ""} (${u.user_department_name})` : u.user_email ?? "",
+      sub: u.user_department_name ? `${u.user_email || ""} (${u.user_department_name})` : u.user_email ?? "",
     })),
     [users]
   );
@@ -239,9 +239,9 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const limits: Record<number, number> = {};
-    
+
     // Default COAs
     BUDGET_COAS.forEach(coa => {
       limits[coa.id] = parseFloat(limitsState[coa.id]) || 0;
@@ -253,11 +253,11 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
     });
 
     const payload: CreateLimitPayload = {
-      user_id:       Number(userId),
+      user_id: Number(userId),
       limits,
-      remarks:       (new FormData(e.currentTarget).get("remarks") as string) || "",
+      remarks: (new FormData(e.currentTarget).get("remarks") as string) || "",
     };
-    
+
     const result = await submit(payload);
     if (result.success) {
       onSuccess(result.message ?? "Expense limit proposal submitted.");
@@ -308,7 +308,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
                   <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                   <p className="text-xs font-black text-muted-foreground uppercase tracking-wider">Ceiling Limits Configuration</p>
                 </div>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Default COAs */}
                   {BUDGET_COAS.map(c => {
@@ -316,7 +316,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
                     return (
                       <div key={c.id} className="relative p-4 rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:border-border-hover hover:shadow-md transition-all duration-200 flex flex-col justify-between gap-3 overflow-hidden">
                         <div className="absolute top-0 right-0 w-10 h-10 bg-gradient-to-br opacity-5 rounded-bl-full pointer-events-none ${config.accentColor}" />
-                        
+
                         <div className="flex items-center gap-2.5">
                           <div className={`p-2 rounded-lg border shrink-0 ${config.colorClass}`}>
                             <config.icon className="h-3.5 w-3.5" />
@@ -326,7 +326,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
                             <span className="text-[9px] text-muted-foreground font-bold font-mono bg-muted/80 px-1 py-0.5 rounded leading-none">GL: {config.glCode}</span>
                           </div>
                         </div>
-                        
+
                         <div className="relative mt-1">
                           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₱</span>
                           <Input
@@ -356,7 +356,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
                         >
                           <Trash2 className="h-3.5 w-3.5" />
                         </button>
-                        
+
                         <div className="flex items-center gap-2.5 pr-6">
                           <div className={`p-2 rounded-lg border shrink-0 ${config.colorClass}`}>
                             <config.icon className="h-3.5 w-3.5" />
@@ -369,7 +369,7 @@ export function AddLimitModal({ onClose, onSuccess }: AddLimitModalProps) {
                             </div>
                           </div>
                         </div>
-                        
+
                         <div className="relative mt-1">
                           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₱</span>
                           <Input

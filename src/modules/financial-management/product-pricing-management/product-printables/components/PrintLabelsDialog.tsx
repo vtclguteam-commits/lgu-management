@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/components/PrintLabelsDialog.tsx
+// src/modules/lgu-management/printables-management/product-printables/components/PrintLabelsDialog.tsx
 "use client";
 
 import * as React from "react";
@@ -38,14 +38,14 @@ type Props = {
     filterSummary?: string;
 };
 
-export default function PrintLabelsDialog({ 
-    open, 
-    onOpenChange, 
-    rows, 
-    priceTypes, 
-    units, 
-    usedUnitIds, 
-    supplier, 
+export default function PrintLabelsDialog({
+    open,
+    onOpenChange,
+    rows,
+    priceTypes,
+    units,
+    usedUnitIds,
+    supplier,
     selectedPriceTypeIds = [],
     printedBy,
     filterSummary
@@ -65,7 +65,7 @@ export default function PrintLabelsDialog({
                         fetch("/api/pdf/company")
                     ]);
                     setTemplates(tpls);
-                    
+
                     if (compRes.ok) {
                         const result = await compRes.json();
                         const company = result.data?.[0] || (Array.isArray(result.data) ? null : result.data);
@@ -84,8 +84,8 @@ export default function PrintLabelsDialog({
 
     const handlePrint = async () => {
         const selectedTemplate = templates.find(t => String(t.id) === selectedTemplateId);
-        
-        await generateProductMatrixPdf(rows, { 
+
+        await generateProductMatrixPdf(rows, {
             priceTypes,
             units,
             usedUnitIds,
@@ -151,7 +151,7 @@ export default function PrintLabelsDialog({
                             </div>
                         );
                     })()}
-                    
+
                     <div className="p-3 bg-muted/30 rounded-xl text-xs text-muted-foreground">
                         Ready to print matrix for {rows.length} products.
                     </div>

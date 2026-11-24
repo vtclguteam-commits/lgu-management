@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-transfers/hooks/useBankTransfers.ts
+// src/modules/lgu-management/treasury/bank-management/bank-transfers/hooks/useBankTransfers.ts
 import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import { bankTransfersApi } from "../providers/bankTransfersApi";

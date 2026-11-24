@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/types.ts
+// src/modules/lgu-management/printables-management/product-printables/types.ts
 
 export type ProductRow = {
     product_id: number;

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/components/FinalTopSheetMatrix.tsx
+// src/modules/lgu-management/treasury/bulk-approval/components/FinalTopSheetMatrix.tsx
 "use client";
 
 import * as React from "react";
@@ -128,11 +128,10 @@ export default function FinalTopSheetMatrix({
               <button
                 type="button"
                 onClick={() => setActiveTab("pending")}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${
-                  activeTab === "pending"
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${activeTab === "pending"
                     ? "bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
                     : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300"
-                }`}
+                  }`}
               >
                 <span>Pending Review</span>
                 <span className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded-full text-[8px] font-bold ${activeTab === 'pending' ? 'bg-blue-500 text-white animate-pulse' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
@@ -142,11 +141,10 @@ export default function FinalTopSheetMatrix({
               <button
                 type="button"
                 onClick={() => setActiveTab("archived")}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${
-                  activeTab === "archived"
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${activeTab === "archived"
                     ? "bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
                     : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300"
-                }`}
+                  }`}
               >
                 <span>Archive / Decided</span>
                 <span className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded-full text-[8px] font-bold ${activeTab === 'archived' ? 'bg-amber-500 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
@@ -242,7 +240,7 @@ export default function FinalTopSheetMatrix({
                 const encoderLabel = salesman.header_id
                   ? `${salesman.salesman_name || `Employee #${salesman.employee_id}`} (Header #${salesman.header_id})`
                   : salesman.salesman_name || `Employee #${salesman.employee_id}`;
-                
+
                 const salesmanDetails = data.details.filter(
                   d => d.employee_id === salesman.employee_id && d.header_id === salesman.header_id
                 );
@@ -290,26 +288,25 @@ export default function FinalTopSheetMatrix({
                         <MousePointerClick className="h-3.5 w-3.5 shrink-0 text-primary opacity-0 transition-opacity group-hover:opacity-100" />
                       </div>
                     </TableCell>
- 
+
                     {data.coa_rows.map((coaRow) => {
                       const cell = getCell(coaRow.cells, salesman.employee_id, salesman.header_id);
                       const targetKey = salesman.header_id
                         ? `cell:${salesman.employee_id}:${coaRow.coa_id}:${salesman.header_id}`
                         : `cell:${salesman.employee_id}:${coaRow.coa_id}`;
                       const activeStatus = stagedDecisions[targetKey] ?? null;
- 
+
                       return (
                         <TableCell
                           key={coaRow.coa_id}
-                          className={`p-0 border-r border-b dark:border-slate-800 last:border-r-0 align-top group/cell transition-colors ${
-                            activeStatus === "Approved"
+                          className={`p-0 border-r border-b dark:border-slate-800 last:border-r-0 align-top group/cell transition-colors ${activeStatus === "Approved"
                               ? "bg-emerald-50/50 dark:bg-emerald-900/20"
                               : activeStatus === "With Concern"
                                 ? "bg-amber-50/50 dark:bg-amber-900/20"
                                 : activeStatus === "Rejected"
                                   ? "bg-rose-50/50 dark:bg-rose-900/20"
                                   : ""
-                          }`}
+                            }`}
                         >
                           {cell ? (
                             <div className="flex h-full min-h-[70px] w-full flex-col items-end justify-between gap-2 px-2 py-2">
@@ -347,13 +344,13 @@ export default function FinalTopSheetMatrix({
                         </TableCell>
                       );
                     })}
- 
+
                     <TableCell className="sticky right-0 z-20 bg-slate-50 dark:bg-slate-950 group-hover:bg-primary/5 backdrop-blur-sm px-2 py-1.5 text-right border-b dark:border-slate-800 transition-all">
                       <p className="text-xs font-black text-slate-900 dark:text-slate-100 tabular-nums">
                         {formatCurrency(rowTotal)}
                       </p>
                     </TableCell>
- 
+
                     {/* <TableCell
                       className={`sticky right-0 z-20 backdrop-blur-sm px-3 py-1.5 border-b dark:border-slate-800 transition-all ${
                         stagedDecisions[

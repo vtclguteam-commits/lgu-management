@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/customer-discounting/types.ts
+// src/modules/lgu-management/accounting/discount-management/customer-discounting/types.ts
 /**
  * Normalized discount_type relation used across customer discounting screens.
  */

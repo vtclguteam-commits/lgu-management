@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/user-expense-limit/hooks/useUserExpenseLimit.ts
+// src/modules/lgu-management/treasury/budgeting/user-expense-limit/hooks/useUserExpenseLimit.ts
 
 "use client";
 
@@ -16,23 +16,23 @@ function extractList<T>(json: unknown): T[] {
 }
 
 const DEFAULT_FILTERS: LimitFilters = {
-  search:        "",
+  search: "",
   department_id: "",
 };
 
 // ─── Main list hook with filters ──────────────────────────────────────────────
 export function useUserExpenseLimits() {
   const [allLimits, setAllLimits] = useState<UserExpenseLimit[]>([]);
-  const [loading,   setLoading]   = useState(false);
-  const [error,     setError]     = useState<string | null>(null);
-  const [filters,   setFilters]   = useState<LimitFilters>(DEFAULT_FILTERS);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [filters, setFilters] = useState<LimitFilters>(DEFAULT_FILTERS);
 
   const load = useCallback(async (departmentId: string) => {
     setLoading(true);
     setError(null);
     const toastId = toast.loading('Loading user expense limits...');
     try {
-      const q   = new URLSearchParams();
+      const q = new URLSearchParams();
       if (departmentId) q.set("department_id", departmentId);
       const url = departmentId ? `${API_BASE}?${q}` : API_BASE;
       const res = await fetch(url);
@@ -60,8 +60,8 @@ export function useUserExpenseLimits() {
     const term = filters.search.trim().toLowerCase();
     if (!term) return allLimits;
     return allLimits.filter(l =>
-      (l.user_name       ?? "").toLowerCase().includes(term) ||
-      (l.user_email      ?? "").toLowerCase().includes(term) ||
+      (l.user_name ?? "").toLowerCase().includes(term) ||
+      (l.user_email ?? "").toLowerCase().includes(term) ||
       (l.user_department ?? "").toLowerCase().includes(term)
     );
   }, [allLimits, filters.search]);
@@ -75,7 +75,7 @@ export function useUserExpenseLimits() {
     setFilters(f => ({ ...f, [key]: value }));
 
   const clearFilters = () => setFilters(DEFAULT_FILTERS);
-  const hasFilters   = Object.values(filters).some(Boolean);
+  const hasFilters = Object.values(filters).some(Boolean);
 
   return {
     limits, loading, error, toast: null, showToast,
@@ -86,7 +86,7 @@ export function useUserExpenseLimits() {
 
 // ─── Users without a limit (for Add dropdown) ────────────────────────────────
 export function useUsersWithoutLimit() {
-  const [users,   setUsers]   = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export function useUsersWithoutLimit() {
     const run = async () => {
       setLoading(true);
       try {
-        const r             = await fetch(`${API_BASE}?action=available-users`);
+        const r = await fetch(`${API_BASE}?action=available-users`);
         const json: unknown = await r.json();
         if (!cancelled) {
           const list = Array.isArray(json)
@@ -116,19 +116,19 @@ export function useUsersWithoutLimit() {
 // ─── Create (Submits proposal) ────────────────────────────────────────────────
 export function useCreateLimit() {
   const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const submit = async (payload: CreateLimitPayload) => {
     setLoading(true);
     setError(null);
     try {
-      const res           = await fetch(API_BASE, {
-        method:  "POST",
+      const res = await fetch(API_BASE, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(payload),
+        body: JSON.stringify(payload),
       });
       const json: unknown = await res.json();
-      const obj           = json as Record<string, unknown>;
+      const obj = json as Record<string, unknown>;
       if (!res.ok) throw new Error(String(obj?.message ?? `HTTP ${res.status}`));
       return { success: true, message: String(obj.message ?? "Expense limit proposal submitted.") };
     } catch (e) {
@@ -146,24 +146,24 @@ export function useCreateLimit() {
 // ─── Update (Submits proposal for edit) ───────────────────────────────────────
 export function useUpdateLimit() {
   const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const submit = async (userId: number, payload: UpdateLimitPayload) => {
     setLoading(true);
     setError(null);
     try {
       // Edits are also submitted to POST as a pending proposal
-      const res           = await fetch(API_BASE, {
-        method:  "POST",
+      const res = await fetch(API_BASE, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({
+        body: JSON.stringify({
           user_id: userId,
           limits: payload.limits,
           remarks: payload.remarks
         }),
       });
       const json: unknown = await res.json();
-      const obj           = json as Record<string, unknown>;
+      const obj = json as Record<string, unknown>;
       if (!res.ok) throw new Error(String(obj?.message ?? `HTTP ${res.status}`));
       return { success: true, message: String(obj.message ?? "Expense limit update proposal submitted.") };
     } catch (e) {
@@ -181,14 +181,14 @@ export function useUpdateLimit() {
 // ─── Fetch departments ────────────────────────────────────────────────────────
 export function useDepartments() {
   const [departments, setDepartments] = useState<Department[]>([]);
-  const [loading,     setLoading]     = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
       setLoading(true);
       try {
-        const r             = await fetch(`${API_BASE}?action=departments`);
+        const r = await fetch(`${API_BASE}?action=departments`);
         const json: unknown = await r.json();
         if (!cancelled) {
           const list = Array.isArray(json)
@@ -209,7 +209,7 @@ export function useDepartments() {
 
 // ─── Fetch Chart of Accounts ──────────────────────────────────────────────────
 export function useCoas() {
-  const [coas,    setCoas]    = useState<Coa[]>([]);
+  const [coas, setCoas] = useState<Coa[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -217,7 +217,7 @@ export function useCoas() {
     const run = async () => {
       setLoading(true);
       try {
-        const r             = await fetch(`${API_BASE}?action=coas`);
+        const r = await fetch(`${API_BASE}?action=coas`);
         const json: unknown = await r.json();
         if (!cancelled) {
           const list = Array.isArray(json)

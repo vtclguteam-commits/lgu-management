@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/user-expense-limit/utils/index.ts
+// src/modules/lgu-management/treasury/budgeting/user-expense-limit/utils/index.ts
 
 export const API_BASE = "/api/fm/treasury/expense-approval/user-expense-limit";
 

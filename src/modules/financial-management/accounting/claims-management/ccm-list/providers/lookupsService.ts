@@ -1,4 +1,4 @@
-//src/modules/financial-management-system/claims-management/ccm-list/providers/lookupsService.ts
+//src/modules/lgu-management-system/claims-management/ccm-list/providers/lookupsService.ts
 export type LookupItem = { id: number; label: string; code?: string | null; shortcut?: string | null };
 
 async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> {

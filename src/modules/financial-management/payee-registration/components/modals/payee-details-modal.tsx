@@ -19,7 +19,7 @@ import {
   Info,
 } from "lucide-react";
 import Image from "next/image";
-import { formatDate } from "@/modules/financial-management/supplier-registration/utils/utils";
+import { formatDate } from "@/modules/lgu-management/supplier-registration/utils/utils";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -144,8 +144,8 @@ export function PayeeDetailsModal({
               </div>
               {payee.bank_details && (
                 <div className="space-y-1 mt-2">
-                   <p className="text-muted-foreground">Bank Details:</p>
-                   <p className="font-medium bg-muted p-2 rounded text-xs">{payee.bank_details}</p>
+                  <p className="text-muted-foreground">Bank Details:</p>
+                  <p className="font-medium bg-muted p-2 rounded text-xs">{payee.bank_details}</p>
                 </div>
               )}
             </div>

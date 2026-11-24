@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import { BulkApprovalModule } from "@/modules/financial-management/treasury/bulk-approval";
+import { BulkApprovalModule } from "@/modules/lgu-management/treasury/bulk-approval";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

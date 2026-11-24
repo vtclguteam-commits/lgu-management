@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import TaxCalendarModules from "@/modules/financial-management/reports/tax-calendar/TaxCalendarModule";
+import TaxCalendarModules from "@/modules/lgu-management/reports/tax-calendar/TaxCalendarModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

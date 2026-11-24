@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/providers/printablesApi.ts
+// src/modules/lgu-management/printables-management/product-printables/providers/printablesApi.ts
 import type { Brand, Category, ProductRow, Supplier, Unit } from "../types";
 
 async function http<T>(input: RequestInfo, init?: RequestInit): Promise<T> {

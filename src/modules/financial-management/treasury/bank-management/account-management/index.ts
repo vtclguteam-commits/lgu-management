@@ -1,2 +1,2 @@
-// src/modules/financial-management/treasury/bank-management/account-management/index.ts
+// src/modules/lgu-management/treasury/bank-management/account-management/index.ts
 export { default } from "./AccountManagementModule";

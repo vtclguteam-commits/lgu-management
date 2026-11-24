@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/components/data-table/index.tsx
+// src/modules/lgu-management/line-discount/components/data-table/index.tsx
 "use client";
 
 import * as React from "react";

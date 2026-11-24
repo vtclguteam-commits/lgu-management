@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   fetchPayeeById,
   updatePayee,
-} from "@/modules/financial-management/payee-registration/services/payee";
-import { PayeeFormSchema } from "@/modules/financial-management/payee-registration/types/payee.schema";
+} from "@/modules/lgu-management/payee-registration/services/payee";
+import { PayeeFormSchema } from "@/modules/lgu-management/payee-registration/types/payee.schema";
 
 /**
  * GET /api/fm/payee-registration/payees/[id]

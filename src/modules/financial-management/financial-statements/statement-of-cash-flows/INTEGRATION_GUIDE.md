@@ -34,7 +34,7 @@ SPRING_API_BASE_URL=http://msi-andrie:8086
 ### 2. Import and Use the Module
 
 ```tsx
-import { CashFlowStatementModule } from "@/modules/financial-management/financial-statements/statement-of-cash-flows";
+import { CashFlowStatementModule } from "@/modules/lgu-management/financial-statements/statement-of-cash-flows";
 
 export default function FinancialStatementsPage() {
   return (

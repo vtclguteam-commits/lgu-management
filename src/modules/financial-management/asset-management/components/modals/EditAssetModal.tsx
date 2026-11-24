@@ -56,7 +56,7 @@ import {
   ItemClassification,
   ItemType,
   User,
-} from "@/modules/financial-management/asset-management/types";
+} from "@/modules/lgu-management/asset-management/types";
 import { format } from "date-fns";
 import { Loader2, UploadCloud, X } from "lucide-react";
 import { assetService } from "../../services/assetService";
@@ -583,7 +583,7 @@ export default function EditAssetModal({
                           <ComboboxGroup>
                             <ComboboxLabel>Employees</ComboboxLabel>
                             {users
-                              .filter((u) => 
+                              .filter((u) =>
                                 `${u.user_fname} ${u.user_lname}`.toLowerCase().includes(employeeSearch.toLowerCase())
                               )
                               .map((u) => (

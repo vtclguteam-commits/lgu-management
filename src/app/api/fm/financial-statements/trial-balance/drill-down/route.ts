@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getTrialBalanceDrillDown } from "@/modules/financial-management/financial-statements/trial-balance/services/trial-balance.service";
+import { getTrialBalanceDrillDown } from "@/modules/lgu-management/financial-statements/trial-balance/services/trial-balance.service";
 
 /**
  * Proxy API route for the Trial Balance drill-down endpoint.

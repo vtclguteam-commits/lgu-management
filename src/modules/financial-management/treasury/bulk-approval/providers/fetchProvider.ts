@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/providers/fetchProvider.ts
+// src/modules/lgu-management/treasury/bulk-approval/providers/fetchProvider.ts
 "use client";
 
 import type {
@@ -108,11 +108,11 @@ export async function getDraftDetail(draftId: number): Promise<DraftDetail> {
 export async function submitVote(payload: VotePayload): Promise<{
   ok: boolean;
   result:
-    | "APPROVED"
-    | "REJECTED"
-    | "WITH_CONCERN"
-    | "TIER_ADVANCED"
-    | "VOTE_RECORDED";
+  | "APPROVED"
+  | "REJECTED"
+  | "WITH_CONCERN"
+  | "TIER_ADVANCED"
+  | "VOTE_RECORDED";
   message: string;
   doc_no?: string;
   next_tier?: number;
@@ -120,11 +120,11 @@ export async function submitVote(payload: VotePayload): Promise<{
   return apiFetch<{
     ok: boolean;
     result:
-      | "APPROVED"
-      | "REJECTED"
-      | "WITH_CONCERN"
-      | "TIER_ADVANCED"
-      | "VOTE_RECORDED";
+    | "APPROVED"
+    | "REJECTED"
+    | "WITH_CONCERN"
+    | "TIER_ADVANCED"
+    | "VOTE_RECORDED";
     message: string;
     doc_no?: string;
     next_tier?: number;

@@ -8,8 +8,8 @@ import { Plus, Trash2, FileSpreadsheet } from "lucide-react";
 import { SearchableDropdown } from "./SearchableDropdown";
 import { StickyTableWrapper } from "./StickyTableWrapper";
 import { PayableLine, COADto, DivisionDto } from "../types";
-import { isInheritedVatSplitLine, updateVatSplitDivision } from "@/modules/financial-management/treasury/components/payable-line-splits";
-import { isMemoPayableLine, normalizeMemoReference } from "@/modules/financial-management/treasury/components/memo-payable-line";
+import { isInheritedVatSplitLine, updateVatSplitDivision } from "@/modules/lgu-management/treasury/components/payable-line-splits";
+import { isMemoPayableLine, normalizeMemoReference } from "@/modules/lgu-management/treasury/components/memo-payable-line";
 import { cn } from "@/lib/utils";
 
 interface PayablesSectionProps {
@@ -57,11 +57,11 @@ export function PayablesSection({
             fillHeight && "h-full min-h-0 flex flex-col",
         )}>
             <div className="bg-muted px-4 py-2.5 border-b border-border flex items-center gap-2">
-                <FileSpreadsheet className="w-4 h-4 text-primary"/>
+                <FileSpreadsheet className="w-4 h-4 text-primary" />
                 <span className="text-xs font-bold text-foreground">Category details (Expense / Liability allocations)</span>
                 <span className="ml-auto text-[10px] font-semibold text-muted-foreground uppercase">{payables.length} row{payables.length !== 1 ? 's' : ''}</span>
             </div>
-            
+
             <div className={cn("p-0.5", fillHeight && "flex-1 min-h-0 flex flex-col")}>
                 <StickyTableWrapper className={cn(
                     "max-h-[320px] overflow-auto custom-scrollbar border-b border-border",
@@ -89,110 +89,110 @@ export function PayablesSection({
                                 const memoLine = isMemoPayableLine(p, memoReferences) || memoReferences.has(normalizeMemoReference(p.memoNumber));
                                 const memoAmountError = memoAmountErrors[i];
                                 return (
-                                <TableRow key={i} className="hover:bg-muted/40 border-b border-border">
-                                    {/* Ref No */}
-                                    <TableCell className="p-1 align-middle">
-                                        <Input 
-                                            disabled={disabled || memoLine}
-                                            className="h-7 text-xs uppercase bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background focus:ring-0 focus-visible:ring-0 shadow-none px-2 rounded-sm transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground"
-                                            placeholder="e.g. Invoice #" 
-                                            value={p.referenceNo || ""}
-                                            onChange={e => {
-                                                const n = [...payables];
-                                                n[i].referenceNo = e.target.value;
-                                                setPayables(n);
-                                            }}
-                                        />
-                                    </TableCell>
-                                    
-                                    {/* Chart of Account */}
-                                    <TableCell className="p-1 align-middle">
-                                        <SearchableDropdown<number>
-                                            options={coas.filter(isPayableOrExpenseCOA).map((c) => ({
-                                                value: c.coaId ?? 0,
-                                                label: `${c.glCode || 'NO-CODE'} - ${c.accountTitle || 'Unknown'}`
-                                            }))}
-                                            value={p.coaId || ""}
-                                            onSelect={(val) => {
-                                                const n = [...payables];
-                                                n[i].coaId = val;
-                                                setPayables(n);
-                                            }}
-                                            placeholder="Choose Category GL..."
-                                            disabled={disabled || memoLine}
-                                            className="h-7 w-full bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background text-xs rounded-sm shadow-none px-2 text-foreground disabled:opacity-50"
-                                            popoverWidth="w-[380px]"
-                                        />
-                                    </TableCell>
-                                    
-                                    {/* Division */}
-                                    <TableCell className="p-1 align-middle">
-                                        <select
-                                            disabled={disabled || isInheritedVatSplitLine(payables, i)}
-                                            className="h-7 w-full bg-transparent border border-transparent hover:border-input focus:border-primary focus:bg-background rounded-sm text-xs px-2 focus:outline-none transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground"
-                                            value={p.divisionId || ""}
-                                            onChange={e => setPayables(updateVatSplitDivision(
-                                                payables,
-                                                i,
-                                                e.target.value ? Number(e.target.value) : undefined,
-                                            ))}
-                                        >
-                                            <option value="">(Select Division)</option>
-                                            {divisions.map(d => (
-                                                <option key={d.divisionId} value={d.divisionId}>
-                                                    {d.divisionName}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </TableCell>
-                                    
-                                    {/* Remarks */}
-                                    <TableCell className="p-1 align-middle">
-                                        <Input 
-                                            disabled={disabled}
-                                            className="h-7 text-xs bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background focus:ring-0 focus-visible:ring-0 shadow-none px-2 rounded-sm transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground"
-                                            placeholder="Line item description..." 
-                                            value={p.remarks || ""}
-                                            onChange={e => {
-                                                const n = [...payables];
-                                                n[i].remarks = e.target.value;
-                                                setPayables(n);
-                                            }}
-                                        />
-                                    </TableCell>
-                                    
-                                    {/* Amount */}
-                                    <TableCell className="p-1 align-middle">
-                                        <Input 
-                                            type="number" 
-                                            disabled={disabled}
-                                            aria-invalid={!!memoAmountError}
-                                            title={memoLine ? "Memo amount can be edited within the memo's available balance." : undefined}
-                                            className={`h-7 text-xs font-bold text-right bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background focus:ring-0 focus-visible:ring-0 shadow-none px-2 rounded-sm transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground ${memoLine ? "bg-muted/40" : ""} ${memoAmountError ? "border-destructive text-destructive focus:border-destructive" : ""}`}
-                                            placeholder="0.00" 
-                                            value={p.amount || ""}
-                                            onChange={e => handleAmountChange(i, e.target.value)}
-                                        />
-                                        {memoAmountError && (
-                                            <p role="alert" className="mt-1 text-[10px] leading-tight text-destructive">
-                                                {memoAmountError}
-                                            </p>
-                                        )}
-                                    </TableCell>
-                                    
-                                    {/* Delete Row */}
-                                    <TableCell className="p-1 text-center align-middle">
-                                        <Button 
-                                            size="icon" 
-                                            variant="ghost" 
-                                            onClick={() => handleRemovePayable(i)}
-                                            disabled={payables.length <= 1 || disabled}
-                                            className="h-7 w-7 text-destructive hover:bg-destructive/10 hover:text-destructive rounded-sm disabled:opacity-50"
-                                        >
-                                            <Trash2 className="w-3.5 h-3.5"/>
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
+                                    <TableRow key={i} className="hover:bg-muted/40 border-b border-border">
+                                        {/* Ref No */}
+                                        <TableCell className="p-1 align-middle">
+                                            <Input
+                                                disabled={disabled || memoLine}
+                                                className="h-7 text-xs uppercase bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background focus:ring-0 focus-visible:ring-0 shadow-none px-2 rounded-sm transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground"
+                                                placeholder="e.g. Invoice #"
+                                                value={p.referenceNo || ""}
+                                                onChange={e => {
+                                                    const n = [...payables];
+                                                    n[i].referenceNo = e.target.value;
+                                                    setPayables(n);
+                                                }}
+                                            />
+                                        </TableCell>
+
+                                        {/* Chart of Account */}
+                                        <TableCell className="p-1 align-middle">
+                                            <SearchableDropdown<number>
+                                                options={coas.filter(isPayableOrExpenseCOA).map((c) => ({
+                                                    value: c.coaId ?? 0,
+                                                    label: `${c.glCode || 'NO-CODE'} - ${c.accountTitle || 'Unknown'}`
+                                                }))}
+                                                value={p.coaId || ""}
+                                                onSelect={(val) => {
+                                                    const n = [...payables];
+                                                    n[i].coaId = val;
+                                                    setPayables(n);
+                                                }}
+                                                placeholder="Choose Category GL..."
+                                                disabled={disabled || memoLine}
+                                                className="h-7 w-full bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background text-xs rounded-sm shadow-none px-2 text-foreground disabled:opacity-50"
+                                                popoverWidth="w-[380px]"
+                                            />
+                                        </TableCell>
+
+                                        {/* Division */}
+                                        <TableCell className="p-1 align-middle">
+                                            <select
+                                                disabled={disabled || isInheritedVatSplitLine(payables, i)}
+                                                className="h-7 w-full bg-transparent border border-transparent hover:border-input focus:border-primary focus:bg-background rounded-sm text-xs px-2 focus:outline-none transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground"
+                                                value={p.divisionId || ""}
+                                                onChange={e => setPayables(updateVatSplitDivision(
+                                                    payables,
+                                                    i,
+                                                    e.target.value ? Number(e.target.value) : undefined,
+                                                ))}
+                                            >
+                                                <option value="">(Select Division)</option>
+                                                {divisions.map(d => (
+                                                    <option key={d.divisionId} value={d.divisionId}>
+                                                        {d.divisionName}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </TableCell>
+
+                                        {/* Remarks */}
+                                        <TableCell className="p-1 align-middle">
+                                            <Input
+                                                disabled={disabled}
+                                                className="h-7 text-xs bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background focus:ring-0 focus-visible:ring-0 shadow-none px-2 rounded-sm transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground"
+                                                placeholder="Line item description..."
+                                                value={p.remarks || ""}
+                                                onChange={e => {
+                                                    const n = [...payables];
+                                                    n[i].remarks = e.target.value;
+                                                    setPayables(n);
+                                                }}
+                                            />
+                                        </TableCell>
+
+                                        {/* Amount */}
+                                        <TableCell className="p-1 align-middle">
+                                            <Input
+                                                type="number"
+                                                disabled={disabled}
+                                                aria-invalid={!!memoAmountError}
+                                                title={memoLine ? "Memo amount can be edited within the memo's available balance." : undefined}
+                                                className={`h-7 text-xs font-bold text-right bg-transparent border-transparent hover:border-input focus:border-primary focus:bg-background focus:ring-0 focus-visible:ring-0 shadow-none px-2 rounded-sm transition-all disabled:bg-transparent disabled:cursor-not-allowed text-foreground ${memoLine ? "bg-muted/40" : ""} ${memoAmountError ? "border-destructive text-destructive focus:border-destructive" : ""}`}
+                                                placeholder="0.00"
+                                                value={p.amount || ""}
+                                                onChange={e => handleAmountChange(i, e.target.value)}
+                                            />
+                                            {memoAmountError && (
+                                                <p role="alert" className="mt-1 text-[10px] leading-tight text-destructive">
+                                                    {memoAmountError}
+                                                </p>
+                                            )}
+                                        </TableCell>
+
+                                        {/* Delete Row */}
+                                        <TableCell className="p-1 text-center align-middle">
+                                            <Button
+                                                size="icon"
+                                                variant="ghost"
+                                                onClick={() => handleRemovePayable(i)}
+                                                disabled={payables.length <= 1 || disabled}
+                                                className="h-7 w-7 text-destructive hover:bg-destructive/10 hover:text-destructive rounded-sm disabled:opacity-50"
+                                            >
+                                                <Trash2 className="w-3.5 h-3.5" />
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
                                 );
                             })}
                         </TableBody>
@@ -202,21 +202,21 @@ export function PayablesSection({
                 {/* Ledger actions and subtotal */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 gap-2 bg-muted/30 border-t border-border shrink-0">
                     <div className="flex gap-2">
-                        <Button 
-                            size="sm" 
-                            variant="outline" 
+                        <Button
+                            size="sm"
+                            variant="outline"
                             onClick={handleAddPayable}
                             disabled={disabled || isAddDisabled}
                             title={isAddDisabled ? "Select Division and Department first" : "Add allocation line"}
                             className="text-xs font-semibold border-border text-primary hover:bg-accent hover:text-accent-foreground bg-background rounded-sm h-7 disabled:opacity-50"
                         >
-                            <Plus className="w-3.5 h-3.5 mr-1.5"/> Add allocation line
+                            <Plus className="w-3.5 h-3.5 mr-1.5" /> Add allocation line
                         </Button>
-                        <Button 
-                            size="sm" 
-                            variant="outline" 
-                            type="button" 
-                            onClick={handleOpenMemoModal} 
+                        <Button
+                            size="sm"
+                            variant="outline"
+                            type="button"
+                            onClick={handleOpenMemoModal}
                             disabled={!payeeId || disabled || isAddDisabled}
                             title={isAddDisabled ? "Select Division and Department first" : "Apply credit / debit memo"}
                             className="text-xs font-semibold border-border text-purple-600 hover:bg-accent rounded-sm h-7 disabled:opacity-50"
@@ -224,7 +224,7 @@ export function PayablesSection({
                             Apply credit / debit memo
                         </Button>
                     </div>
-                    
+
                     <div className="text-sm font-bold text-foreground self-end sm:self-auto pr-8">
                         <span>Total Allocations (Debits): </span>
                         <span className="text-base text-primary ml-1">{formatMoney(totalAmount)}</span>

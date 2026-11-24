@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/accounting/discount-management/supplier-discounting/page.tsx
+// src/app/(lgu-management)/fm/accounting/discount-management/supplier-discounting/page.tsx
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,9 +11,9 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
-import SupplierDiscountingModule from "@/modules/financial-management/accounting/discount-management/supplier-discounting";
+import SupplierDiscountingModule from "@/modules/lgu-management/accounting/discount-management/supplier-discounting";
 import { getSupplierDiscountingModuleData } from "@/app/api/fm/accounting/discount-management/supplier-discounting/_module-data";
-import type { SupplierDiscountModuleData } from "@/modules/financial-management/accounting/discount-management/supplier-discounting/types";
+import type { SupplierDiscountModuleData } from "@/modules/lgu-management/accounting/discount-management/supplier-discounting/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

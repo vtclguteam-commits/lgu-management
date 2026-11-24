@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/BulkApprovalModule.tsx
+// src/modules/lgu-management/treasury/bulk-approval/BulkApprovalModule.tsx
 "use client";
 
 import * as React from "react";

@@ -1,4 +1,4 @@
-//src/modules/financial-management/claims-management/for-receiving/utils/types.ts
+//src/modules/lgu-management/claims-management/for-receiving/utils/types.ts
 export type PickItem = { id: number; label: string };
 
 export type TransmittalRow = {
@@ -45,7 +45,7 @@ export type TransmittalDetailRow = {
 
     received_at?: string | null;
 };
-// src/modules/financial-management/claims-management/for-receiving/providers/receivingApi.ts
+// src/modules/lgu-management/claims-management/for-receiving/providers/receivingApi.ts
 
 export type CompanyProfile = {
     company_id: number;

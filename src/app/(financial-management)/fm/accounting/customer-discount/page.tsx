@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module
-import CustomerDiscountModule from "@/modules/financial-management/accounting/customer-discount";
+import CustomerDiscountModule from "@/modules/lgu-management/accounting/customer-discount";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

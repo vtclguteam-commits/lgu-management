@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchPayeeProductsServer } from "@/modules/financial-management/payee-registration/services/products-server";
+import { fetchPayeeProductsServer } from "@/modules/lgu-management/payee-registration/services/products-server";
 
 /**
  * GET /api/fm/payee-registration/payees/[id]/products

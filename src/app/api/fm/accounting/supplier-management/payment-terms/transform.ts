@@ -1,4 +1,4 @@
-import type { PaymentTerm } from "@/modules/financial-management/accounting/supplier-management/payment-terms/types";
+import type { PaymentTerm } from "@/modules/lgu-management/accounting/supplier-management/payment-terms/types";
 
 // Helpers to map between Directus `payment_terms` fields and local PaymentTerm shape
 

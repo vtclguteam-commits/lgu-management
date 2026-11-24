@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/components/HeaderSelectionPanel.tsx
+// src/modules/lgu-management/treasury/salesmen-expense-approval/components/HeaderSelectionPanel.tsx
 "use client";
 
 import * as React from "react";
@@ -72,54 +72,53 @@ export default function HeaderSelectionPanel({ selectedSalesman, detail, loading
           </div>
         ) : visibleHeaders.length > 0 ? (
           visibleHeaders.map((header) => {
-             const headerItems = detailExpenses.filter(e => Number(e.header_id) === header.id);
-             const itemCount = headerItems.length;
-             const totalAmount = headerItems.reduce((sum, e) => sum + Number(e.amount), 0);
+            const headerItems = detailExpenses.filter(e => Number(e.header_id) === header.id);
+            const itemCount = headerItems.length;
+            const totalAmount = headerItems.reduce((sum, e) => sum + Number(e.amount), 0);
 
-             return (
-               <button
-                 key={header.id}
-                 onClick={() => onSelectHeader(header)}
-                 className="w-full text-left p-4 rounded-2xl border dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-primary dark:hover:border-primary hover:shadow-xl hover:-translate-y-0.5 transition-all group flex items-center justify-between"
-               >
-                 <div className="space-y-1">
-                   <div className="flex items-center gap-2">
-                     <div className="p-1.5 bg-primary/5 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <Calendar size={12} />
-                     </div>
-                     <span className="text-[11px] font-black text-slate-800 dark:text-slate-200">
-                       {new Date(header.period_from + "T00:00:00").toLocaleDateString("en-PH", { month: "short", day: "numeric" })} - {new Date(header.period_to + "T00:00:00").toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" })}
-                     </span>
-                   </div>
-                   <div className="flex items-center gap-2 pl-8">
-                      <Badge variant="outline" className="text-[9px] font-black px-1.5 py-0 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20 tabular-nums">
-                        ₱{totalAmount.toLocaleString()}
-                      </Badge>
-                      <Badge variant="outline" className="text-[9px] font-bold px-1.5 py-0 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 dark:text-slate-300">
-                        {itemCount} Line{itemCount !== 1 ? 's' : ''}
-                      </Badge>
-                      {activeTab === "history" && (
-                        <Badge
-                          variant="outline"
-                          className={`text-[9px] font-black px-1.5 py-0 uppercase ${
-                            header.status.trim().toLowerCase() === "rejected"
-                              ? "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/30 dark:text-rose-400"
-                              : "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400"
+            return (
+              <button
+                key={header.id}
+                onClick={() => onSelectHeader(header)}
+                className="w-full text-left p-4 rounded-2xl border dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-primary dark:hover:border-primary hover:shadow-xl hover:-translate-y-0.5 transition-all group flex items-center justify-between"
+              >
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="p-1.5 bg-primary/5 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <Calendar size={12} />
+                    </div>
+                    <span className="text-[11px] font-black text-slate-800 dark:text-slate-200">
+                      {new Date(header.period_from + "T00:00:00").toLocaleDateString("en-PH", { month: "short", day: "numeric" })} - {new Date(header.period_to + "T00:00:00").toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" })}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 pl-8">
+                    <Badge variant="outline" className="text-[9px] font-black px-1.5 py-0 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20 tabular-nums">
+                      ₱{totalAmount.toLocaleString()}
+                    </Badge>
+                    <Badge variant="outline" className="text-[9px] font-bold px-1.5 py-0 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 dark:text-slate-300">
+                      {itemCount} Line{itemCount !== 1 ? 's' : ''}
+                    </Badge>
+                    {activeTab === "history" && (
+                      <Badge
+                        variant="outline"
+                        className={`text-[9px] font-black px-1.5 py-0 uppercase ${header.status.trim().toLowerCase() === "rejected"
+                            ? "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/30 dark:text-rose-400"
+                            : "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400"
                           }`}
-                        >
-                          {header.status}
-                        </Badge>
-                      )}
-                      <span className="text-[9px] text-muted-foreground italic truncate max-w-[80px]">
-                        {header.remarks || "No remarks"}
-                      </span>
-                   </div>
-                 </div>
-                 <div className="h-8 w-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-all shadow-inner">
-                    <ChevronRight size={16} />
-                 </div>
-               </button>
-             );
+                      >
+                        {header.status}
+                      </Badge>
+                    )}
+                    <span className="text-[9px] text-muted-foreground italic truncate max-w-[80px]">
+                      {header.remarks || "No remarks"}
+                    </span>
+                  </div>
+                </div>
+                <div className="h-8 w-8 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-all shadow-inner">
+                  <ChevronRight size={16} />
+                </div>
+              </button>
+            );
           })
         ) : (
           <div className="flex flex-col items-center justify-center h-40 text-center space-y-2">
@@ -133,7 +132,7 @@ export default function HeaderSelectionPanel({ selectedSalesman, detail, loading
 
       <div className="p-4 bg-muted/10 dark:bg-slate-800/50 border-t dark:border-slate-800 mt-auto">
         <p className="text-[9px] text-muted-foreground font-black text-center uppercase tracking-widest leading-relaxed">
-          PICK A PERIOD TO INITIATE<br/>THE AUDIT WORKSPACE
+          PICK A PERIOD TO INITIATE<br />THE AUDIT WORKSPACE
         </p>
       </div>
     </div>

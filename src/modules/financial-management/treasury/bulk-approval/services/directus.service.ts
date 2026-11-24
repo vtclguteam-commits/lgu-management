@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/services/directus.service.ts
+// src/modules/lgu-management/treasury/bulk-approval/services/directus.service.ts
 import type { DirectusResponse } from "./bulkApproval.types";
 
 const DIRECTUS_BASE = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/+$/, "") || "";

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-reconciliation/providers/bankReconciliationApi.ts
+// src/modules/lgu-management/treasury/bank-management/bank-reconciliation/providers/bankReconciliationApi.ts
 import type {
   BankReconciliation,
   BankReconciliationData,

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/services/http.ts
+// src/modules/lgu-management/treasury/bulk-approval/services/http.ts
 import { NextResponse } from "next/server";
 
 export function jsonResponse(body: unknown, init?: ResponseInit) {

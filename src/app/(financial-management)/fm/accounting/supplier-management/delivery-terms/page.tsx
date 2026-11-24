@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import DeliveryTermsModule from "@/modules/financial-management/accounting/supplier-management/delivery-terms";
+import DeliveryTermsModule from "@/modules/lgu-management/accounting/supplier-management/delivery-terms";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

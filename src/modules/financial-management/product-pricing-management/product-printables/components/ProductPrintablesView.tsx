@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/components/ProductPrintablesView.tsx
+// src/modules/lgu-management/printables-management/product-printables/components/ProductPrintablesView.tsx
 "use client";
 
 import * as React from "react";
@@ -96,7 +96,7 @@ export default function ProductPrintablesView({ userName }: { userName?: string 
     const filterSummary = React.useMemo(() => {
         const parts: string[] = [];
         if (filters.q) parts.push(`Search: "${filters.q}"`);
-        
+
         if (filters.supplier_ids.length) {
             const names = filters.supplier_ids.map(id => suppliers.find(s => String(s.id) === String(id))?.supplier_name).filter(Boolean);
             if (names.length) parts.push(`Suppliers: ${names.join(", ")}`);
@@ -133,7 +133,7 @@ export default function ProductPrintablesView({ userName }: { userName?: string 
         } else {
             parts.push("Prices: All Configured Price Types");
         }
-        
+
         return parts.join("\n");
     }, [filters, categories, brands, suppliers, units, priceTypes]);
 

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/components/SalesmanExpenseTable.tsx
+// src/modules/lgu-management/treasury/salesmen-expense-approval/components/SalesmanExpenseTable.tsx
 "use client";
 
 import * as React from "react";
@@ -119,107 +119,106 @@ export default function SalesmanExpenseTable(props: Props) {
                     key={row.employee_id}
                     className={`transition-colors group ${selectedId === row.id ? "bg-primary/10 hover:bg-primary/15" : "hover:bg-muted/30 dark:hover:bg-slate-800/50"}`}
                   >
-                  <TableCell className="text-center text-muted-foreground text-xs font-mono">
-                    {(page - 1) * 5 + idx + 1}
-                  </TableCell>
-                  <TableCell className="overflow-hidden">
-                    <div className="flex items-center gap-3">
-                       <div className={`h-10 w-10 rounded-2xl flex items-center justify-center font-black text-xs border shadow-inner transition-all duration-300 ${selectedId === row.id ? "bg-primary text-white border-primary shadow-primary/20 scale-110" : "bg-slate-50 text-slate-400 border-slate-100 group-hover:bg-white group-hover:border-primary/30 group-hover:text-primary dark:bg-slate-800 dark:border-slate-700 dark:group-hover:bg-slate-900"}`}>
+                    <TableCell className="text-center text-muted-foreground text-xs font-mono">
+                      {(page - 1) * 5 + idx + 1}
+                    </TableCell>
+                    <TableCell className="overflow-hidden">
+                      <div className="flex items-center gap-3">
+                        <div className={`h-10 w-10 rounded-2xl flex items-center justify-center font-black text-xs border shadow-inner transition-all duration-300 ${selectedId === row.id ? "bg-primary text-white border-primary shadow-primary/20 scale-110" : "bg-slate-50 text-slate-400 border-slate-100 group-hover:bg-white group-hover:border-primary/30 group-hover:text-primary dark:bg-slate-800 dark:border-slate-700 dark:group-hover:bg-slate-900"}`}>
                           {row.salesman_name.charAt(0)}
-                       </div>
-                       <div className="min-w-0">
+                        </div>
+                        <div className="min-w-0">
                           <span className="font-black text-[13px] text-slate-800 dark:text-slate-200 block truncate leading-tight mb-0.5" title={row.salesman_name}>
                             {row.salesman_name}
                           </span>
                           <span className="text-[10px] text-slate-400 font-black uppercase tracking-tighter block">
                             ID: {row.salesman_code}
                           </span>
-                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell className="overflow-hidden">
-                    {divisionLabel ? (
-                      <div
-                        className="inline-flex max-w-[200px] items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 dark:border-slate-700 dark:bg-slate-800"
-                        title={divisionLabel}
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-500" />
-                        <span className="max-w-[200px] truncate text-[10px] font-black uppercase tracking-tight text-slate-600 dark:text-slate-300">
-                          {divisionLabel}
-                        </span>
+                        </div>
                       </div>
-                    ) : (
-                      <span className="text-slate-300 dark:text-slate-600 text-[10px] font-black italic">No Division</span>
-                    )}
-                  </TableCell>
-
-                  <TableCell className="text-center overflow-hidden">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 shadow-sm group-hover:scale-105 transition-transform">
-                      <Layers size={12} className="text-blue-600" />
-                      <span className="text-[11px] font-black text-blue-700 tabular-nums">
-                        {row.header_count} <span className="text-[9px] text-blue-400 font-bold uppercase ml-0.5">Periods</span>
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-right pr-8 overflow-hidden">
-                    <div className="flex flex-col items-end gap-1">
-                      <div className="flex items-center gap-2">
-                        <Coins size={14} className="text-emerald-500" />
-                        <span className="text-sm font-black tabular-nums text-slate-900 dark:text-slate-100 tracking-tight">
-                          {new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(row.pending_amount || 0)}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        {mode === "history" && row.header_statuses.map((status) => (
-                          <span
-                            key={status}
-                            className={`text-[9px] font-black uppercase tracking-tighter ${
-                              status.toLowerCase() === "rejected"
-                                ? "text-rose-600"
-                                : "text-emerald-600"
-                            }`}
-                          >
-                            {status}
+                    </TableCell>
+                    <TableCell className="overflow-hidden">
+                      {divisionLabel ? (
+                        <div
+                          className="inline-flex max-w-[200px] items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 dark:border-slate-700 dark:bg-slate-800"
+                          title={divisionLabel}
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-500" />
+                          <span className="max-w-[200px] truncate text-[10px] font-black uppercase tracking-tight text-slate-600 dark:text-slate-300">
+                            {divisionLabel}
                           </span>
-                        ))}
-                        {mode === "pending" && (
-                          <>
-                        {row.draft_count > 0 && (
-                          <div className="flex items-center gap-1">
-                            <FileText size={10} className="text-slate-400" />
-                            <span className="text-[9px] font-black text-slate-500 uppercase tracking-tighter">{row.draft_count} Draft</span>
-                          </div>
-                        )}
-                        {row.concern_count > 0 && (
-                          <div className="flex items-center gap-1">
-                            <AlertCircle size={10} className="text-amber-500" />
-                            <span className="text-[9px] font-black text-amber-600 uppercase tracking-tighter">{row.concern_count} Concern</span>
-                          </div>
-                        )}
-                        {row.rejected_count > 0 && (
-                          <div className="flex items-center gap-1">
-                            <XCircle size={10} className="text-rose-500" />
-                            <span className="text-[9px] font-black text-rose-600 uppercase tracking-tighter">{row.rejected_count} Rejected</span>
-                          </div>
-                        )}
-                          </>
-                        )}
+                        </div>
+                      ) : (
+                        <span className="text-slate-300 dark:text-slate-600 text-[10px] font-black italic">No Division</span>
+                      )}
+                    </TableCell>
+
+                    <TableCell className="text-center overflow-hidden">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 shadow-sm group-hover:scale-105 transition-transform">
+                        <Layers size={12} className="text-blue-600" />
+                        <span className="text-[11px] font-black text-blue-700 tabular-nums">
+                          {row.header_count} <span className="text-[9px] text-blue-400 font-bold uppercase ml-0.5">Periods</span>
+                        </span>
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-center overflow-hidden">
-                    <Button
-                      size="sm"
-                      variant={selectedId === row.id ? "default" : "outline"}
-                      className={`h-8 w-full max-w-[100px] mx-auto rounded-full transition-all group/btn flex items-center justify-center gap-2 ${selectedId === row.id ? "shadow-lg shadow-primary/20 scale-105" : "hover:bg-slate-50 border-slate-200 dark:hover:bg-slate-800 dark:border-slate-700"}`}
-                      onClick={() => onAction(row)}
-                    >
-                      <span className="text-[10px] font-black uppercase tracking-widest">
-                        {selectedId === row.id ? "Active" : "Review"}
-                      </span>
-                      <ArrowRight size={14} className={selectedId === row.id ? "text-white" : "text-slate-400 group-hover/btn:text-primary"} />
-                    </Button>
-                  </TableCell>
+                    </TableCell>
+                    <TableCell className="text-right pr-8 overflow-hidden">
+                      <div className="flex flex-col items-end gap-1">
+                        <div className="flex items-center gap-2">
+                          <Coins size={14} className="text-emerald-500" />
+                          <span className="text-sm font-black tabular-nums text-slate-900 dark:text-slate-100 tracking-tight">
+                            {new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(row.pending_amount || 0)}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          {mode === "history" && row.header_statuses.map((status) => (
+                            <span
+                              key={status}
+                              className={`text-[9px] font-black uppercase tracking-tighter ${status.toLowerCase() === "rejected"
+                                  ? "text-rose-600"
+                                  : "text-emerald-600"
+                                }`}
+                            >
+                              {status}
+                            </span>
+                          ))}
+                          {mode === "pending" && (
+                            <>
+                              {row.draft_count > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <FileText size={10} className="text-slate-400" />
+                                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-tighter">{row.draft_count} Draft</span>
+                                </div>
+                              )}
+                              {row.concern_count > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <AlertCircle size={10} className="text-amber-500" />
+                                  <span className="text-[9px] font-black text-amber-600 uppercase tracking-tighter">{row.concern_count} Concern</span>
+                                </div>
+                              )}
+                              {row.rejected_count > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <XCircle size={10} className="text-rose-500" />
+                                  <span className="text-[9px] font-black text-rose-600 uppercase tracking-tighter">{row.rejected_count} Rejected</span>
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-center overflow-hidden">
+                      <Button
+                        size="sm"
+                        variant={selectedId === row.id ? "default" : "outline"}
+                        className={`h-8 w-full max-w-[100px] mx-auto rounded-full transition-all group/btn flex items-center justify-center gap-2 ${selectedId === row.id ? "shadow-lg shadow-primary/20 scale-105" : "hover:bg-slate-50 border-slate-200 dark:hover:bg-slate-800 dark:border-slate-700"}`}
+                        onClick={() => onAction(row)}
+                      >
+                        <span className="text-[10px] font-black uppercase tracking-widest">
+                          {selectedId === row.id ? "Active" : "Review"}
+                        </span>
+                        <ArrowRight size={14} className={selectedId === row.id ? "text-white" : "text-slate-400 group-hover/btn:text-primary"} />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 );
               })

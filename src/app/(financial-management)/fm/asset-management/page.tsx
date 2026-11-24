@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/treasury/disbursement/page.tsx
+// src/app/(lgu-management)/fm/treasury/disbursement/page.tsx
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -14,7 +14,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import AssetManagementModulePage from "@/modules/financial-management/asset-management/AssetManagementModulePage";
+import AssetManagementModulePage from "@/modules/lgu-management/asset-management/AssetManagementModulePage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

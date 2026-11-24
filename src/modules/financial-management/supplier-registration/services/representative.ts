@@ -2,7 +2,7 @@ import {
   Representative,
   RepresentativesResponse,
   RepresentativeResponse,
-} from "@/modules/financial-management/supplier-registration/types/representative.schema";
+} from "@/modules/lgu-management/supplier-registration/types/representative.schema";
 /**
  * Base Directus API URL
  */

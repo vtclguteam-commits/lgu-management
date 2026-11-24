@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import UserExpenseLimitApprovalModule from "@/modules/financial-management/treasury/expense-approval/user-expense-limit-approval/UserExpenseLimitApprovalModule";
+import UserExpenseLimitApprovalModule from "@/modules/lgu-management/treasury/expense-approval/user-expense-limit-approval/UserExpenseLimitApprovalModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

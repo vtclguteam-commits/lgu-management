@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/file-management/discount/discount-type/page.tsx
+// src/app/(lgu-management)/fm/file-management/discount/discount-type/page.tsx
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -11,12 +11,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
-import { DiscountTypeModule } from "@/modules/financial-management/file-management/discount/discount-type";
+import { DiscountTypeModule } from "@/modules/lgu-management/file-management/discount/discount-type";
 
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-// import { DisbursementModule } from "@/modules/financial-management/treasury/disbursement";
+// import { DisbursementModule } from "@/modules/lgu-management/treasury/disbursement";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -1,4 +1,4 @@
-//src/modules/financial-management/claims-management/for-receiving/providers/receivingApi.ts
+//src/modules/lgu-management/claims-management/for-receiving/providers/receivingApi.ts
 import type { CompanyProfile, TransmittalDetailRow, TransmittalRow } from "../utils/types";
 
 async function readText(res: Response): Promise<string> {

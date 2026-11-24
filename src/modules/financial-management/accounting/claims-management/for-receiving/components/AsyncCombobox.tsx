@@ -1,4 +1,4 @@
-//src/modules/financial-management-system/claims-management/for-receiving/components/AsyncCombobox.tsx
+//src/modules/lgu-management-system/claims-management/for-receiving/components/AsyncCombobox.tsx
 "use client";
 
 import * as React from "react";
@@ -28,13 +28,13 @@ type Props = {
 };
 
 export function AsyncCombobox({
-                                  value,
-                                  onChange,
-                                  placeholder,
-                                  searchPlaceholder,
-                                  disabled,
-                                  fetchItems,
-                              }: Props) {
+    value,
+    onChange,
+    placeholder,
+    searchPlaceholder,
+    disabled,
+    fetchItems,
+}: Props) {
     const [open, setOpen] = React.useState(false);
     const [q, setQ] = React.useState("");
     const [items, setItems] = React.useState<Item[]>([]);

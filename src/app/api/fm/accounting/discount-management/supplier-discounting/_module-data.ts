@@ -1,5 +1,5 @@
 // src/app/api/fm/accounting/discount-management/supplier-discounting/_module-data.ts
-import type { SupplierDiscountModuleData } from "@/modules/financial-management/accounting/discount-management/supplier-discounting/types";
+import type { SupplierDiscountModuleData } from "@/modules/lgu-management/accounting/discount-management/supplier-discounting/types";
 import {
   asNumber,
   asString,

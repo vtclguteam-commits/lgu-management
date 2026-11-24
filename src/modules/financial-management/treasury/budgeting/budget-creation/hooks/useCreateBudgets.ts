@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/budgeting/budget-creation/hooks/useCreateBudgets.ts
+// src/modules/lgu-management/treasury/budgeting/budget-creation/hooks/useCreateBudgets.ts
 
 "use client";
 
@@ -8,7 +8,7 @@ import { budgetService } from "../services/budgetService";
 import { toast } from "sonner";
 
 const MONTH_NAMES = [
-  "January", "February", "March", "April", "May", "June", 
+  "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
@@ -77,7 +77,7 @@ export function useCreateBudgets() {
 
       // Filter by search term locally for responsiveness
       const term = filters.search.trim().toLowerCase();
-      const filtered = term ? data.filter(b => 
+      const filtered = term ? data.filter(b =>
         [b.coa_name, b.gl_code, b.remarks, b.department_name, b.division_name, b.budget_no]
           .join(" ").toLowerCase().includes(term)
       ) : data;
@@ -144,7 +144,7 @@ export function useCreateBudgets() {
     if (!ids.length) return;
     const previousItems = [...budgets];
     const previousSelection = new Set(selectedIds);
-    
+
     setBudgets(prev => applySubmittedState(prev, ids));
 
     try {
@@ -162,7 +162,7 @@ export function useCreateBudgets() {
   const deleteBudget = async (id: string | number) => {
     const previousItems = [...budgets];
     const previousSelection = new Set(selectedIds);
-    
+
     setBudgets(prev => prev.filter(item => String(item.id) !== String(id)));
 
     try {
@@ -186,7 +186,7 @@ export function useCreateBudgets() {
     if (selectedIds.size === 0) return;
     const previousItems = [...budgets];
     const previousSelection = new Set(selectedIds);
-    
+
     setBudgets(prev => prev.filter(item => !selectedIds.has(String(item.id))));
 
     try {
@@ -246,8 +246,8 @@ export function useCreateBudgets() {
   };
 
   const isDuplicate = async (
-    year: number, 
-    month: number, 
+    year: number,
+    month: number,
     coaId: number,
     divisionId: number,
     departmentId: number,
@@ -279,10 +279,10 @@ export function useCreateBudgets() {
   const updateBudget = async (id: string | number, payload: Partial<CreateBudgetPayload>) => {
     try {
       if (payload.month) {
-          const monthIndex = Number(payload.month);
-          if (!isNaN(monthIndex) && monthIndex > 0 && monthIndex <= 12) {
-              payload.month = MONTH_NAMES[monthIndex - 1];
-          }
+        const monthIndex = Number(payload.month);
+        if (!isNaN(monthIndex) && monthIndex > 0 && monthIndex <= 12) {
+          payload.month = MONTH_NAMES[monthIndex - 1];
+        }
       }
 
       await budgetService.updateBudget(id, payload);
@@ -298,43 +298,43 @@ export function useCreateBudgets() {
   const getGrandTotal = (budgetId: string): number => {
     const parent = budgets.find(b => String(b.id) === budgetId);
     if (!parent) return 0;
-    
+
     const approvedSupplements = budgets.filter(
-      b => b.parent_budget_id != null && String(b.parent_budget_id) === budgetId && 
-           b.entry_type === "supplemental" && 
-           b.status === "Approved"
+      b => b.parent_budget_id != null && String(b.parent_budget_id) === budgetId &&
+        b.entry_type === "supplemental" &&
+        b.status === "Approved"
     );
     return parent.amount + approvedSupplements.reduce((sum, s) => sum + s.amount, 0);
   };
 
   const hasInFlightSupplement = (parentId: string): boolean => {
     return budgets.some(
-      b => b.parent_budget_id != null && String(b.parent_budget_id) === parentId && 
-           b.entry_type === "supplemental" && 
-           (b.status === "Pending" || b.status === "Draft")
+      b => b.parent_budget_id != null && String(b.parent_budget_id) === parentId &&
+        b.entry_type === "supplemental" &&
+        (b.status === "Pending" || b.status === "Draft")
     );
   };
 
   return {
-    budgets, 
+    budgets,
     kpiTotals,
-    loading, 
-    filters, 
+    loading,
+    filters,
     setFilters,
-    selectedIds, 
-    toggleSelect, 
-    toggleSelectAll, 
+    selectedIds,
+    toggleSelect,
+    toggleSelectAll,
     clearSelection,
-    fetchBudgets, 
-    deleteBudget, 
-    deleteSelected, 
+    fetchBudgets,
+    deleteBudget,
+    deleteSelected,
     submitBudgets,
-    submitForApproval, 
+    submitForApproval,
     quickSubmit,
-    isDuplicate, 
-    addBudget, 
+    isDuplicate,
+    addBudget,
     updateBudget,
-    getGrandTotal, 
+    getGrandTotal,
     hasInFlightSupplement,
   };
 }

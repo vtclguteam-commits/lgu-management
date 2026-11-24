@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/components/data-table/table-toolbar.tsx
+// src/modules/lgu-management/line-discount/components/data-table/table-toolbar.tsx
 "use client";
 
 import type { Table } from "@tanstack/react-table";

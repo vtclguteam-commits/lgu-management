@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module
-import CWTModules from "@/modules/financial-management/reports/cwt/CWTModule";
+import CWTModules from "@/modules/lgu-management/reports/cwt/CWTModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

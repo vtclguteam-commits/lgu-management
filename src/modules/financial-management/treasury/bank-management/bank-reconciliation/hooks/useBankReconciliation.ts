@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-reconciliation/hooks/useBankReconciliation.ts
+// src/modules/lgu-management/treasury/bank-management/bank-reconciliation/hooks/useBankReconciliation.ts
 import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import { bankReconciliationApi } from "../providers/bankReconciliationApi";

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-transfers/BankTransfersModule.tsx
+// src/modules/lgu-management/treasury/bank-management/bank-transfers/BankTransfersModule.tsx
 "use client";
 
 import {

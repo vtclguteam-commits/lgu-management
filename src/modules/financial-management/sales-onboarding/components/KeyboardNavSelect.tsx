@@ -1,4 +1,4 @@
-// src/modules/financial-management/sales-onboarding/components/KeyboardNavSelect.tsx
+// src/modules/lgu-management/sales-onboarding/components/KeyboardNavSelect.tsx
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { ChevronDown, Check } from "lucide-react";
@@ -138,9 +138,8 @@ export default function KeyboardNavSelect({
           }}
           onKeyDown={handleKeyDown}
           placeholder={selectedOption ? selectedOption.label : placeholder}
-          className={`w-full h-10 pl-3 pr-10 text-xs rounded-xl bg-background border font-semibold focus:outline-none transition-all ${
-            isOpen ? "ring-2 ring-blue-600/20 border-blue-500" : "border-border/60 hover:bg-muted/10"
-          } ${error ? "border-red-500" : ""}`}
+          className={`w-full h-10 pl-3 pr-10 text-xs rounded-xl bg-background border font-semibold focus:outline-none transition-all ${isOpen ? "ring-2 ring-blue-600/20 border-blue-500" : "border-border/60 hover:bg-muted/10"
+            } ${error ? "border-red-500" : ""}`}
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
           {value && (
@@ -153,7 +152,7 @@ export default function KeyboardNavSelect({
               }}
               className="text-muted-foreground hover:text-foreground transition-colors p-0.5 rounded-full hover:bg-muted"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
             </button>
           )}
           <ChevronDown size={14} className="text-muted-foreground shrink-0" />
@@ -179,9 +178,8 @@ export default function KeyboardNavSelect({
                       setInputValue(opt.label);
                       setIsOpen(false);
                     }}
-                    className={`p-2.5 text-xs font-semibold cursor-pointer flex items-center justify-between transition-colors ${
-                      isHighlighted ? "bg-accent text-accent-foreground" : isSelected ? "bg-accent/40 text-blue-600" : ""
-                    }`}
+                    className={`p-2.5 text-xs font-semibold cursor-pointer flex items-center justify-between transition-colors ${isHighlighted ? "bg-accent text-accent-foreground" : isSelected ? "bg-accent/40 text-blue-600" : ""
+                      }`}
                   >
                     <div className="flex flex-col min-w-0 pr-2">
                       <span className="whitespace-normal break-words">{opt.label}</span>

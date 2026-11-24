@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
-import { Combobox } from "@/modules/financial-management/supplier-registration/components/ui/Combobox";
+import { Combobox } from "@/modules/lgu-management/supplier-registration/components/ui/Combobox";
 
 interface ProductListItemProps {
   product: { id: number; product_name: string; product_code?: string; discount_type_id?: number | string | null };

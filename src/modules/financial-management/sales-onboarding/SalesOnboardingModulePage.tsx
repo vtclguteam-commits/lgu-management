@@ -1,11 +1,11 @@
-// src/modules/financial-management/sales-onboarding/SalesOnboardingModulePage.tsx
+// src/modules/lgu-management/sales-onboarding/SalesOnboardingModulePage.tsx
 
 "use client";
 
 import React from "react";
 import { TrendingUp } from "lucide-react";
 import { useSalesOnboarding } from "./hooks/useSalesOnboarding";
-import { DataTableSkeleton } from "@/app/(financial-management)/fm/_components/DataTableSkeleton";
+import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
 import SalesOnboardingForm, { FormValues } from "./components/SalesOnboardingForm";
 import OnboardHistoryPanel from "./components/OnboardHistoryPanel";
 

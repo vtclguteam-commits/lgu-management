@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/components/DateRangePicker.tsx
+// src/modules/lgu-management/treasury/salesmen-expense-approval/components/DateRangePicker.tsx
 "use client";
 
 import * as React from "react";
@@ -58,14 +58,14 @@ export function DateRangePicker({ date, setDate, className }: Props) {
               </p>
             </div>
             {date && (
-                <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="h-8 w-8 rounded-full hover:bg-destructive/10 hover:text-destructive transition-colors"
-                    onClick={() => setDate(undefined)}
-                >
-                    <X className="h-4 w-4" />
-                </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 rounded-full hover:bg-destructive/10 hover:text-destructive transition-colors"
+                onClick={() => setDate(undefined)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
             )}
           </div>
           <Calendar

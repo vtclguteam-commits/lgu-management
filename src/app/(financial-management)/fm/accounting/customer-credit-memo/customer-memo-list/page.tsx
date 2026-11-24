@@ -11,7 +11,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
-import CustomersMemoListModule from "@/modules/financial-management/accounting/customers-memo/components/CustomersMemoListModule";
+import CustomersMemoListModule from "@/modules/lgu-management/accounting/customers-memo/components/CustomersMemoListModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

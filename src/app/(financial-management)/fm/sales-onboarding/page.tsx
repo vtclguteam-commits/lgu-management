@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/sales-onboarding/page.tsx
+// src/app/(lgu-management)/fm/sales-onboarding/page.tsx
 
 import {
     Breadcrumb,
@@ -14,7 +14,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import SalesOnboardingModulePage from "@/modules/financial-management/sales-onboarding/SalesOnboardingModulePage";
+import SalesOnboardingModulePage from "@/modules/lgu-management/sales-onboarding/SalesOnboardingModulePage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

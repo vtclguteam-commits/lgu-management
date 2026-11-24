@@ -4,8 +4,8 @@ import {
   fetchAllRepresentatives,
   createRepresentative,
   checkRepresentativeDuplicate,
-} from "@/modules/financial-management/supplier-registration/services/representative";
-import { RepresentativeFormSchema } from "@/modules/financial-management/supplier-registration/types/representative.schema";
+} from "@/modules/lgu-management/supplier-registration/services/representative";
+import { RepresentativeFormSchema } from "@/modules/lgu-management/supplier-registration/types/representative.schema";
 
 /**
  * GET /api/representatives
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
 
     if (duplicateCheck.isDuplicate) {
       let errorMessage = "A representative with these details already exists for this supplier";
-      
+
       if (duplicateCheck.type === "email") {
         errorMessage = "A representative with this email already exists for this supplier";
       } else if (duplicateCheck.type === "contact") {

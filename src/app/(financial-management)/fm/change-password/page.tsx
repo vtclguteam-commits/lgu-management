@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // âœ… Wire the module you asked for
-import ChangePasswordPage from "@/modules/financial-management/change-password/ChangePasswordPage";
+import ChangePasswordPage from "@/modules/lgu-management/change-password/ChangePasswordPage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

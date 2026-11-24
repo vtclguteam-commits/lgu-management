@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-ledger/hooks/useBankLedger.ts
+// src/modules/lgu-management/treasury/bank-management/bank-ledger/hooks/useBankLedger.ts
 import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import { bankLedgerApi } from "../providers/bankLedgerApi";

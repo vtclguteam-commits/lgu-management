@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/components/data-table/skeleton-loader.tsx
+// src/modules/lgu-management/line-discount/components/data-table/skeleton-loader.tsx
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,

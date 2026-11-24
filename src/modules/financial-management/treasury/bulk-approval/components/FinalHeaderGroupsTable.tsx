@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/components/FinalHeaderGroupsTable.tsx
+// src/modules/lgu-management/treasury/bulk-approval/components/FinalHeaderGroupsTable.tsx
 "use client";
 
 import * as React from "react";
@@ -231,18 +231,17 @@ export default function FinalHeaderGroupsTable({
           <h3 className="text-base font-black tracking-tight text-slate-800 dark:text-slate-200 leading-none">Available Top Sheets</h3>
           <p className="text-[10px] font-medium text-muted-foreground">Select a period group to review the aggregated matrix.</p>
         </div>
-        
+
         <div className="flex flex-wrap items-center gap-2 flex-1 md:max-w-3xl md:justify-end">
           <div className="flex items-center gap-1 bg-slate-100/80 dark:bg-slate-800/80 p-0.5 rounded-xl border dark:border-slate-800">
             <Button
               type="button"
               size="sm"
               variant={statusFilter === "ready" ? "secondary" : "ghost"}
-              className={`h-7 px-3 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all ${
-                statusFilter === "ready" 
-                  ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm" 
+              className={`h-7 px-3 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all ${statusFilter === "ready"
+                  ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm"
                   : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-              }`}
+                }`}
               onClick={() => onStatusFilterChange?.("ready")}
               disabled={loading}
             >
@@ -252,11 +251,10 @@ export default function FinalHeaderGroupsTable({
               type="button"
               size="sm"
               variant={statusFilter === "completed" ? "secondary" : "ghost"}
-              className={`h-7 px-3 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all ${
-                statusFilter === "completed" 
-                  ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm" 
+              className={`h-7 px-3 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all ${statusFilter === "completed"
+                  ? "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm"
                   : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-              }`}
+                }`}
               onClick={() => onStatusFilterChange?.("completed")}
               disabled={loading}
             >
@@ -302,7 +300,7 @@ export default function FinalHeaderGroupsTable({
             <TableHeader className="sticky top-0 z-10 border-b dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
               <TableRow className="hover:bg-transparent">
                 <TableHead className="text-center text-[9px] font-black uppercase tracking-[0.1em] text-slate-400 w-[50px]">Ref</TableHead>
-                <TableHead 
+                <TableHead
                   className="text-[9px] font-black uppercase tracking-[0.1em] text-slate-400 px-4 py-2.5 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                   onClick={() => toggleSort("period")}
                 >
@@ -311,7 +309,7 @@ export default function FinalHeaderGroupsTable({
                     {renderSortIndicator("period")}
                   </span>
                 </TableHead>
-                <TableHead 
+                <TableHead
                   className="text-[9px] font-black uppercase tracking-[0.1em] text-slate-400 px-4 py-2.5 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                   onClick={() => toggleSort("division")}
                 >
@@ -320,7 +318,7 @@ export default function FinalHeaderGroupsTable({
                     {renderSortIndicator("division")}
                   </span>
                 </TableHead>
-                <TableHead 
+                <TableHead
                   className="text-center text-[9px] font-black uppercase tracking-[0.1em] text-slate-400 px-4 py-2.5 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                   onClick={() => toggleSort("metrics")}
                 >
@@ -329,7 +327,7 @@ export default function FinalHeaderGroupsTable({
                     {renderSortIndicator("metrics")}
                   </span>
                 </TableHead>
-                <TableHead 
+                <TableHead
                   className="text-right text-[9px] font-black uppercase tracking-[0.1em] text-slate-400 px-4 py-2.5 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                   onClick={() => toggleSort("amount")}
                 >
@@ -457,13 +455,13 @@ export default function FinalHeaderGroupsTable({
         </p>
         <div className="flex items-center gap-1.5">
           <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => setPage(page - 1)} disabled={page <= 1}>
-             <ArrowLeft className="h-3 w-3" />
+            <ArrowLeft className="h-3 w-3" />
           </Button>
           <span className="text-[11px] font-bold">
             {page} / {pageCount}
           </span>
           <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => setPage(page + 1)} disabled={page >= pageCount}>
-             <ChevronRight className="h-3 w-3" />
+            <ChevronRight className="h-3 w-3" />
           </Button>
         </div>
       </div>

@@ -1,10 +1,10 @@
-// src/modules/financial-management/treasury/expense-approval/user-expense-limit-approval/components/ReviewProposalModal.tsx
+// src/modules/lgu-management/treasury/expense-approval/user-expense-limit-approval/components/ReviewProposalModal.tsx
 
 "use client";
 
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Input }  from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { X, Check, Ban, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useProcessLimitProposal } from "../hooks/useUserExpenseLimitApproval";
@@ -14,8 +14,8 @@ import { formatPeso, BUDGET_COAS } from "../../user-expense-limit/utils";
 import { getCoaConfig } from "../../user-expense-limit/components/LimitTable";
 
 interface ReviewProposalModalProps {
-  proposal:  PendingLimitApproval;
-  onClose:   () => void;
+  proposal: PendingLimitApproval;
+  onClose: () => void;
   onSuccess: (message: string) => void;
 }
 
@@ -27,7 +27,7 @@ export function ReviewProposalModal({ proposal, onClose, onSuccess }: ReviewProp
 
   const [formLimits, setFormLimits] = useState<Record<number, string>>(() => {
     const init: Record<number, string> = {};
-    
+
     // Set default COAs
     BUDGET_COAS.forEach(coa => {
       init[coa.id] = proposal.limits[coa.id] || "";
@@ -70,7 +70,7 @@ export function ReviewProposalModal({ proposal, onClose, onSuccess }: ReviewProp
 
   const handleAction = async (action: "approve" | "reject") => {
     const finalizedLimits: Record<number, number> = {};
-    
+
     // Default limits
     BUDGET_COAS.forEach(coa => {
       finalizedLimits[coa.id] = parseFloat(formLimits[coa.id]) || 0;
@@ -120,7 +120,7 @@ export function ReviewProposalModal({ proposal, onClose, onSuccess }: ReviewProp
 
           {/* Body */}
           <div className="px-6 py-5 space-y-5 overflow-y-auto flex-1 bg-background/50">
-            
+
             {/* Submitter Details */}
             <div className="grid grid-cols-2 gap-4 text-xs bg-muted/10 border border-border/60 rounded-xl p-4 select-text">
               <div>
@@ -145,16 +145,16 @@ export function ReviewProposalModal({ proposal, onClose, onSuccess }: ReviewProp
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 <p className="text-xs font-black text-muted-foreground uppercase tracking-wider">Proposed Ceilings (Modify amounts below if needed)</p>
               </div>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
+
                 {/* Default limits */}
                 {BUDGET_COAS.map(coa => {
                   const config = getCoaConfig(coa.id, coa.name, coa.glCode);
                   return (
                     <div key={coa.id} className="relative p-4 rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:border-border-hover hover:shadow-md transition-all duration-200 flex flex-col justify-between gap-3 overflow-hidden">
                       <div className="absolute top-0 right-0 w-10 h-10 bg-gradient-to-br opacity-5 rounded-bl-full pointer-events-none" />
-                      
+
                       <div className="flex items-center gap-2.5">
                         <div className={`p-2 rounded-lg border shrink-0 ${config.colorClass}`}>
                           <config.icon className="h-3.5 w-3.5" />
@@ -164,7 +164,7 @@ export function ReviewProposalModal({ proposal, onClose, onSuccess }: ReviewProp
                           <span className="text-[9px] text-muted-foreground font-bold font-mono bg-muted/80 px-1 py-0.5 rounded leading-none">GL: {config.glCode}</span>
                         </div>
                       </div>
-                      
+
                       <div className="relative mt-1">
                         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₱</span>
                         <Input
@@ -198,7 +198,7 @@ export function ReviewProposalModal({ proposal, onClose, onSuccess }: ReviewProp
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="relative mt-1">
                         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₱</span>
                         <Input

@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/components/VoteModal.tsx
+// src/modules/lgu-management/treasury/bulk-approval/components/VoteModal.tsx
 "use client";
 
 import * as React from "react";
@@ -659,14 +659,14 @@ export default function VoteModal({ open, loading, detail, onClose, onVoteComple
                   <div className="flex flex-col gap-0.5">
                     {(detail?.approvers_by_level?.[currentTier] ?? []).length > 0
                       ? (detail?.approvers_by_level?.[currentTier] ?? []).map((a) => (
-                          <div key={a.approver_id} className="flex items-center gap-1.5">
-                            <span className="font-black text-[10px] text-indigo-700 dark:text-indigo-400 truncate max-w-[10vw]">{a.name}</span>
-                            {a.vote
-                              ? <Badge className="text-[8px] px-1 py-0 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 font-black shrink-0">Voted</Badge>
-                              : <Badge className="text-[8px] px-1 py-0 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800 font-black shrink-0">Pending</Badge>
-                            }
-                          </div>
-                        ))
+                        <div key={a.approver_id} className="flex items-center gap-1.5">
+                          <span className="font-black text-[10px] text-indigo-700 dark:text-indigo-400 truncate max-w-[10vw]">{a.name}</span>
+                          {a.vote
+                            ? <Badge className="text-[8px] px-1 py-0 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 font-black shrink-0">Voted</Badge>
+                            : <Badge className="text-[8px] px-1 py-0 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800 font-black shrink-0">Pending</Badge>
+                          }
+                        </div>
+                      ))
                       : <span className="text-[10px] text-muted-foreground dark:text-slate-500">—</span>
                     }
                   </div>
@@ -843,95 +843,95 @@ export default function VoteModal({ open, loading, detail, onClose, onVoteComple
                                     </TableCell>
                                   </TableRow>
                                   {week.items.map((p, idx) => {
-                            const status = itemDecisions[p.id] || "PENDING";
-                            const isPersistentLocked = p.is_concern || p.is_rejected;
-                            const isStatusLocked = isPersistentLocked || isInteractionDisabled;
-                            return (
-                              <React.Fragment key={p.id}>
-                                <TableRow className="group hover:bg-slate-50/50 dark:hover:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800">
-                                  <TableCell className="text-center py-3 text-[9px] font-black text-slate-300 dark:text-slate-700 italic">{(idx + 1).toString().padStart(2, '0')}</TableCell>
-                                  <TableCell className="py-3">
-                                    <p className="text-[10px] font-black text-slate-800 dark:text-slate-200 leading-none mb-1 line-clamp-1">{p.remarks || "No remarks"}</p>
-                                    <p className="text-[8px] text-muted-foreground dark:text-slate-500 font-mono">REF: {p.reference_no || "N/A"}</p>
-                                  </TableCell>
-                                  <TableCell className="py-3 text-center">
-                                    <Input
-                                      type="number"
-                                      className="h-7 w-20 text-center text-[10px] font-black tabular-nums bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
-                                      value={editedAmounts[p.id] || p.amount}
-                                      onChange={(e) => setEditedAmounts(prev => ({ ...prev, [p.id]: e.target.value }))}
-                                      disabled={processingItem === p.id || submitting || isStatusLocked}
-                                    />
-                                  </TableCell>
-                                  <TableCell className="py-4 text-center">
-                                    {p.attachment_url ? (
-                                      <Button
-                                        type="button"
-                                        size="icon"
-                                        variant="ghost"
-                                        className="h-8 w-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/40"
-                                        onClick={() => setPreviewUrl(`/api/fm/expense-assets?id=${p.attachment_url}`)}
-                                        aria-label={`Preview evidence for expense ${p.expense_id}`}
-                                        title="Preview supporting evidence"
-                                      >
-                                        <ExternalLink size={14} />
-                                      </Button>
-                                    ) : (
-                                      <Badge
-                                        variant="outline"
-                                        className="whitespace-nowrap border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide text-slate-400 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-500"
-                                      >
-                                        No attachment
-                                      </Badge>
-                                    )}
-                                  </TableCell>
-                                  <TableCell className="py-4 text-center text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">{formatDate(p.date)}</TableCell>
-                                  <TableCell className="py-4 text-center">
-                                    <Badge className={`text-[9px] font-black h-5 px-2 uppercase shadow-sm ${status === "APPROVED" ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800" : status === "REJECTED" ? "bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800" : status === "WITH_CONCERN" ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500"}`}>
-                                      {status === "PENDING" ? "Pending" : status}
-                                    </Badge>
-                                  </TableCell>
-                                  <TableCell className="py-3 text-center">
-                                    <div className="flex items-center justify-center gap-1">
-                                      <Button size="icon" className={`h-7 w-7 rounded-lg shadow-sm ${status === "APPROVED" ? "bg-emerald-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/40"}`} onClick={() => setItemStatus(p.id, "APPROVED")} disabled={processingItem === p.id || submitting || isStatusLocked}>
-                                        <Check size={14} strokeWidth={3} />
-                                      </Button>
-                                      <Button size="icon" className={`h-7 w-7 rounded-lg shadow-sm ${status === "WITH_CONCERN" ? "bg-amber-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 hover:bg-amber-50 dark:hover:bg-amber-900/40"}`} onClick={() => setItemStatus(p.id, "WITH_CONCERN")} disabled={processingItem === p.id || submitting || isStatusLocked}>
-                                        <AlertTriangle size={12} />
-                                      </Button>
-                                      <Button size="icon" className={`h-7 w-7 rounded-lg shadow-sm ${status === "REJECTED" ? "bg-rose-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 hover:bg-rose-50 dark:hover:bg-rose-900/40"}`} onClick={() => setItemStatus(p.id, "REJECTED")} disabled={processingItem === p.id || submitting || isStatusLocked}>
-                                        <X size={14} strokeWidth={3} />
-                                      </Button>
-                                    </div>
-                                  </TableCell>
-                                </TableRow>
-                                {(status === "REJECTED" || status === "WITH_CONCERN") && (
-                                  <TableRow className={`${status === "REJECTED" ? "bg-rose-50/30 dark:bg-rose-900/10" : "bg-amber-50/30 dark:bg-amber-900/10"}`}>
-                                    <TableCell colSpan={7} className="px-8 py-3">
-                                      <div className="flex items-center gap-4 pl-12 flex-1">
-                                        <span className={`text-[10px] font-black uppercase tracking-widest ${status === "REJECTED" ? "text-rose-600 dark:text-rose-400" : "text-amber-600 dark:text-amber-400"} shrink-0`}>Audit Feedback:</span>
-                                        <Input
-                                          placeholder="Provide mandatory feedback for decision..."
-                                          className="h-8 text-xs font-medium border-2 focus:border-primary bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 shadow-inner flex-1"
-                                          value={showItemRemarks[p.id] || ""}
-                                          onChange={(e) => setShowItemRemarks(prev => ({ ...prev, [p.id]: e.target.value }))}
-                                          disabled={processingItem === p.id || submitting || isPersistentLocked || isInteractionDisabled}
-                                        />
-                                        <Button
-                                          size="sm"
-                                          className="h-8 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-[10px] uppercase tracking-widest rounded-lg shadow-md gap-2 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:border-none disabled:shadow-none disabled:cursor-not-allowed"
-                                          disabled={processingItem === p.id || !showItemRemarks[p.id]?.trim() || isPersistentLocked || submitting}
-                                          onClick={() => handleSingleItemVote(p)}
-                                        >
-                                          {processingItem === p.id ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
-                                          Submit Decision
-                                        </Button>
-                                      </div>
-                                    </TableCell>
-                                  </TableRow>
-                                )}
-                              </React.Fragment>
-                            );
+                                    const status = itemDecisions[p.id] || "PENDING";
+                                    const isPersistentLocked = p.is_concern || p.is_rejected;
+                                    const isStatusLocked = isPersistentLocked || isInteractionDisabled;
+                                    return (
+                                      <React.Fragment key={p.id}>
+                                        <TableRow className="group hover:bg-slate-50/50 dark:hover:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800">
+                                          <TableCell className="text-center py-3 text-[9px] font-black text-slate-300 dark:text-slate-700 italic">{(idx + 1).toString().padStart(2, '0')}</TableCell>
+                                          <TableCell className="py-3">
+                                            <p className="text-[10px] font-black text-slate-800 dark:text-slate-200 leading-none mb-1 line-clamp-1">{p.remarks || "No remarks"}</p>
+                                            <p className="text-[8px] text-muted-foreground dark:text-slate-500 font-mono">REF: {p.reference_no || "N/A"}</p>
+                                          </TableCell>
+                                          <TableCell className="py-3 text-center">
+                                            <Input
+                                              type="number"
+                                              className="h-7 w-20 text-center text-[10px] font-black tabular-nums bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
+                                              value={editedAmounts[p.id] || p.amount}
+                                              onChange={(e) => setEditedAmounts(prev => ({ ...prev, [p.id]: e.target.value }))}
+                                              disabled={processingItem === p.id || submitting || isStatusLocked}
+                                            />
+                                          </TableCell>
+                                          <TableCell className="py-4 text-center">
+                                            {p.attachment_url ? (
+                                              <Button
+                                                type="button"
+                                                size="icon"
+                                                variant="ghost"
+                                                className="h-8 w-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/40"
+                                                onClick={() => setPreviewUrl(`/api/fm/expense-assets?id=${p.attachment_url}`)}
+                                                aria-label={`Preview evidence for expense ${p.expense_id}`}
+                                                title="Preview supporting evidence"
+                                              >
+                                                <ExternalLink size={14} />
+                                              </Button>
+                                            ) : (
+                                              <Badge
+                                                variant="outline"
+                                                className="whitespace-nowrap border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide text-slate-400 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-500"
+                                              >
+                                                No attachment
+                                              </Badge>
+                                            )}
+                                          </TableCell>
+                                          <TableCell className="py-4 text-center text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">{formatDate(p.date)}</TableCell>
+                                          <TableCell className="py-4 text-center">
+                                            <Badge className={`text-[9px] font-black h-5 px-2 uppercase shadow-sm ${status === "APPROVED" ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800" : status === "REJECTED" ? "bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800" : status === "WITH_CONCERN" ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500"}`}>
+                                              {status === "PENDING" ? "Pending" : status}
+                                            </Badge>
+                                          </TableCell>
+                                          <TableCell className="py-3 text-center">
+                                            <div className="flex items-center justify-center gap-1">
+                                              <Button size="icon" className={`h-7 w-7 rounded-lg shadow-sm ${status === "APPROVED" ? "bg-emerald-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/40"}`} onClick={() => setItemStatus(p.id, "APPROVED")} disabled={processingItem === p.id || submitting || isStatusLocked}>
+                                                <Check size={14} strokeWidth={3} />
+                                              </Button>
+                                              <Button size="icon" className={`h-7 w-7 rounded-lg shadow-sm ${status === "WITH_CONCERN" ? "bg-amber-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 hover:bg-amber-50 dark:hover:bg-amber-900/40"}`} onClick={() => setItemStatus(p.id, "WITH_CONCERN")} disabled={processingItem === p.id || submitting || isStatusLocked}>
+                                                <AlertTriangle size={12} />
+                                              </Button>
+                                              <Button size="icon" className={`h-7 w-7 rounded-lg shadow-sm ${status === "REJECTED" ? "bg-rose-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 hover:bg-rose-50 dark:hover:bg-rose-900/40"}`} onClick={() => setItemStatus(p.id, "REJECTED")} disabled={processingItem === p.id || submitting || isStatusLocked}>
+                                                <X size={14} strokeWidth={3} />
+                                              </Button>
+                                            </div>
+                                          </TableCell>
+                                        </TableRow>
+                                        {(status === "REJECTED" || status === "WITH_CONCERN") && (
+                                          <TableRow className={`${status === "REJECTED" ? "bg-rose-50/30 dark:bg-rose-900/10" : "bg-amber-50/30 dark:bg-amber-900/10"}`}>
+                                            <TableCell colSpan={7} className="px-8 py-3">
+                                              <div className="flex items-center gap-4 pl-12 flex-1">
+                                                <span className={`text-[10px] font-black uppercase tracking-widest ${status === "REJECTED" ? "text-rose-600 dark:text-rose-400" : "text-amber-600 dark:text-amber-400"} shrink-0`}>Audit Feedback:</span>
+                                                <Input
+                                                  placeholder="Provide mandatory feedback for decision..."
+                                                  className="h-8 text-xs font-medium border-2 focus:border-primary bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 shadow-inner flex-1"
+                                                  value={showItemRemarks[p.id] || ""}
+                                                  onChange={(e) => setShowItemRemarks(prev => ({ ...prev, [p.id]: e.target.value }))}
+                                                  disabled={processingItem === p.id || submitting || isPersistentLocked || isInteractionDisabled}
+                                                />
+                                                <Button
+                                                  size="sm"
+                                                  className="h-8 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-[10px] uppercase tracking-widest rounded-lg shadow-md gap-2 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 disabled:border-none disabled:shadow-none disabled:cursor-not-allowed"
+                                                  disabled={processingItem === p.id || !showItemRemarks[p.id]?.trim() || isPersistentLocked || submitting}
+                                                  onClick={() => handleSingleItemVote(p)}
+                                                >
+                                                  {processingItem === p.id ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                                                  Submit Decision
+                                                </Button>
+                                              </div>
+                                            </TableCell>
+                                          </TableRow>
+                                        )}
+                                      </React.Fragment>
+                                    );
                                   })}
                                 </React.Fragment>
                               );
@@ -1150,8 +1150,8 @@ export default function VoteModal({ open, loading, detail, onClose, onVoteComple
             <Button variant="ghost" onClick={() => { setShowConcernWarning(false); setRemarksOpen(true); }} className="text-slate-500 dark:text-slate-400 text-sm hover:bg-slate-100 dark:hover:bg-slate-800" disabled={submitting}>
               Go Back
             </Button>
-            <Button 
-              onClick={() => executeSubmit(pendingRemarks.current)} 
+            <Button
+              onClick={() => executeSubmit(pendingRemarks.current)}
               disabled={submitting}
               className="bg-slate-800 hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600 text-white text-sm font-semibold px-5 rounded-lg shadow-sm gap-2"
             >
@@ -1183,8 +1183,8 @@ export default function VoteModal({ open, loading, detail, onClose, onVoteComple
             <Button variant="ghost" onClick={() => { setShowRejectWarning(false); setRemarksOpen(true); }} className="text-slate-500 dark:text-slate-400 text-sm hover:bg-slate-100 dark:hover:bg-slate-800" disabled={submitting}>
               Go Back
             </Button>
-            <Button 
-              onClick={() => executeSubmit(pendingRemarks.current)} 
+            <Button
+              onClick={() => executeSubmit(pendingRemarks.current)}
               disabled={submitting}
               className="bg-rose-600 hover:bg-rose-700 dark:bg-rose-600 dark:hover:bg-rose-700 text-white text-sm font-semibold px-5 rounded-lg shadow-sm gap-2"
             >

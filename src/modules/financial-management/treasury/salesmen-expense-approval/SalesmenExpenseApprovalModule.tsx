@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/SalesmenExpenseApprovalModule.tsx
+// src/modules/lgu-management/treasury/salesmen-expense-approval/SalesmenExpenseApprovalModule.tsx
 "use client";
 
 import * as React from "react";
@@ -55,9 +55,9 @@ export default function SalesmenExpenseApprovalModule() {
         <p className="text-muted-foreground mt-3 max-w-lg font-medium text-lg">
           You do not have the required permissions to view this module. This area is strictly restricted to Department Heads and Division Supervisors.
         </p>
-        <Button 
-          className="mt-8 rounded-full font-bold shadow-lg flex items-center gap-2" 
-          onClick={() => window.location.href = '/dashboard'} 
+        <Button
+          className="mt-8 rounded-full font-bold shadow-lg flex items-center gap-2"
+          onClick={() => window.location.href = '/dashboard'}
           variant="default"
           size="lg"
         >
@@ -101,7 +101,7 @@ export default function SalesmenExpenseApprovalModule() {
 
       {/* Main Content Splitting */}
       <div className="flex flex-col xl:flex-row gap-6 flex-1 min-h-0 overflow-hidden">
-        
+
         {/* Left Side: Salesmen */}
         <div className="flex-[7] flex flex-col min-h-0 bg-card dark:bg-slate-900 border dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
           <div className="flex shrink-0 items-center justify-between gap-4 border-b bg-muted/10 px-6 py-5 dark:border-slate-800 dark:bg-slate-800/50">
@@ -137,7 +137,7 @@ export default function SalesmenExpenseApprovalModule() {
               </Button>
             </div>
           </div>
-          
+
           <div className="p-6 flex-1 flex flex-col min-h-0 bg-muted/5 dark:bg-slate-900/50">
             <SalesmanExpenseTable
               rows={rows}

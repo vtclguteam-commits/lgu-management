@@ -1,4 +1,4 @@
-import { fetchAllDiscountTypes } from "@/modules/financial-management/supplier-registration/services/discount-types";
+import { fetchAllDiscountTypes } from "@/modules/lgu-management/supplier-registration/services/discount-types";
 import { NextResponse } from "next/server";
 
 /**

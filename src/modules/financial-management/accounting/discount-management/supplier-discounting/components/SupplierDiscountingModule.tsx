@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/supplier-discounting/components/SupplierDiscountingModule.tsx
+// src/modules/lgu-management/accounting/discount-management/supplier-discounting/components/SupplierDiscountingModule.tsx
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -450,17 +450,17 @@ export default function SupplierDiscountingModule({
                 Refresh
               </Button>
             </div>
-              <Input
-                value={search}
-                disabled={saving}
-                onChange={(event) => {
-                  setSearch(event.target.value);
-                  setSelectedProductIds([]);
-                  setPage(1);
-                }}
-                placeholder="Search product name, code, or barcode"
-                aria-label="Search parent products"
-              />
+            <Input
+              value={search}
+              disabled={saving}
+              onChange={(event) => {
+                setSearch(event.target.value);
+                setSelectedProductIds([]);
+                setPage(1);
+              }}
+              placeholder="Search product name, code, or barcode"
+              aria-label="Search parent products"
+            />
           </CardHeader>
           <CardContent className="p-0">
             {productError ? (

@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import PayeeRegistrationModulePage from "@/modules/financial-management/payee-registration/PayeeRegistrationModulePage";
+import PayeeRegistrationModulePage from "@/modules/lgu-management/payee-registration/PayeeRegistrationModulePage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -1,7 +1,7 @@
 // index.ts
 // Barrel export — re-exports everything from the module so consumers
 // can import from one place:
-//   import { AccountsReceivableModule } from '@/modules/financial-management/accounting/accounts-receivable'
+//   import { AccountsReceivableModule } from '@/modules/lgu-management/accounting/accounts-receivable'
 
 export { default } from './AccountsReceivableModule';
 export * from './types';

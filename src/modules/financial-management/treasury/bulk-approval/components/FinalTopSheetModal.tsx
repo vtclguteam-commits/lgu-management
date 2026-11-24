@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/components/FinalTopSheetModal.tsx
+// src/modules/lgu-management/treasury/bulk-approval/components/FinalTopSheetModal.tsx
 "use client";
 
 import * as React from "react";
@@ -85,7 +85,7 @@ function getApprovalInfo(meta: ApprovalMeta) {
   const pendingApprovers = (meta.current_tier_approvers ?? [])
     .filter((a) => !a.voted)
     .map((a) => a.name);
-  
+
   const pendingText = pendingApprovers.length > 0
     ? ` (waiting for approver: ${pendingApprovers.join(", ")})`
     : (meta.next_tier_approvers && meta.next_tier_approvers.length > 0
@@ -160,9 +160,8 @@ function getTargetLabel(data: FinalTopSheetResponse | null, target: FinalDecisio
   if (target.scope === "cell") {
     const salesman = data.salesmen.find((item) => item.employee_id === target.employee_id);
     const coa = data.coa_rows.find((item) => item.coa_id === target.coa_id);
-    return `${salesman?.salesman_name ?? `Employee #${target.employee_id}`} • ${
-      coa?.account_title ?? `COA #${target.coa_id}`
-    }`;
+    return `${salesman?.salesman_name ?? `Employee #${target.employee_id}`} • ${coa?.account_title ?? `COA #${target.coa_id}`
+      }`;
   }
 
   return `${target.expense_ids?.length ?? 0} selected expense line${target.expense_ids?.length === 1 ? "" : "s"}`;
@@ -310,9 +309,8 @@ function RemarksRequiredDialog({
               return (
                 <div
                   key={detail.expense_id}
-                  className={`rounded-2xl border bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none ${
-                    isMissing ? "border-amber-200 dark:border-amber-800/50" : "border-emerald-100 dark:border-emerald-800/50"
-                  }`}
+                  className={`rounded-2xl border bg-white dark:bg-slate-800 p-4 shadow-sm dark:shadow-none ${isMissing ? "border-amber-200 dark:border-amber-800/50" : "border-emerald-100 dark:border-emerald-800/50"
+                    }`}
                 >
                   <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -338,9 +336,8 @@ function RemarksRequiredDialog({
                     }
                     placeholder={`Enter remarks for ${statusLabel.toLowerCase()} decision...`}
                     rows={2}
-                    className={`resize-none rounded-xl bg-white dark:bg-slate-900 text-xs font-medium shadow-inner dark:shadow-none ${
-                      isMissing ? "border-amber-300 dark:border-amber-800/60" : "border-slate-200 dark:border-slate-700"
-                    }`}
+                    className={`resize-none rounded-xl bg-white dark:bg-slate-900 text-xs font-medium shadow-inner dark:shadow-none ${isMissing ? "border-amber-300 dark:border-amber-800/60" : "border-slate-200 dark:border-slate-700"
+                      }`}
                     disabled={submitting}
                   />
                 </div>
@@ -920,7 +917,7 @@ export default function FinalTopSheetModal({
                 <div className="flex flex-col leading-none">
                   <span>Final Top-Sheet Review</span>
                   {stagedDecisionCount > 0 ? (
-                    <motion.span 
+                    <motion.span
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       className="text-[9px] font-black uppercase tracking-[0.25em] text-emerald-600 dark:text-emerald-400 mt-0.5 flex items-center gap-1"
@@ -944,15 +941,14 @@ export default function FinalTopSheetModal({
                     <span className="text-[10px] font-bold text-slate-500 dark:text-white/50">
                       {formatDate(group.period_from)} – {formatDate(group.period_to)}
                     </span>
-                    <Badge className={`rounded-lg px-2 py-0.5 text-[10px] font-black uppercase tracking-widest ${
-                      isRejectedHistory
+                    <Badge className={`rounded-lg px-2 py-0.5 text-[10px] font-black uppercase tracking-widest ${isRejectedHistory
                         ? "border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400"
                         : isApprovedHistory
                           ? "border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400"
-                          : canSubmitFinalAction 
-                            ? "border border-emerald-100 dark:border-emerald-300/40 bg-emerald-50 dark:bg-emerald-400/15 text-emerald-600 dark:text-emerald-200" 
+                          : canSubmitFinalAction
+                            ? "border border-emerald-100 dark:border-emerald-300/40 bg-emerald-50 dark:bg-emerald-400/15 text-emerald-600 dark:text-emerald-200"
                             : "border border-amber-200 dark:border-amber-300/40 bg-amber-50 dark:bg-amber-400/15 text-amber-700 dark:text-amber-200"
-                    }`}>
+                      }`}>
                       {isRejectedHistory ? "REJECTED" : isApprovedHistory ? "FINALIZED" : approvalInfo.shortLabel}
                     </Badge>
                   </div>
@@ -977,52 +973,48 @@ export default function FinalTopSheetModal({
               </div>
             ) : (
               <div className="flex h-full flex-col gap-4 animate-in fade-in duration-500 overflow-hidden">
-                <div className={`flex items-center justify-between gap-6 rounded-2xl border px-6 py-4 transition-all ${
-                  isRejectedHistory
+                <div className={`flex items-center justify-between gap-6 rounded-2xl border px-6 py-4 transition-all ${isRejectedHistory
                     ? "bg-rose-50 dark:bg-rose-900/20 border-rose-100 dark:border-rose-800/50 shadow-sm dark:shadow-none shadow-rose-100/20"
-                    : isApprovedHistory || canSubmitFinalAction 
-                      ? "bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800/50 shadow-sm dark:shadow-none shadow-emerald-100/20" 
+                    : isApprovedHistory || canSubmitFinalAction
+                      ? "bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800/50 shadow-sm dark:shadow-none shadow-emerald-100/20"
                       : "bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800"
-                }`}>
+                  }`}>
                   <div className="flex items-center gap-5">
-                    <div className={`flex h-12 w-12 items-center justify-center rounded-full ring-4 ${
-                      isRejectedHistory
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-full ring-4 ${isRejectedHistory
                         ? "bg-rose-500/10 dark:bg-rose-900/40 text-rose-600 dark:text-rose-500 ring-rose-500/5 dark:ring-rose-900/20"
-                        : isApprovedHistory || canSubmitFinalAction 
-                          ? "bg-emerald-500/10 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 ring-emerald-500/5 dark:ring-emerald-900/20" 
+                        : isApprovedHistory || canSubmitFinalAction
+                          ? "bg-emerald-500/10 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 ring-emerald-500/5 dark:ring-emerald-900/20"
                           : "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 ring-slate-100 dark:ring-slate-900"
-                    }`}>
+                      }`}>
                       {isRejectedHistory ? <ShieldAlert className="h-6 w-6" /> : isApprovedHistory || canSubmitFinalAction ? <ShieldCheck className="h-6 w-6" /> : <ShieldAlert className="h-6 w-6" />}
                     </div>
                     <div className="space-y-1">
-                      <h3 className={`text-sm font-black tracking-tight ${
-                        isRejectedHistory
+                      <h3 className={`text-sm font-black tracking-tight ${isRejectedHistory
                           ? "text-rose-900 dark:text-rose-400"
-                          : isApprovedHistory || canSubmitFinalAction 
-                            ? "text-emerald-900 dark:text-emerald-400" 
+                          : isApprovedHistory || canSubmitFinalAction
+                            ? "text-emerald-900 dark:text-emerald-400"
                             : "text-slate-900 dark:text-slate-100"
-                      }`}>
+                        }`}>
                         {isRejectedHistory
                           ? "Audit Finalized & Rejected"
-                          : isApprovedHistory 
-                            ? "Audit Finalized & Posted" 
-                            : canSubmitFinalAction 
-                              ? "Ready for your Final Top-Sheet Review" 
+                          : isApprovedHistory
+                            ? "Audit Finalized & Posted"
+                            : canSubmitFinalAction
+                              ? "Ready for your Final Top-Sheet Review"
                               : "Waiting for other approvers"}
                       </h3>
-                      <p className={`text-[11px] font-medium leading-normal ${
-                        isRejectedHistory
+                      <p className={`text-[11px] font-medium leading-normal ${isRejectedHistory
                           ? "text-rose-700/70 dark:text-rose-400/70"
-                          : isApprovedHistory || canSubmitFinalAction 
-                            ? "text-emerald-700/70 dark:text-emerald-400/70" 
+                          : isApprovedHistory || canSubmitFinalAction
+                            ? "text-emerald-700/70 dark:text-emerald-400/70"
                             : "text-slate-500 dark:text-slate-400"
-                      }`}>
+                        }`}>
                         {isRejectedHistory
                           ? "This top-sheet has been successfully audited and fully rejected."
-                          : isApprovedHistory 
+                          : isApprovedHistory
                             ? "This top-sheet has been successfully audited and posted to the live Disbursement table."
-                            : canSubmitFinalAction 
-                              ? `This top sheet has reached your level and is ready for your action. Current status: ${formatDraftStatusList(data?.group.draft_statuses)}.` 
+                            : canSubmitFinalAction
+                              ? `This top sheet has reached your level and is ready for your action. Current status: ${formatDraftStatusList(data?.group.draft_statuses)}.`
                               : approvalInfo.description}
                       </p>
                     </div>
@@ -1038,9 +1030,9 @@ export default function FinalTopSheetModal({
                       <div className="text-center">
                         <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">Current Tier</p>
                         <p className="text-[10px] font-black text-slate-900 dark:text-slate-200">
-                          {toNumber(data?.group.current_tier) >= 999 ? "Finalized" : 
-                           toNumber(data?.group.current_tier) <= 0 ? "Suspended" : 
-                           `Level ${data?.group.current_tier}`}
+                          {toNumber(data?.group.current_tier) >= 999 ? "Finalized" :
+                            toNumber(data?.group.current_tier) <= 0 ? "Suspended" :
+                              `Level ${data?.group.current_tier}`}
                         </p>
                       </div>
                       <div className="h-8 w-px bg-slate-200 dark:bg-slate-800" />
@@ -1173,9 +1165,9 @@ export default function FinalTopSheetModal({
                       ? "This top-sheet was fully rejected and is currently in read-only archive mode."
                       : "This top-sheet has been finalized and is currently in read-only archive mode."}
                   </p>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="rounded-xl font-bold text-[10px] uppercase tracking-widest"
                     onClick={() => onOpenChange(false)}
                   >
@@ -1305,11 +1297,10 @@ export default function FinalTopSheetModal({
         <DialogContent className="max-w-md p-0 overflow-hidden border border-slate-100 dark:border-slate-800 rounded-3xl bg-white dark:bg-slate-900 shadow-2xl">
           {/* Header */}
           <div className="px-6 pt-6 pb-4 flex items-center gap-3">
-            <div className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 ${
-              pendingRemarksDecision?.status === "Rejected" 
-                ? "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400" 
+            <div className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 ${pendingRemarksDecision?.status === "Rejected"
+                ? "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400"
                 : "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400"
-            }`}>
+              }`}>
               {pendingRemarksDecision?.status === "Rejected" ? (
                 <XCircle size={20} />
               ) : (
@@ -1328,11 +1319,10 @@ export default function FinalTopSheetModal({
 
           {/* Body */}
           <div className="px-6 pb-6 space-y-5">
-            <div className={`p-4 rounded-2xl border text-xs font-semibold leading-relaxed ${
-              pendingRemarksDecision?.status === "Rejected"
+            <div className={`p-4 rounded-2xl border text-xs font-semibold leading-relaxed ${pendingRemarksDecision?.status === "Rejected"
                 ? "bg-rose-50/40 dark:bg-rose-950/10 border-rose-100 dark:border-rose-900/30 text-rose-800 dark:text-rose-300"
                 : "bg-amber-50/40 dark:bg-amber-950/10 border-amber-100 dark:border-amber-900/30 text-amber-800 dark:text-amber-300"
-            }`}>
+              }`}>
               {pendingRemarksDecision?.status === "Rejected" ? (
                 <span>
                   You are about to <strong>reject</strong> {pendingRemarksDecision?.affectedDetails.length} line item(s). These will be excluded from final disbursement drafts.
@@ -1356,11 +1346,10 @@ export default function FinalTopSheetModal({
               </Button>
               <Button
                 size="sm"
-                className={`h-9 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-md dark:shadow-none gap-2 px-5 ${
-                  pendingRemarksDecision?.status === "Rejected"
+                className={`h-9 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-md dark:shadow-none gap-2 px-5 ${pendingRemarksDecision?.status === "Rejected"
                     ? "bg-rose-600 hover:bg-rose-700 dark:bg-rose-600 dark:hover:bg-rose-700"
                     : "bg-amber-500 hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-700"
-                }`}
+                  }`}
                 disabled={submitting}
                 onClick={async () => {
                   await submitPendingRemarksDecision();

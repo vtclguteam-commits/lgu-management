@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getBalanceSheet } from "@/modules/financial-management/financial-statements/statement-of-financial-position/services/balance-sheet.service";
+import { getBalanceSheet } from "@/modules/lgu-management/financial-statements/statement-of-financial-position/services/balance-sheet.service";
 
 export const dynamic = "force-dynamic";
 

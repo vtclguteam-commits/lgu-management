@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/services/bulkApproval.shared.ts
+// src/modules/lgu-management/treasury/bulk-approval/services/bulkApproval.shared.ts
 import type { NextRequest } from "next/server";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import { directusFetch } from "./directus.service";
@@ -567,8 +567,8 @@ export function canUserVote(params: {
   return params.approverRecords.some(
     (r) => {
       const rDivId = toNumericId(r.division_id);
-      return rDivId === params.divisionId && 
-             toNumber(r.approver_heirarchy) === params.currentTier;
+      return rDivId === params.divisionId &&
+        toNumber(r.approver_heirarchy) === params.currentTier;
     }
   );
 }
@@ -688,8 +688,8 @@ export async function buildVoteHistory(params: {
 
   const votesRes = await directusFetch(
     `/items/disbursement_draft_approvals?filter[draft_id][_eq]=${params.draftId}` +
-      `&fields=id,draft_id,approver_id,status,remarks,version,created_at` +
-      `&sort=version,created_at&limit=-1`
+    `&fields=id,draft_id,approver_id,status,remarks,version,created_at` +
+    `&sort=version,created_at&limit=-1`
   );
 
   if (!votesRes.ok) {
@@ -1526,7 +1526,7 @@ export async function processDraftApproval(params: {
     currentVersion = toNumber(draft.approval_version, 1);
     currentTier = parseTier(draft.status ?? "Submitted");
   }
-  
+
   if (!draft) return { ok: false, status: 404, data: { error: "Draft resolved to null" } };
 
   const draftDivisionId = toNumericId(draft.division_id) ?? 0;

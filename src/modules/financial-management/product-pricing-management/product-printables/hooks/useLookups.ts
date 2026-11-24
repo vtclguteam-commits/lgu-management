@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/hooks/useLookups.ts
+// src/modules/lgu-management/printables-management/product-printables/hooks/useLookups.ts
 "use client";
 
 import * as React from "react";

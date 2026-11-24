@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/services/finalTopSheets.service.ts
+// src/modules/lgu-management/treasury/bulk-approval/services/finalTopSheets.service.ts
 import type { NextResponse } from "next/server";
 import { directusFetch } from "./directus.service";
 import { jsonResponse } from "./http";
@@ -86,13 +86,13 @@ type PayableDraftExpenseLinkRow = {
   id?: number | string | null;
   disbursement_id?: number | string | { id?: number | string | null } | null;
   expense_id?:
-    | number
-    | string
-    | {
-        id?: number | string | null;
-        header_id?: number | string | { id?: number | string | null } | null;
-      }
-    | null;
+  | number
+  | string
+  | {
+    id?: number | string | null;
+    header_id?: number | string | { id?: number | string | null } | null;
+  }
+  | null;
   amount?: number | string | null;
 };
 
@@ -661,9 +661,9 @@ export async function getExpenseHeaderGroups(params: {
     .map((group) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { header_ids, expense_ids, all_draft_rows, ...rest } = group;
-      const isCompleted = all_draft_rows.length > 0 && 
-                          all_draft_rows.every((d) => d.status === "Approved" || d.status === "Rejected" || Boolean(d.isPosted)) && 
-                          !group.can_act;
+      const isCompleted = all_draft_rows.length > 0 &&
+        all_draft_rows.every((d) => d.status === "Approved" || d.status === "Rejected" || Boolean(d.isPosted)) &&
+        !group.can_act;
       return {
         ...rest,
         is_completed: isCompleted,
@@ -781,8 +781,8 @@ export async function buildFinalTopSheet(params: {
     ),
     draftIds.length > 0
       ? directusFetch(
-          `/items/disbursement_draft_approvals?filter[draft_id][_in]=${draftIds.join(",")}&fields=approver_id,status,draft_id&limit=-1`
-        )
+        `/items/disbursement_draft_approvals?filter[draft_id][_in]=${draftIds.join(",")}&fields=approver_id,status,draft_id&limit=-1`
+      )
       : Promise.resolve({ ok: true, data: { data: [] } }),
   ]);
 
@@ -857,7 +857,7 @@ export async function buildFinalTopSheet(params: {
       const salesmanCurrentTier = activeSalesmanDrafts.length > 0
         ? activeSalesmanDrafts.reduce((min, d) => Math.min(min, d.current_tier), 999)
         : (salesmanDrafts.length > 0 ? 0 : undefined);
-      
+
       const draftsAtCurrentTier = salesmanDrafts.filter(d => d.current_tier === salesmanCurrentTier);
       const draftIdsAtCurrentTier = new Set(draftsAtCurrentTier.map(d => d.id));
       const activeSalesmanDraftIds = new Set(activeSalesmanDrafts.map(d => d.id));
@@ -1599,8 +1599,8 @@ export async function handleFinalHeaderDecision(params: {
 
   return jsonResponse({
     ok: true,
-    message: isFinalLevel && status === "Approved" 
-      ? `Successfully finalized and posted ${successIds.length} line(s).` 
+    message: isFinalLevel && status === "Approved"
+      ? `Successfully finalized and posted ${successIds.length} line(s).`
       : `Successfully staged ${successIds.length} line(s) as ${status}.`,
     updated_count: successIds.length,
     affected_encoder_count: affectedEncoderIdList.length,

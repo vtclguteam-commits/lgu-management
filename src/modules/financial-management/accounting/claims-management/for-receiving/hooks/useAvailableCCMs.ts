@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-receiving/hooks/useAvailableCCMs.ts
+// src/modules/lgu-management/claims-management/for-receiving/hooks/useAvailableCCMs.ts
 "use client";
 
 import * as React from "react";
@@ -32,7 +32,7 @@ export function useAvailableCCMs({ open, supplierId, q, excludeIds }: Args) {
     }, [q]);
 
     const reload = React.useCallback(() => {
-        if (!open || !supplierId) return () => {};
+        if (!open || !supplierId) return () => { };
 
         const ac = new AbortController();
 

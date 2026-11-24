@@ -1,4 +1,4 @@
-//src/modules/financial-management-system/claims-management/ccm-list/utils/types.ts
+//src/modules/lgu-management-system/claims-management/ccm-list/utils/types.ts
 export type BufferLike =
     | { type: "Buffer"; data: number[] }
     | { type: string; data: number[] };

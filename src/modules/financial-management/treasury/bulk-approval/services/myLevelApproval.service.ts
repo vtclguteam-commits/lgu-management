@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/services/myLevelApproval.service.ts
+// src/modules/lgu-management/treasury/bulk-approval/services/myLevelApproval.service.ts
 import type { NextResponse } from "next/server";
 import { directusFetch } from "./directus.service";
 import { jsonResponse } from "./http";
@@ -174,7 +174,7 @@ export async function handleMyLevelApprovalGetResource(params: {
               (r) =>
                 toNumericId(r.division_id) === divisionId &&
                 toNumber(r.approver_heirarchy) ===
-                  (maxLevelByDivision[divisionId] ?? currentTier)
+                (maxLevelByDivision[divisionId] ?? currentTier)
             ),
           approval_version: approvalVersion,
           transaction_date: draft.transaction_date ?? null,
@@ -190,7 +190,7 @@ export async function handleMyLevelApprovalGetResource(params: {
                 (r) =>
                   toNumericId(r.division_id) === divisionId &&
                   toNumber(r.approver_heirarchy) ===
-                    (maxLevelByDivision[divisionId] ?? currentTier)
+                  (maxLevelByDivision[divisionId] ?? currentTier)
               )
             ) &&
             canUserVote({
@@ -504,9 +504,9 @@ export async function handleMyLevelApprovalGetResource(params: {
       const attachments = [...payables, ...concernItems].flatMap((item) =>
         item.attachment_url
           ? [{
-              file_url: item.attachment_url,
-              file_name: `Expense #${item.expense_id}`,
-            }]
+            file_url: item.attachment_url,
+            file_name: `Expense #${item.expense_id}`,
+          }]
           : []
       );
 
@@ -528,7 +528,7 @@ export async function handleMyLevelApprovalGetResource(params: {
               (r) =>
                 toNumericId(r.division_id) === divisionId &&
                 toNumber(r.approver_heirarchy) ===
-                  (maxLevelByDivision[divisionId] ?? currentTier)
+                (maxLevelByDivision[divisionId] ?? currentTier)
             ),
           approval_version: approvalVersion,
           transaction_date: draft.transaction_date ?? null,
@@ -553,7 +553,7 @@ export async function handleMyLevelApprovalGetResource(params: {
               (r) =>
                 toNumericId(r.division_id) === divisionId &&
                 toNumber(r.approver_heirarchy) ===
-                  (maxLevelByDivision[divisionId] ?? currentTier)
+                (maxLevelByDivision[divisionId] ?? currentTier)
             )
           ) &&
           canUserVote({
@@ -600,17 +600,17 @@ export async function handleMyLevelApprovalGetResource(params: {
       const [payableDraftLogsRes, payablesForLogsRes] = await Promise.all([
         draftIds.length > 0
           ? directusFetch(
-              `/items/disbursement_payables_draft_logs?filter[disbursement_id][_in]=${draftIds.join(
-                ","
-              )}&fields=id,log_id,payable_draft_id,disbursement_id,coa_id,reference_no,amount,original_amount,new_amount,remarks,date,version,updated_by,log_date&sort=-log_date&limit=-1`
-            )
+            `/items/disbursement_payables_draft_logs?filter[disbursement_id][_in]=${draftIds.join(
+              ","
+            )}&fields=id,log_id,payable_draft_id,disbursement_id,coa_id,reference_no,amount,original_amount,new_amount,remarks,date,version,updated_by,log_date&sort=-log_date&limit=-1`
+          )
           : Promise.resolve({ ok: true, status: 200, data: { data: [] } }),
         draftIds.length > 0
           ? directusFetch(
-              `/items/disbursement_payables_draft?filter[disbursement_id][_in]=${draftIds.join(
-                ","
-              )}&fields=disbursement_id,expense_id,expense_id.id&limit=-1`
-            )
+            `/items/disbursement_payables_draft?filter[disbursement_id][_in]=${draftIds.join(
+              ","
+            )}&fields=disbursement_id,expense_id,expense_id.id&limit=-1`
+          )
           : Promise.resolve({ ok: true, status: 200, data: { data: [] } }),
       ]);
 
@@ -656,10 +656,10 @@ export async function handleMyLevelApprovalGetResource(params: {
       const expenseLogsRes =
         allExpenseIds.size > 0
           ? await directusFetch(
-              `/items/expense_draft_logs?filter[expense_id][_in]=${[...allExpenseIds].join(
-                ","
-              )}&fields=log_id,expense_id,action,changed_by,changed_at,amount,remarks,particulars,status,version&sort=-changed_at&limit=-1`
-            )
+            `/items/expense_draft_logs?filter[expense_id][_in]=${[...allExpenseIds].join(
+              ","
+            )}&fields=log_id,expense_id,action,changed_by,changed_at,amount,remarks,particulars,status,version&sort=-changed_at&limit=-1`
+          )
           : { ok: true, status: 200, data: { data: [] } };
 
       const expenseLogs =
@@ -692,78 +692,78 @@ export async function handleMyLevelApprovalGetResource(params: {
       });
 
       const rows = drafts.map((draft) => {
-          const draftId = toNumericId(draft.id) ?? 0;
-          const payeeId = toNumericId(draft.payee) ?? 0;
-          const encoderId = toNumericId(draft.encoder_id) ?? 0;
-          const divisionId = toNumericId(draft.division_id) ?? 0;
-          const approvalVersion = toNumber(draft.approval_version, 1);
+        const draftId = toNumericId(draft.id) ?? 0;
+        const payeeId = toNumericId(draft.payee) ?? 0;
+        const encoderId = toNumericId(draft.encoder_id) ?? 0;
+        const divisionId = toNumericId(draft.division_id) ?? 0;
+        const approvalVersion = toNumber(draft.approval_version, 1);
 
-          const rounds = bulkVoteHistories.get(draftId) ?? [];
+        const rounds = bulkVoteHistories.get(draftId) ?? [];
 
-          const revisionLogs: DraftRevisionLogResponse[] = draftLogs
-            .filter((logRow) => toNumericId(logRow.disbursement_id) === draftId)
-            .map((logRow) => {
-              const editorId = toNumericId(logRow.updated_by) ?? 0;
-              const coaId = toNumericId(logRow.coa_id) ?? 0;
+        const revisionLogs: DraftRevisionLogResponse[] = draftLogs
+          .filter((logRow) => toNumericId(logRow.disbursement_id) === draftId)
+          .map((logRow) => {
+            const editorId = toNumericId(logRow.updated_by) ?? 0;
+            const coaId = toNumericId(logRow.coa_id) ?? 0;
 
-              return {
-                id: toNumericId(logRow.id) ?? 0,
-                payable_draft_id: toNumericId(logRow.payable_draft_id) ?? 0,
-                coa_name: coaId > 0 ? coaMap.get(coaId) ?? `COA #${coaId}` : null,
-                editor_name: userMap.get(editorId) ?? `User #${editorId}`,
-                original_amount: logRow.original_amount === null || logRow.original_amount === undefined
-                  ? null
-                  : toNumber(logRow.original_amount),
-                new_amount: logRow.new_amount === null || logRow.new_amount === undefined
-                  ? null
-                  : toNumber(logRow.new_amount),
-                amount: toNumber(logRow.amount),
-                remarks: logRow.remarks ?? null,
-                version: toNumber(logRow.version, 1),
-                created_at: logRow.log_date ?? "",
-              };
-            });
+            return {
+              id: toNumericId(logRow.id) ?? 0,
+              payable_draft_id: toNumericId(logRow.payable_draft_id) ?? 0,
+              coa_name: coaId > 0 ? coaMap.get(coaId) ?? `COA #${coaId}` : null,
+              editor_name: userMap.get(editorId) ?? `User #${editorId}`,
+              original_amount: logRow.original_amount === null || logRow.original_amount === undefined
+                ? null
+                : toNumber(logRow.original_amount),
+              new_amount: logRow.new_amount === null || logRow.new_amount === undefined
+                ? null
+                : toNumber(logRow.new_amount),
+              amount: toNumber(logRow.amount),
+              remarks: logRow.remarks ?? null,
+              version: toNumber(logRow.version, 1),
+              created_at: logRow.log_date ?? "",
+            };
+          });
 
-          const linkedExpenseIds = new Set(expenseIdsByDraft.get(draftId) ?? []);
+        const linkedExpenseIds = new Set(expenseIdsByDraft.get(draftId) ?? []);
 
-          const expenseRevisionLogs: ExpenseRevisionLogResponse[] = expenseLogs
-            .filter((logRow) => linkedExpenseIds.has(toNumericId(logRow.expense_id) ?? 0))
-            .map((logRow) => {
-              const editorId = toNumericId(logRow.changed_by) ?? 0;
-              const coaId = toNumericId(logRow.particulars) ?? 0;
+        const expenseRevisionLogs: ExpenseRevisionLogResponse[] = expenseLogs
+          .filter((logRow) => linkedExpenseIds.has(toNumericId(logRow.expense_id) ?? 0))
+          .map((logRow) => {
+            const editorId = toNumericId(logRow.changed_by) ?? 0;
+            const coaId = toNumericId(logRow.particulars) ?? 0;
 
-              return {
-                log_id: toNumericId(logRow.log_id) ?? 0,
-                expense_id: toNumericId(logRow.expense_id) ?? 0,
-                action: logRow.action ?? "",
-                editor_name: userMap.get(editorId) ?? `User #${editorId}`,
-                changed_at: logRow.changed_at ?? "",
-                amount: toNumber(logRow.amount),
-                remarks: logRow.remarks ?? null,
-                particulars: coaId > 0 ? coaMap.get(coaId) ?? `COA #${coaId}` : null,
-                status: logRow.status ?? logRow.action ?? "",
-                version: toNumber(logRow.version, 1),
-              };
-            });
+            return {
+              log_id: toNumericId(logRow.log_id) ?? 0,
+              expense_id: toNumericId(logRow.expense_id) ?? 0,
+              action: logRow.action ?? "",
+              editor_name: userMap.get(editorId) ?? `User #${editorId}`,
+              changed_at: logRow.changed_at ?? "",
+              amount: toNumber(logRow.amount),
+              remarks: logRow.remarks ?? null,
+              particulars: coaId > 0 ? coaMap.get(coaId) ?? `COA #${coaId}` : null,
+              status: logRow.status ?? logRow.action ?? "",
+              version: toNumber(logRow.version, 1),
+            };
+          });
 
-          return {
-            id: draftId,
-            doc_no: draft.doc_no ?? `DRAFT-${draftId}`,
-            payee_user_id: payeeId,
-            payee_name: supplierMap.get(payeeId) ?? `Supplier #${payeeId}`,
-            encoder_name: userMap.get(encoderId) ?? `User #${encoderId}`,
-            total_amount: toNumber(draft.total_amount),
-            remarks: draft.remarks ?? null,
-            status: draft.status ?? "",
-            division_name: divisionMap.get(divisionId) ?? `Division #${divisionId}`,
-            approval_version: approvalVersion,
-            transaction_date: draft.transaction_date ?? null,
-            date_created: draft.date_created ?? draft.transaction_date ?? "",
-            rounds,
-            logs: revisionLogs,
-            expense_logs: expenseRevisionLogs,
-          };
-        });
+        return {
+          id: draftId,
+          doc_no: draft.doc_no ?? `DRAFT-${draftId}`,
+          payee_user_id: payeeId,
+          payee_name: supplierMap.get(payeeId) ?? `Supplier #${payeeId}`,
+          encoder_name: userMap.get(encoderId) ?? `User #${encoderId}`,
+          total_amount: toNumber(draft.total_amount),
+          remarks: draft.remarks ?? null,
+          status: draft.status ?? "",
+          division_name: divisionMap.get(divisionId) ?? `Division #${divisionId}`,
+          approval_version: approvalVersion,
+          transaction_date: draft.transaction_date ?? null,
+          date_created: draft.date_created ?? draft.transaction_date ?? "",
+          rounds,
+          logs: revisionLogs,
+          expense_logs: expenseRevisionLogs,
+        };
+      });
 
       return jsonResponse({ data: rows });
     }
@@ -887,7 +887,7 @@ export async function submitMyLevelApprovalVote(params: {
 
       if (!authorizedLevels.some((lvl) => lvl === tier)) {
         console.warn(`[POST] RBAC Failure (Virtual): User ${currentUserId} attempted to vote on Tier ${tier} for Division ${divisionId}. Authorized tiers:`, authorizedLevels);
-        return jsonResponse({ 
+        return jsonResponse({
           error: "Unauthorized tier",
           detail: `You are authorized for levels [${authorizedLevels.join(",")}] in this division, but these items require Level ${tier} approval.`
         }, { status: 403 });

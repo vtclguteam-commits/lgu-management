@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/generate-transmittals/utils/types.ts
+// src/modules/lgu-management/claims-management/generate-transmittals/utils/types.ts
 
 export type BitLike =
     | boolean

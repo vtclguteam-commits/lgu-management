@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/supplier-discounting/hooks/useSupplierDiscounting.ts
+// src/modules/lgu-management/accounting/discount-management/supplier-discounting/hooks/useSupplierDiscounting.ts
 import { useCallback, useRef, useState } from "react";
 import { toast } from "sonner";
 import { supplierDiscountingApi } from "../providers/supplierDiscountingApi";

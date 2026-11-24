@@ -1,4 +1,4 @@
-//src/modules/financial-management/claims-management/transmittal-history/types.ts
+//src/modules/lgu-management/claims-management/transmittal-history/types.ts
 export type TransmittalStatus =
     | "FOR RECEIVING"
     | "FOR PAYMENT"

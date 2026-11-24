@@ -1,9 +1,9 @@
 // src/app/api/fm/treasury/bulk-approval/route.ts
 import { NextRequest } from "next/server";
-import { jsonResponse, serverErrorResponse } from "@/modules/financial-management/treasury/bulk-approval/services/http";
-import { createBulkApprovalContext, getApprovalContextsForUser, fetchUserMap } from "@/modules/financial-management/treasury/bulk-approval/services/bulkApproval.shared";
-import { handleFinalHeaderDecision, handleFinalTopSheetsGetResource } from "@/modules/financial-management/treasury/bulk-approval/services/finalTopSheets.service";
-import { handleMyLevelApprovalGetResource, submitMyLevelApprovalVote } from "@/modules/financial-management/treasury/bulk-approval/services/myLevelApproval.service";
+import { jsonResponse, serverErrorResponse } from "@/modules/lgu-management/treasury/bulk-approval/services/http";
+import { createBulkApprovalContext, getApprovalContextsForUser, fetchUserMap } from "@/modules/lgu-management/treasury/bulk-approval/services/bulkApproval.shared";
+import { handleFinalHeaderDecision, handleFinalTopSheetsGetResource } from "@/modules/lgu-management/treasury/bulk-approval/services/finalTopSheets.service";
+import { handleMyLevelApprovalGetResource, submitMyLevelApprovalVote } from "@/modules/lgu-management/treasury/bulk-approval/services/myLevelApproval.service";
 
 export const runtime = "nodejs";
 

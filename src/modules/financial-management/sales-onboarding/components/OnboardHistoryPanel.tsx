@@ -1,4 +1,4 @@
-// src/modules/financial-management/sales-onboarding/components/OnboardHistoryPanel.tsx
+// src/modules/lgu-management/sales-onboarding/components/OnboardHistoryPanel.tsx
 
 import React, { useMemo, useState, useCallback } from "react";
 import { History, Clock } from "lucide-react";
@@ -152,7 +152,7 @@ export default function OnboardHistoryPanel({
               onClick={() => setSearchQuery("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
             </button>
           )}
         </div>
@@ -226,20 +226,20 @@ export default function OnboardHistoryPanel({
                 {(inv.invoice_type === 1 || inv.invoice_type === 2) && (
                   <div className="grid grid-cols-2 gap-2 text-[9px] font-bold text-muted-foreground bg-muted/30 p-2 rounded-lg mt-1 border border-border/30">
                     <div>
-                      VAT (12%): <span className="font-mono text-foreground">₱{(inv.vat_amount || (inv.net_amount - (inv.net_amount / 1.12))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                      VAT (12%): <span className="font-mono text-foreground">₱{(inv.vat_amount || (inv.net_amount - (inv.net_amount / 1.12))).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                     <div>
-                      EWT (1%): <span className="font-mono text-foreground">₱{((inv.net_amount / 1.12) * 0.01).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                      EWT (1%): <span className="font-mono text-foreground">₱{((inv.net_amount / 1.12) * 0.01).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                   </div>
                 )}
 
                 <div className="flex justify-between items-center text-[10px] font-semibold text-muted-foreground bg-muted/20 p-2 rounded-lg mt-1 border border-border/30">
-                  <span className="flex items-center gap-1"><Clock size={11}/> {inv.invoice_date ? inv.invoice_date.split("T")[0] : "N/A"}</span>
+                  <span className="flex items-center gap-1"><Clock size={11} /> {inv.invoice_date ? inv.invoice_date.split("T")[0] : "N/A"}</span>
                   <div className="flex items-center gap-1.5">
                     <span className="text-[9px] uppercase tracking-wider font-bold text-right">Net</span>
                     <span className="font-black text-blue-600 dark:text-blue-400 font-mono text-xs">
-                      ₱{(inv.net_amount || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                      ₱{(inv.net_amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </span>
                   </div>
                 </div>

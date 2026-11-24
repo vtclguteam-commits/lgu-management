@@ -1,4 +1,4 @@
-// src/modules/financial-management/printables-management/product-printables/components/PrintablesTable.tsx
+// src/modules/lgu-management/printables-management/product-printables/components/PrintablesTable.tsx
 "use client";
 
 import React from "react";

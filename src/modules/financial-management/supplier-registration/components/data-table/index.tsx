@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { DataTablePagination } from "@/modules/financial-management/asset-management/components/data-table/table-pagination";
+import { DataTablePagination } from "@/modules/lgu-management/asset-management/components/data-table/table-pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -109,9 +109,9 @@ export function SupplierDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </TableHead>
                   );
                 })}

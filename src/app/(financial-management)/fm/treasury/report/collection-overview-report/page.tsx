@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import CollectionOverviewReportModule from "@/modules/financial-management/treasury/report/collection-overview-report/CollectionOverviewReportModule";
+import CollectionOverviewReportModule from "@/modules/lgu-management/treasury/report/collection-overview-report/CollectionOverviewReportModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

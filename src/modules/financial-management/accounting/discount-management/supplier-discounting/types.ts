@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/supplier-discounting/types.ts
+// src/modules/lgu-management/accounting/discount-management/supplier-discounting/types.ts
 export type SupplierDiscountOption = {
   id: number;
   discountType: string;

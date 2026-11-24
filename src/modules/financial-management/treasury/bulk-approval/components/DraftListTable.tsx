@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bulk-approval/components/DraftListTable.tsx
+// src/modules/lgu-management/treasury/bulk-approval/components/DraftListTable.tsx
 "use client";
 
 import * as React from "react";
@@ -245,107 +245,107 @@ export default function DraftListTable(props: Props) {
                 const isActionLoading = actionLoadingId === row.id;
 
                 return (
-                <TableRow
-                  key={row.id}
-                  className={`transition-colors group
+                  <TableRow
+                    key={row.id}
+                    className={`transition-colors group
                     ${row.has_concern
-                      ? "bg-amber-50/40 hover:bg-amber-50/70 border-l-2 border-l-amber-400"
-                      : "hover:bg-muted/30 dark:hover:bg-slate-800/50"
-                    }`}
-                >
-                  <TableCell className="text-center text-muted-foreground text-[10px] font-mono py-1.5">
-                    {(page - 1) * 8 + idx + 1}
-                  </TableCell>
-                  <TableCell className="overflow-hidden py-1.5">
-                    <span className="font-black text-[11px] font-mono text-primary block truncate" title={row.doc_no}>
-                      {row.doc_no}
-                    </span>
-                  </TableCell>
-                  <TableCell className="overflow-hidden py-1.5">
-                    <Badge
-                      variant="outline"
-                      className="text-[9px] font-bold bg-muted/50 dark:bg-slate-800/50 border-muted-foreground/30 dark:border-slate-700 px-1.5 py-0 max-w-full block truncate"
-                      title={row.division_name || "N/A"}
-                    >
-                      {row.division_name || "N/A"}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="py-1.5">
-                    <div className="font-black text-[12px] text-foreground leading-tight truncate">
-                      {row.encoder_name}
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-right font-black tabular-nums text-[12px] overflow-hidden py-1.5">
-                    <span className="block truncate" title={formatCurrency(Number(row.total_amount))}>
-                      {formatCurrency(Number(row.total_amount))}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-center text-[10px] text-muted-foreground font-medium overflow-hidden py-1.5">
-                    <span className="block truncate">{formatDate(row.transaction_date)}</span>
-                  </TableCell>
-                  <TableCell className="text-center overflow-hidden py-1.5">
-                    <div className="flex justify-center scale-90">
-                      <StatusBadge status={row.status} current_tier={row.current_tier} has_concern={row.has_concern} />
-                    </div>
-                  </TableCell>
-                  <TableCell className="overflow-hidden py-1.5">
-                    <div className="flex justify-center scale-90">
-                      <TierProgress
-                        current={row.current_tier}
-                        max={row.max_level}
-                        approversPerLevel={row.approvers_per_level}
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-center overflow-hidden py-1.5">
-                    <div className="flex flex-col items-center justify-center gap-1">
-                      {row.requires_final_top_sheet ? (
-                        <Button
-                          size="sm"
-                          className="h-7 px-4 rounded-xl bg-primary text-primary-foreground text-[9px] font-black uppercase tracking-[0.15em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/10 active:scale-95 flex items-center gap-1.5"
-                          onClick={() => onAction(row)}
-                          disabled={isActionLoading}
-                        >
-                          {isActionLoading ? (
-                            <Loader2 className="h-3 w-3 animate-spin" />
-                          ) : (
-                            <ShieldCheck className="h-3 w-3" />
-                          )}
-                          {isActionLoading ? "Opening..." : "Open Top Sheet"}
-                        </Button>
-                      ) : row.my_vote ? (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="h-7 px-3 rounded-xl border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 text-[9px] font-black uppercase tracking-[0.1em] hover:bg-emerald-100 hover:text-emerald-800 transition-all flex items-center gap-1.5 group/action"
-                          onClick={() => onAction(row)}
-                        >
-                          <CheckCircle2 className="h-3 w-3 text-emerald-500 group-hover/action:scale-110 transition-transform" />
-                          Review Audit
-                        </Button>
-                      ) : row.can_vote ? (
-                        <Button
-                          size="sm"
-                          className="h-7 px-4 rounded-xl bg-slate-900 text-white text-[9px] font-black uppercase tracking-[0.15em] hover:bg-primary transition-all shadow-lg shadow-slate-900/10 active:scale-95 flex items-center gap-1.5"
-                          onClick={() => onAction(row)}
-                        >
-                          <ShieldCheck className="h-3 w-3 text-emerald-400" />
-                          Cast Vote
-                        </Button>
-                      ) : (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="h-7 px-3 rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[9px] font-black uppercase tracking-[0.1em] hover:bg-white dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 transition-all flex items-center gap-1.5 group/action"
-                          onClick={() => onAction(row)}
-                        >
-                          <Eye className="h-3 w-3 text-slate-400 group-hover/action:text-primary transition-colors" />
-                          Inspect Audit
-                        </Button>
-                      )}
-                    </div>
-                  </TableCell>
-                </TableRow>
+                        ? "bg-amber-50/40 hover:bg-amber-50/70 border-l-2 border-l-amber-400"
+                        : "hover:bg-muted/30 dark:hover:bg-slate-800/50"
+                      }`}
+                  >
+                    <TableCell className="text-center text-muted-foreground text-[10px] font-mono py-1.5">
+                      {(page - 1) * 8 + idx + 1}
+                    </TableCell>
+                    <TableCell className="overflow-hidden py-1.5">
+                      <span className="font-black text-[11px] font-mono text-primary block truncate" title={row.doc_no}>
+                        {row.doc_no}
+                      </span>
+                    </TableCell>
+                    <TableCell className="overflow-hidden py-1.5">
+                      <Badge
+                        variant="outline"
+                        className="text-[9px] font-bold bg-muted/50 dark:bg-slate-800/50 border-muted-foreground/30 dark:border-slate-700 px-1.5 py-0 max-w-full block truncate"
+                        title={row.division_name || "N/A"}
+                      >
+                        {row.division_name || "N/A"}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="py-1.5">
+                      <div className="font-black text-[12px] text-foreground leading-tight truncate">
+                        {row.encoder_name}
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right font-black tabular-nums text-[12px] overflow-hidden py-1.5">
+                      <span className="block truncate" title={formatCurrency(Number(row.total_amount))}>
+                        {formatCurrency(Number(row.total_amount))}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-center text-[10px] text-muted-foreground font-medium overflow-hidden py-1.5">
+                      <span className="block truncate">{formatDate(row.transaction_date)}</span>
+                    </TableCell>
+                    <TableCell className="text-center overflow-hidden py-1.5">
+                      <div className="flex justify-center scale-90">
+                        <StatusBadge status={row.status} current_tier={row.current_tier} has_concern={row.has_concern} />
+                      </div>
+                    </TableCell>
+                    <TableCell className="overflow-hidden py-1.5">
+                      <div className="flex justify-center scale-90">
+                        <TierProgress
+                          current={row.current_tier}
+                          max={row.max_level}
+                          approversPerLevel={row.approvers_per_level}
+                        />
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-center overflow-hidden py-1.5">
+                      <div className="flex flex-col items-center justify-center gap-1">
+                        {row.requires_final_top_sheet ? (
+                          <Button
+                            size="sm"
+                            className="h-7 px-4 rounded-xl bg-primary text-primary-foreground text-[9px] font-black uppercase tracking-[0.15em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/10 active:scale-95 flex items-center gap-1.5"
+                            onClick={() => onAction(row)}
+                            disabled={isActionLoading}
+                          >
+                            {isActionLoading ? (
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                            ) : (
+                              <ShieldCheck className="h-3 w-3" />
+                            )}
+                            {isActionLoading ? "Opening..." : "Open Top Sheet"}
+                          </Button>
+                        ) : row.my_vote ? (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 px-3 rounded-xl border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 text-[9px] font-black uppercase tracking-[0.1em] hover:bg-emerald-100 hover:text-emerald-800 transition-all flex items-center gap-1.5 group/action"
+                            onClick={() => onAction(row)}
+                          >
+                            <CheckCircle2 className="h-3 w-3 text-emerald-500 group-hover/action:scale-110 transition-transform" />
+                            Review Audit
+                          </Button>
+                        ) : row.can_vote ? (
+                          <Button
+                            size="sm"
+                            className="h-7 px-4 rounded-xl bg-slate-900 text-white text-[9px] font-black uppercase tracking-[0.15em] hover:bg-primary transition-all shadow-lg shadow-slate-900/10 active:scale-95 flex items-center gap-1.5"
+                            onClick={() => onAction(row)}
+                          >
+                            <ShieldCheck className="h-3 w-3 text-emerald-400" />
+                            Cast Vote
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-7 px-3 rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[9px] font-black uppercase tracking-[0.1em] hover:bg-white dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 transition-all flex items-center gap-1.5 group/action"
+                            onClick={() => onAction(row)}
+                          >
+                            <Eye className="h-3 w-3 text-slate-400 group-hover/action:text-primary transition-colors" />
+                            Inspect Audit
+                          </Button>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
                 );
               })
             )}
@@ -361,13 +361,13 @@ export default function DraftListTable(props: Props) {
         </p>
         <div className="flex items-center gap-1.5">
           <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => setPage(page - 1)} disabled={page <= 1}>
-             <ArrowLeft className="h-3 w-3" />
+            <ArrowLeft className="h-3 w-3" />
           </Button>
           <span className="text-[11px] font-bold">
             {page} / {pageCount}
           </span>
           <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => setPage(page + 1)} disabled={page >= pageCount}>
-             <ChevronRight className="h-3 w-3" />
+            <ChevronRight className="h-3 w-3" />
           </Button>
         </div>
       </div>

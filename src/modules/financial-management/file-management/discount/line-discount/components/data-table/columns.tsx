@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/components/data-table/columns.tsx
+// src/modules/lgu-management/line-discount/components/data-table/columns.tsx
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";

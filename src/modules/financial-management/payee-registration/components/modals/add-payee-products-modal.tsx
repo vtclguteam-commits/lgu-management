@@ -12,7 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useProducts } from "@/modules/financial-management/supplier-registration/hooks/useProducts";
+import { useProducts } from "@/modules/lgu-management/supplier-registration/hooks/useProducts";
 import { Loader2, Package, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 
@@ -174,11 +174,10 @@ export function AddPayeeProductsModal({
                   return (
                     <div
                       key={productId}
-                      className={`flex items-center gap-3 p-3 rounded-md transition-colors cursor-pointer border ${
-                        isSelected
+                      className={`flex items-center gap-3 p-3 rounded-md transition-colors cursor-pointer border ${isSelected
                           ? "bg-primary/5 border-primary/20"
                           : "hover:bg-muted/50 border-transparent"
-                      }`}
+                        }`}
                       onClick={() => toggleProduct(productId)}
                     >
                       <Checkbox

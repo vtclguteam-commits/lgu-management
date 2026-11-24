@@ -1,4 +1,4 @@
-// src/modules/financial-management/discount-type/type.ts
+// src/modules/lgu-management/discount-type/type.ts
 import { z } from "zod";
 
 /** ===== Line Discount (Available list) ===== */

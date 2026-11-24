@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/for-payment/hooks/usePaymentTransmittals.ts
+// src/modules/lgu-management/claims-management/for-payment/hooks/usePaymentTransmittals.ts
 "use client";
 
 import * as React from "react";

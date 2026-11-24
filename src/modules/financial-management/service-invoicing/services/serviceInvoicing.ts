@@ -1,4 +1,4 @@
-// src/modules/financial-management/service-invoicing/services/serviceInvoicing.ts
+// src/modules/lgu-management/service-invoicing/services/serviceInvoicing.ts
 
 import {
   ServiceInvoicingMetadata,

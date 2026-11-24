@@ -7,7 +7,7 @@ import {
   fetchItems,
   fetchUsers,
   updateAsset,
-} from "@/modules/financial-management/asset-management/services/asset";
+} from "@/modules/lgu-management/asset-management/services/asset";
 import { NextResponse } from "next/server";
 
 /**

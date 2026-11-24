@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/components/CustomersMemoCreationModule.tsx
+// src/modules/lgu-management/accounting/customers-memo/components/CustomersMemoCreationModule.tsx
 
 "use client";
 

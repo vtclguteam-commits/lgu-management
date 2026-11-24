@@ -1,4 +1,4 @@
-// src/modules/financial-management-system/claims-management/generate-transmittals/providers/transmittalApi.ts
+// src/modules/lgu-management-system/claims-management/generate-transmittals/providers/transmittalApi.ts
 import type { CCMRow, CreateTransmittalResult, PickItem } from "../utils/types";
 
 /* =========================

@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PackageOpen, Plus, Search } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useDiscountTypes } from "@/modules/financial-management/supplier-registration/hooks/useDiscountTypes";
+import { useDiscountTypes } from "@/modules/lgu-management/supplier-registration/hooks/useDiscountTypes";
 import { usePayeeProducts } from "../../hooks/usePayeeProducts";
 import { ProductListItem } from "../product-list-item";
 import { AddPayeeProductsModal } from "./add-payee-products-modal";

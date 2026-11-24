@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-reconciliation/BankReconciliationModule.tsx
+// src/modules/lgu-management/treasury/bank-management/bank-reconciliation/BankReconciliationModule.tsx
 "use client";
 
 import {
@@ -707,7 +707,7 @@ export default function BankReconciliationModule() {
                     aria-disabled={page >= totalPages || saving}
                     className={cn(
                       (page >= totalPages || saving) &&
-                        "pointer-events-none opacity-50",
+                      "pointer-events-none opacity-50",
                     )}
                     onClick={(event) => {
                       event.preventDefault();

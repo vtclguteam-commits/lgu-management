@@ -1,4 +1,4 @@
-// src/modules/financial-management/claims-management/generate-transmittals/components/AvailableCCMList.tsx
+// src/modules/lgu-management/claims-management/generate-transmittals/components/AvailableCCMList.tsx
 "use client";
 
 import * as React from "react";
@@ -56,12 +56,12 @@ function customerLabel(r: CCMRow) {
 }
 
 export function AvailableCCMList({
-                                     rows,
-                                     loading,
-                                     selectedIds,
-                                     onToggle,
-                                     onToggleAll,
-                                 }: Props) {
+    rows,
+    loading,
+    selectedIds,
+    onToggle,
+    onToggleAll,
+}: Props) {
     const selectedSet = React.useMemo(() => new Set(selectedIds), [selectedIds]);
 
     // ✅ Build COA filter options from loaded CCM rows
@@ -132,8 +132,8 @@ export function AvailableCCMList({
                                         {" "}
                                         •{" "}
                                         <span className="text-foreground font-medium">
-                      {selectedIds.length} selected
-                    </span>
+                                            {selectedIds.length} selected
+                                        </span>
                                     </>
                                 ) : null}
                             </>

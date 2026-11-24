@@ -1,12 +1,12 @@
 import {
-    Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
+  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
-import { RequestCreatePage } from "@/modules/financial-management/procurement/request/components/RequestCreatePage";
+import { RequestCreatePage } from "@/modules/lgu-management/procurement/request/components/RequestCreatePage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

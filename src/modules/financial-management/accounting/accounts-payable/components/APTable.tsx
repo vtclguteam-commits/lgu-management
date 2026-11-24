@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/accounts-payable/components/APTable.tsx
+// src/modules/lgu-management/accounting/accounts-payable/components/APTable.tsx
 
 import { useDeferredValue, useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,12 +28,12 @@ import type { APRecord, APStatus } from '../types';
 const PAGE_SIZE = 10;
 
 const STATUS_STYLES: Record<string, { bg: string; color: string; border: string }> = {
-  'Paid':                     { bg: 'rgba(16,185,129,0.1)',  color: '#059669', border: 'rgba(16,185,129,0.2)'  },
-  'Unpaid':                   { bg: 'rgba(100,116,139,0.1)', color: '#64748b', border: 'rgba(100,116,139,0.2)' },
-  'Partially Paid':           { bg: 'rgba(245,158,11,0.1)',  color: '#d97706', border: 'rgba(245,158,11,0.2)'  },
-  'Overdue':                  { bg: 'rgba(220,38,38,0.1)',   color: '#b91c1c', border: 'rgba(220,38,38,0.2)'   },
-  'Unpaid | Overdue':         { bg: 'rgba(239,68,68,0.1)',   color: '#dc2626', border: 'rgba(239,68,68,0.2)'   },
-  'Partially Paid | Overdue': { bg: 'rgba(249,115,22,0.1)',  color: '#ea580c', border: 'rgba(249,115,22,0.2)'  },
+  'Paid': { bg: 'rgba(16,185,129,0.1)', color: '#059669', border: 'rgba(16,185,129,0.2)' },
+  'Unpaid': { bg: 'rgba(100,116,139,0.1)', color: '#64748b', border: 'rgba(100,116,139,0.2)' },
+  'Partially Paid': { bg: 'rgba(245,158,11,0.1)', color: '#d97706', border: 'rgba(245,158,11,0.2)' },
+  'Overdue': { bg: 'rgba(220,38,38,0.1)', color: '#b91c1c', border: 'rgba(220,38,38,0.2)' },
+  'Unpaid | Overdue': { bg: 'rgba(239,68,68,0.1)', color: '#dc2626', border: 'rgba(239,68,68,0.2)' },
+  'Partially Paid | Overdue': { bg: 'rgba(249,115,22,0.1)', color: '#ea580c', border: 'rgba(249,115,22,0.2)' },
 };
 
 function StatusPill({ status }: { status: APStatus }) {
@@ -64,10 +64,10 @@ function StatusPill({ status }: { status: APStatus }) {
  *   91+     → red
  */
 function agingColor(aging: number): string | undefined {
-  if (aging === 0)  return '#f59e0b';
-  if (aging > 90)   return '#dc2626';
-  if (aging > 60)   return '#ef4444';
-  if (aging > 30)   return '#f59e0b';
+  if (aging === 0) return '#f59e0b';
+  if (aging > 90) return '#dc2626';
+  if (aging > 60) return '#ef4444';
+  if (aging > 30) return '#f59e0b';
   return undefined; // 1–30 days: inherit default text color
 }
 
@@ -133,7 +133,7 @@ function SortableHeader<T>({
 
 interface APTableProps {
   records: APRecord[];
-  page:    number;
+  page: number;
   setPage: (p: number | ((prev: number) => number)) => void;
 }
 
@@ -151,13 +151,13 @@ export function APTable({ records, page, setPage }: APTableProps) {
   const q = deferredSearch.trim().toLowerCase();
   const filtered = useMemo(() => q
     ? records.filter((r) =>
-        r.refNo.toLowerCase().includes(q)              ||
-        r.invoiceNo.toLowerCase().includes(q)          ||
-        r.supplier.toLowerCase().includes(q)           ||
-        r.status.toLowerCase().includes(q)             ||
-        r.amountPayable.toString().includes(q)         ||
-        r.outstandingBalance.toString().includes(q)
-      )
+      r.refNo.toLowerCase().includes(q) ||
+      r.invoiceNo.toLowerCase().includes(q) ||
+      r.supplier.toLowerCase().includes(q) ||
+      r.status.toLowerCase().includes(q) ||
+      r.amountPayable.toString().includes(q) ||
+      r.outstandingBalance.toString().includes(q)
+    )
     : records, [q, records]);
 
   const sorted = useMemo(() => {
@@ -182,9 +182,9 @@ export function APTable({ records, page, setPage }: APTableProps) {
     });
   }, [filtered, sortKey, sortOrder]);
 
-  const totalPages  = Math.ceil(sorted.length / PAGE_SIZE);
-  const safePage    = Math.min(page, totalPages || 1);
-  const paged       = sorted.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
+  const safePage = Math.min(page, totalPages || 1);
+  const paged = sorted.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const pageNumbers = getPageNumbers(safePage, totalPages);
 
   return (

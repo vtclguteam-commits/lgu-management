@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/discount-management/customer-discounting/components/CustomerDiscountingConfigSheet.tsx
+// src/modules/lgu-management/accounting/discount-management/customer-discounting/components/CustomerDiscountingConfigSheet.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -75,36 +75,36 @@ type SelectOption = {
 
 type PendingConfirmation =
   | {
-      type: "global";
-      discountTypeId: number | null;
-      discountName: string;
-    }
+    type: "global";
+    discountTypeId: number | null;
+    discountName: string;
+  }
   | {
-      type: "supplier-category";
-      mode: "add" | "update";
-      supplierId: number;
-      supplierName: string;
-      categoryId: number | null;
-      categoryName: string;
-      discountTypeId: number;
-      discountName: string;
-    }
+    type: "supplier-category";
+    mode: "add" | "update";
+    supplierId: number;
+    supplierName: string;
+    categoryId: number | null;
+    categoryName: string;
+    discountTypeId: number;
+    discountName: string;
+  }
   | {
-      type: "product";
-      mode: "add" | "update";
-      productId: number;
-      productName: string;
-      discountTypeId: number | null;
-      discountName: string;
-    }
+    type: "product";
+    mode: "add" | "update";
+    productId: number;
+    productName: string;
+    discountTypeId: number | null;
+    discountName: string;
+  }
   | {
-      type: "delete-supplier-category";
-      rule: SupplierCategoryRule;
-    }
+    type: "delete-supplier-category";
+    rule: SupplierCategoryRule;
+  }
   | {
-      type: "delete-product";
-      rule: ProductRule;
-    };
+    type: "delete-product";
+    rule: ProductRule;
+  };
 
 const noneValue = "none";
 
@@ -358,9 +358,8 @@ export function CustomerDiscountingConfigSheet({
       case "delete-supplier-category":
         return {
           title: "Delete supplier/category discount?",
-          description: `Remove the ${pendingConfirmation.rule.supplierName || `Supplier #${pendingConfirmation.rule.supplierId}`} / ${
-            pendingConfirmation.rule.categoryId ? pendingConfirmation.rule.categoryName : "N/A"
-          } discount rule.`,
+          description: `Remove the ${pendingConfirmation.rule.supplierName || `Supplier #${pendingConfirmation.rule.supplierId}`} / ${pendingConfirmation.rule.categoryId ? pendingConfirmation.rule.categoryName : "N/A"
+            } discount rule.`,
           action: "Delete",
           destructive: true,
         };

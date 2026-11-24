@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/supplier-credit-memo/hooks/useSupplierCreditMemo.ts
+// src/modules/lgu-management/accounting/supplier-credit-memo/hooks/useSupplierCreditMemo.ts
 
 "use client";
 
@@ -9,12 +9,12 @@ import type { SupplierCreditMemo, Supplier, ChartOfAccount, CreateMemoPayload, M
 const API_PATH = "/api/fm/accounting/supplier-credit-memo";
 
 const DEFAULT_FILTERS: MemoFilters = {
-  search:           "",
-  supplier_id:      "",
+  search: "",
+  supplier_id: "",
   chart_of_account: "",
-  status:           "",
-  date_from:        "",
-  date_to:          "",
+  status: "",
+  date_from: "",
+  date_to: "",
 };
 
 function extractList<T>(json: unknown): T[] {
@@ -27,10 +27,10 @@ function extractList<T>(json: unknown): T[] {
 
 // ─── Main hook ────────────────────────────────────────────────────────────────
 export function useSupplierCreditMemo() {
-  const [allMemos,  setAllMemos]  = useState<SupplierCreditMemo[]>([]);  // All loaded memos from API
-  const [loading,   setLoading]   = useState(false);
-  const [error,     setError]     = useState<string | null>(null);
-  const [filters,   setFilters]   = useState<MemoFilters>(DEFAULT_FILTERS);
+  const [allMemos, setAllMemos] = useState<SupplierCreditMemo[]>([]);  // All loaded memos from API
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [filters, setFilters] = useState<MemoFilters>(DEFAULT_FILTERS);
   const [modalOpen, setModalOpen] = useState(false);
 
   // Load all memos once on mount (no filter dependency)
@@ -40,7 +40,7 @@ export function useSupplierCreditMemo() {
     const toastId = toast.loading('Loading supplier credit memos...');
     try {
       // Load all memos without filters
-      const res  = await fetch(`${API_PATH}`);
+      const res = await fetch(`${API_PATH}`);
       const json: unknown = await res.json();
       if (!res.ok) {
         const msg = typeof json === "object" && json !== null && "message" in json
@@ -69,8 +69,8 @@ export function useSupplierCreditMemo() {
       if (filters.search) {
         const search = filters.search.toLowerCase();
         const matches = (m.memo_number?.toLowerCase().includes(search)) ||
-                       (m.reason?.toLowerCase().includes(search)) ||
-                       (m.status?.toLowerCase().includes(search));
+          (m.reason?.toLowerCase().includes(search)) ||
+          (m.status?.toLowerCase().includes(search));
         if (!matches) return false;
       }
 
@@ -108,14 +108,14 @@ export function useSupplierCreditMemo() {
     setFilters(f => ({ ...f, [key]: value }));
 
   const clearFilters = () => setFilters(DEFAULT_FILTERS);
-  const hasFilters   = Object.values(filters).some(Boolean);
+  const hasFilters = Object.values(filters).some(Boolean);
 
   const stats = {
     total,
-    available:      memos.filter(m => m.status === "Available").length,
-    pendingSOA:     memos.filter(m => m.status === "Pending SOA").length,
+    available: memos.filter(m => m.status === "Available").length,
+    pendingSOA: memos.filter(m => m.status === "Pending SOA").length,
     totalAvailable: memos.filter(m => m.status === "Available").reduce((s, m) => s + parseFloat(m.amount), 0),
-    totalAmount:    memos.reduce((s, m) => s + parseFloat(m.amount), 0),
+    totalAmount: memos.reduce((s, m) => s + parseFloat(m.amount), 0),
   };
 
   return {
@@ -132,14 +132,14 @@ export function useSupplierCreditMemo() {
 // ─── Suppliers dropdown ───────────────────────────────────────────────────────
 export function useSuppliers() {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
-  const [loading,   setLoading]   = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
       setLoading(true);
       try {
-        const r    = await fetch(`${API_PATH}?action=suppliers`);
+        const r = await fetch(`${API_PATH}?action=suppliers`);
         const json: unknown = await r.json();
         // Only include suppliers with supplier_type === 'TRADE'
         const allSuppliers = extractList<Supplier & { supplier_type?: string }>(json);
@@ -161,14 +161,14 @@ export function useSuppliers() {
 // ─── COA dropdown ─────────────────────────────────────────────────────────────
 export function useChartOfAccounts() {
   const [accounts, setAccounts] = useState<ChartOfAccount[]>([]);
-  const [loading,  setLoading]  = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
       setLoading(true);
       try {
-        const r    = await fetch(`${API_PATH}?action=chart-of-accounts`);
+        const r = await fetch(`${API_PATH}?action=chart-of-accounts`);
         const json: unknown = await r.json();
         if (!cancelled) setAccounts(extractList<ChartOfAccount>(json));
       } catch {
@@ -187,16 +187,16 @@ export function useChartOfAccounts() {
 // ─── Create memo ──────────────────────────────────────────────────────────────
 export function useCreateMemo() {
   const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const submit = async (payload: CreateMemoPayload) => {
     setLoading(true);
     setError(null);
     try {
-      const res  = await fetch(API_PATH, {
-        method:  "POST",
+      const res = await fetch(API_PATH, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(payload),
+        body: JSON.stringify(payload),
       });
       const json: unknown = await res.json();
       const jsonObj = json as Record<string, unknown>;
@@ -207,7 +207,7 @@ export function useCreateMemo() {
       }
       return {
         success: true,
-        data:    jsonObj.data ?? json,
+        data: jsonObj.data ?? json,
         message: typeof jsonObj.message === "string" ? jsonObj.message : "Memo created successfully.",
       };
     } catch (e) {

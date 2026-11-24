@@ -11,7 +11,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { AdjustingJournalEntriesModule } from "@/modules/financial-management/financial-statements/adjusting-journal-entries";
+import { AdjustingJournalEntriesModule } from "@/modules/lgu-management/financial-statements/adjusting-journal-entries";
 import { COOKIE_NAME, decodeJwtPayload } from "@/lib/auth-utils";
 
 export const runtime = "nodejs";

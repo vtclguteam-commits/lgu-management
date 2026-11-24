@@ -5,11 +5,11 @@ This document analyzes the technical implementation, logic flows, and data struc
 ## 1. Module Overview
 
 ### 1.1 Bulk Approval Module
-**Path:** `src/modules/financial-management/treasury/bulk-approval`  
+**Path:** `src/modules/lgu-management/treasury/bulk-approval`  
 **Purpose:** Handles multi-tier consensus approval for disbursement drafts (Type 1: General, Type 2: Salesman Expenses).
 
 ### 1.2 Salesmen Expense Approval Module
-**Path:** `src/modules/financial-management/treasury/salesmen-expense-approval`  
+**Path:** `src/modules/lgu-management/treasury/salesmen-expense-approval`  
 **Purpose:** Preliminary authorization of salesman-encoded expenses. Authorized expenses are bundled into a `disbursement_draft` for final treasury approval.
 
 ---

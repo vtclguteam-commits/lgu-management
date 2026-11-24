@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/customers-memo/types.ts
+// src/modules/lgu-management/accounting/customers-memo/types.ts
 
 export interface CompanyProfile {
     company_id: number;

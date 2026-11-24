@@ -1,4 +1,4 @@
-// src/modules/financial-management/accounting/supplier-credit-memo/SupplierCreditMemoModule.tsx
+// src/modules/lgu-management/accounting/supplier-credit-memo/SupplierCreditMemoModule.tsx
 
 "use client";
 
@@ -6,10 +6,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSupplierCreditMemo, useSuppliers, useChartOfAccounts } from "./hooks/useSupplierCreditMemo";
-import { StatsCards }     from "./components/StatsCards";
+import { StatsCards } from "./components/StatsCards";
 import { MemoFiltersBar } from "./components/MemoFilters";
-import { MemoTable }      from "./components/MemoTable";
-import { AddMemoModal }   from "./components/AddMemoModal";
+import { MemoTable } from "./components/MemoTable";
+import { AddMemoModal } from "./components/AddMemoModal";
 
 export default function SupplierCreditMemoModule() {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -22,7 +22,7 @@ export default function SupplierCreditMemoModule() {
   } = useSupplierCreditMemo();
 
   const { suppliers } = useSuppliers();
-  const { accounts  } = useChartOfAccounts();
+  const { accounts } = useChartOfAccounts();
 
   if (loading && memos.length === 0) return (
     <div className="p-4 md:p-6 space-y-4">

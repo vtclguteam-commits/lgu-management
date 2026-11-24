@@ -1,12 +1,12 @@
-// src/modules/financial-management/accounting/supplier-debit-memo/components/AddMemoModal.tsx
+// src/modules/lgu-management/accounting/supplier-debit-memo/components/AddMemoModal.tsx
 
 "use client";
 
 import { useState, useRef, useMemo } from "react";
-import { Button }  from "@/components/ui/button";
-import { Input }   from "@/components/ui/input";
-import { Label }   from "@/components/ui/label";
-import { Badge }   from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import { X, Loader2, Plus, Search, ChevronDown, Check } from "lucide-react";
 import { useCreateDebitMemo, useSuppliers, useChartOfAccounts } from "../hooks/useSupplierDebitMemo";
 import type { CreateDebitMemoPayload } from "../types";
@@ -14,16 +14,16 @@ import type { CreateDebitMemoPayload } from "../types";
 // ─── Searchable dropdown ───────────────────────────────────────────────────────
 interface SearchableSelectProps {
   placeholder: string;
-  loading:     boolean;
-  options:     { value: string; label: string }[];
-  value:       string;
-  onChange:    (val: string) => void;
+  loading: boolean;
+  options: { value: string; label: string }[];
+  value: string;
+  onChange: (val: string) => void;
 }
 
 function SearchableSelect({ placeholder, loading, options, value, onChange }: SearchableSelectProps) {
-  const [open,   setOpen]   = useState(false);
+  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const inputRef            = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filtered = useMemo(() =>
     search.trim()
@@ -105,17 +105,17 @@ function SearchableSelect({ placeholder, loading, options, value, onChange }: Se
 
 // ─── Modal ─────────────────────────────────────────────────────────────────────
 interface AddMemoModalProps {
-  onClose:   () => void;
+  onClose: () => void;
   onSuccess: (message: string) => void;
 }
 
 export function AddMemoModal({ onClose, onSuccess }: AddMemoModalProps) {
   const { submit, loading, error } = useCreateDebitMemo();
   const { suppliers, loading: suppLoading } = useSuppliers();
-  const { accounts,  loading: coaLoading  } = useChartOfAccounts();
+  const { accounts, loading: coaLoading } = useChartOfAccounts();
 
   const [supplierId, setSupplierId] = useState("");
-  const [coaId,      setCoaId]      = useState("");
+  const [coaId, setCoaId] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -137,11 +137,11 @@ export function AddMemoModal({ onClose, onSuccess }: AddMemoModalProps) {
     const fd = new FormData(e.currentTarget);
 
     const payload: CreateDebitMemoPayload = {
-      supplier_id:      Number(supplierId),
+      supplier_id: Number(supplierId),
       chart_of_account: Number(coaId),
-      date:             fd.get("date") as string,
-      amount:           parseFloat(fd.get("amount") as string),
-      reason:           (fd.get("reason") as string).trim() || undefined,
+      date: fd.get("date") as string,
+      amount: parseFloat(fd.get("amount") as string),
+      reason: (fd.get("reason") as string).trim() || undefined,
     };
 
     const result = await submit(payload);

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getGroupedJournalEntries, getJournalEntries } from "@/modules/financial-management/financial-statements/journal-entry/services/journal-entry.service";
-import { 
-  filterJournalEntries, 
-} from "@/modules/financial-management/financial-statements/journal-entry/services/journal-entry.helpers";
-import { FilterState, PresetRange } from "@/modules/financial-management/financial-statements/journal-entry/types";
+import { getGroupedJournalEntries, getJournalEntries } from "@/modules/lgu-management/financial-statements/journal-entry/services/journal-entry.service";
+import {
+  filterJournalEntries,
+} from "@/modules/lgu-management/financial-statements/journal-entry/services/journal-entry.helpers";
+import { FilterState, PresetRange } from "@/modules/lgu-management/financial-statements/journal-entry/types";
 
 /**
  * Proxy and Processing API route for the general ledger entries.
@@ -13,9 +13,9 @@ import { FilterState, PresetRange } from "@/modules/financial-management/financi
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  
+
   const mode = searchParams.get("mode") || "grouped";
-  
+
   // Extract the optional accountNumber for Drill Down views
   const accountNumber = searchParams.get("accountNumber") || undefined;
 
@@ -53,36 +53,36 @@ export async function GET(request: NextRequest) {
 
     // 1. Fetch raw flat data from the external master database
     const entries = await getJournalEntries(filters.startDate, filters.endDate, token, accountNumber);
-    
+
     // 2. Apply filtering (Search, Status, Division, etc.)
     const filteredEntries = filterJournalEntries(entries, filters);
 
     // 3. Exclude adjusting journal entries from the main JE list
     const isAJE = (e: typeof filteredEntries[number]) => e.jeNo?.startsWith("AJE-");
     const regularEntries = filteredEntries.filter((e) => !isAJE(e));
-    
+
     // Optimization: if in flat mode, bypass expensive grouping and analytics
     if (mode === "flat") {
-        let totalDebit = 0;
-        let totalCredit = 0;
-        
-        regularEntries.forEach(e => {
-            totalDebit += e.debit;
-            totalCredit += e.credit;
-        });
-        
-        return NextResponse.json({
-            metadata: {
-                totalDebit,
-                totalCredit,
-                netBalance: Number((totalDebit - totalCredit).toFixed(2)),
-                count: regularEntries.length,
-                currentPage: 0,
-                pageSize: regularEntries.length,
-                totalPages: 1
-            },
-            data: regularEntries
-        });
+      let totalDebit = 0;
+      let totalCredit = 0;
+
+      regularEntries.forEach(e => {
+        totalDebit += e.debit;
+        totalCredit += e.credit;
+      });
+
+      return NextResponse.json({
+        metadata: {
+          totalDebit,
+          totalCredit,
+          netBalance: Number((totalDebit - totalCredit).toFixed(2)),
+          count: regularEntries.length,
+          currentPage: 0,
+          pageSize: regularEntries.length,
+          totalPages: 1
+        },
+        data: regularEntries
+      });
     }
   } catch (error: unknown) {
     console.error("API Route Error (Journal Entry):", error);

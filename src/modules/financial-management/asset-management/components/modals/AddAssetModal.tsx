@@ -60,7 +60,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { assetService } from "@/modules/financial-management/asset-management/services/assetService";
+import { assetService } from "@/modules/lgu-management/asset-management/services/assetService";
 import {
   assetFormSchema,
   AssetFormValues,
@@ -69,7 +69,7 @@ import {
   ItemClassification,
   ItemType,
   User,
-} from "@/modules/financial-management/asset-management/types";
+} from "@/modules/lgu-management/asset-management/types";
 
 interface AddAssetModalProps {
   onSuccess: () => void;

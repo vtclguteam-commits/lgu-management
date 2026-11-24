@@ -7,7 +7,7 @@ import { DisbursementCreateSheet } from "./components/DisbursementCreateSheet";
 import { DisbursementViewSheet } from "./components/DisbursementViewSheet";
 import { DisbursementDashboardTab } from "./components/DisbursementDashboardTab";
 import { Disbursement } from "./types";
-import { AddPayeeModal } from "@/modules/financial-management/payee-registration/components/modals/add-payee-modal";
+import { AddPayeeModal } from "@/modules/lgu-management/payee-registration/components/modals/add-payee-modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -119,13 +119,13 @@ export default function DisbursementModule() {
                         value="management"
                         className="data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent rounded-none px-2 py-3 font-black uppercase tracking-widest text-xs transition-colors text-muted-foreground hover:text-foreground"
                     >
-                        <Receipt size={16} className="mr-2 mb-0.5"/> Voucher Management
+                        <Receipt size={16} className="mr-2 mb-0.5" /> Voucher Management
                     </TabsTrigger>
                     <TabsTrigger
                         value="dashboard"
                         className="data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent rounded-none px-2 py-3 font-black uppercase tracking-widest text-xs transition-colors text-muted-foreground hover:text-foreground"
                     >
-                        <BarChart3 size={16} className="mr-2 mb-0.5"/> BI Dashboard & Reports
+                        <BarChart3 size={16} className="mr-2 mb-0.5" /> BI Dashboard & Reports
                     </TabsTrigger>
                 </TabsList>
 
@@ -178,7 +178,7 @@ export default function DisbursementModule() {
                                     className="h-10 w-10 text-destructive hover:bg-destructive/10 hover:text-destructive rounded-xl"
                                     title="Clear All Filters"
                                 >
-                                    <X className="w-4 h-4"/>
+                                    <X className="w-4 h-4" />
                                 </Button>
                             </div>
                         </div>
@@ -264,7 +264,7 @@ export default function DisbursementModule() {
                                 <select className="h-9 w-full rounded-lg border border-border/50 bg-background px-3 text-xs font-bold uppercase text-foreground shadow-sm focus:ring-1 focus:ring-primary/30 transition-all outline-none" value={divisionFilter} onChange={e => setDivisionFilter(e.target.value)}>
                                     <option value="">All Divisions</option>
                                     {divisions.map((d, idx) => (
-                                        <option key={`f-div-${d.divisionId|| idx}`} value={d.divisionId}>
+                                        <option key={`f-div-${d.divisionId || idx}`} value={d.divisionId}>
                                             {d.divisionName}
                                         </option>
                                     ))}
@@ -307,7 +307,7 @@ export default function DisbursementModule() {
                             {/* Rows per page selector */}
                             <div className="flex items-center gap-2">
                                 <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Rows per page:</span>
-                                <select 
+                                <select
                                     className="h-9 rounded-xl border border-border/50 bg-background px-3 text-[10px] font-black uppercase text-foreground shadow-sm focus:ring-1 focus:ring-primary/30 transition-all outline-none cursor-pointer hover:bg-muted/50"
                                     value={size}
                                     onChange={(e) => changeSize(Number(e.target.value))}

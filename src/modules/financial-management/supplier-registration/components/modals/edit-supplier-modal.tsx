@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Supplier } from "@/modules/financial-management/supplier-registration/types/supplier.schema";
-import { EditSupplierForm } from "@/modules/financial-management/supplier-registration/components/forms/edit-supplier-form";
+import { Supplier } from "@/modules/lgu-management/supplier-registration/types/supplier.schema";
+import { EditSupplierForm } from "@/modules/lgu-management/supplier-registration/components/forms/edit-supplier-form";
 import { Badge } from "@/components/ui/badge";
 
 interface EditSupplierModalProps {

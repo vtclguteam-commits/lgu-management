@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import BudgetAuditTrailModule from "@/modules/financial-management/treasury/budgeting/budget-audit-trail/BudgetAuditTrailModule";
+import BudgetAuditTrailModule from "@/modules/lgu-management/treasury/budgeting/budget-audit-trail/BudgetAuditTrailModule";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 

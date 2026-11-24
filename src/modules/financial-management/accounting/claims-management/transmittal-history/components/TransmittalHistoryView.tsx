@@ -1,4 +1,4 @@
-//src/modules/financial-management/claims-management/transmittal-history/components/TransmittalHistoryView.tsx
+//src/modules/lgu-management/claims-management/transmittal-history/components/TransmittalHistoryView.tsx
 "use client";
 
 import * as React from "react";

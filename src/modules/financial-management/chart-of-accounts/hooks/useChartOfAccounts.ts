@@ -1,4 +1,4 @@
-// src/modules/financial-management/chart-of-accounts/hooks/useChartOfAccounts.ts
+// src/modules/lgu-management/chart-of-accounts/hooks/useChartOfAccounts.ts
 "use client";
 
 import * as React from "react";

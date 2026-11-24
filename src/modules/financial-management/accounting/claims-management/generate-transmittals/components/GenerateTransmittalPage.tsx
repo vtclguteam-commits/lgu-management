@@ -1,4 +1,4 @@
-//src/modules/financial-management-system/claims-management/generate-transmittals/components/GenerateTransmittalPage.tsx
+//src/modules/lgu-management-system/claims-management/generate-transmittals/components/GenerateTransmittalPage.tsx
 "use client";
 
 import * as React from "react";

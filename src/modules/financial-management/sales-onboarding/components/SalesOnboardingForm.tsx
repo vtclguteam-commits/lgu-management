@@ -1,4 +1,4 @@
-// src/modules/financial-management/sales-onboarding/components/SalesOnboardingForm.tsx
+// src/modules/lgu-management/sales-onboarding/components/SalesOnboardingForm.tsx
 
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import { Operation } from "../types";
@@ -307,9 +307,8 @@ export default function SalesOnboardingForm({
                 type="text"
                 placeholder="e.g., INV-887412"
                 {...register("invoice_no", { required: "Invoice Number is required" })}
-                className={`h-10 text-xs rounded-xl font-medium ${
-                  errors.invoice_no || invoiceNoExists ? "border-red-500 focus-visible:ring-red-500/20" : "border-border/60"
-                }`}
+                className={`h-10 text-xs rounded-xl font-medium ${errors.invoice_no || invoiceNoExists ? "border-red-500 focus-visible:ring-red-500/20" : "border-border/60"
+                  }`}
               />
               {checkingInvoiceNo && (
                 <p className="text-[9px] text-muted-foreground animate-pulse">Checking uniqueness in database...</p>
@@ -384,11 +383,10 @@ export default function SalesOnboardingForm({
                     },
                   })}
                   aria-required="true"
-                  className={`h-10 text-xs rounded-xl font-medium ${
-                    errors.gross_amount
+                  className={`h-10 text-xs rounded-xl font-medium ${errors.gross_amount
                       ? "border-red-500 focus-visible:ring-red-500/20"
                       : "border-border/60"
-                  }`}
+                    }`}
                 />
                 {errors.gross_amount && (
                   <p className="text-[10px] font-bold text-red-500">{errors.gross_amount.message}</p>
@@ -424,11 +422,10 @@ export default function SalesOnboardingForm({
                     min: { value: 0, message: "Must be positive" },
                     valueAsNumber: true
                   })}
-                  className={`h-10 text-xs rounded-xl font-medium ${
-                    selectedDiscountTypeId !== "" && selectedDiscountTypeId !== "custom"
+                  className={`h-10 text-xs rounded-xl font-medium ${selectedDiscountTypeId !== "" && selectedDiscountTypeId !== "custom"
                       ? "bg-muted/30 text-muted-foreground cursor-not-allowed border-border/40"
                       : "border-border/60"
-                  }`}
+                    }`}
                 />
                 {errors.discount_amount && (
                   <p className="text-[10px] font-bold text-red-500">{errors.discount_amount.message}</p>

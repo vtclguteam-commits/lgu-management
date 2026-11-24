@@ -1,11 +1,11 @@
-// src/modules/financial-management/treasury/expense-approval/user-expense-limit/components/EditLimitModal.tsx
+// src/modules/lgu-management/treasury/expense-approval/user-expense-limit/components/EditLimitModal.tsx
 
 "use client";
 
 import { useState, useMemo, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Input }  from "@/components/ui/input";
-import { Label }  from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { X, Loader2, Save, Plus, Search, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useUpdateLimit, useCoas } from "../hooks/useUserExpenseLimit";
@@ -15,18 +15,18 @@ import { getCoaConfig } from "./LimitTable";
 
 // ─── Searchable select for COAs ────────────────────────────────────────────────
 interface SearchableCoaSelectProps {
-  loading:  boolean;
-  options:  Coa[];
+  loading: boolean;
+  options: Coa[];
   onSelect: (coa: Coa) => void;
   excludeIds: Set<number>;
 }
 
 function SearchableCoaSelect({ loading, options, onSelect, excludeIds }: SearchableCoaSelectProps) {
-  const [open,   setOpen]   = useState(false);
+  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const inputRef            = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const availableOptions = useMemo(() => 
+  const availableOptions = useMemo(() =>
     options.filter(o => !excludeIds.has(o.coa_id)),
     [options, excludeIds]
   );
@@ -34,9 +34,9 @@ function SearchableCoaSelect({ loading, options, onSelect, excludeIds }: Searcha
   const filtered = useMemo(() =>
     search.trim()
       ? availableOptions.filter(o =>
-          (o.account_title || "").toLowerCase().includes(search.toLowerCase()) ||
-          String(o.gl_code || "").includes(search)
-        )
+        (o.account_title || "").toLowerCase().includes(search.toLowerCase()) ||
+        String(o.gl_code || "").includes(search)
+      )
       : availableOptions,
     [availableOptions, search]
   );
@@ -101,8 +101,8 @@ function SearchableCoaSelect({ loading, options, onSelect, excludeIds }: Searcha
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
 interface EditLimitModalProps {
-  limit:     UserExpenseLimit;
-  onClose:   () => void;
+  limit: UserExpenseLimit;
+  onClose: () => void;
   onSuccess: (message: string) => void;
 }
 
@@ -181,9 +181,9 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const limits: Record<number, number> = {};
-    
+
     // Default COAs
     BUDGET_COAS.forEach(coa => {
       limits[coa.id] = parseFloat(limitsState[coa.id]) || 0;
@@ -256,9 +256,9 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
                   <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                   <p className="text-xs font-black text-muted-foreground uppercase tracking-wider">Ceiling Limits Configuration</p>
                 </div>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
+
                   {/* Default COAs */}
                   {BUDGET_COAS.map(coa => {
                     const config = getCoaConfig(coa.id, coa.name, coa.glCode);
@@ -266,7 +266,7 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
                     return (
                       <div key={coa.id} className="relative p-4 rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:border-border-hover hover:shadow-md transition-all duration-200 flex flex-col justify-between gap-3 overflow-hidden">
                         <div className="absolute top-0 right-0 w-10 h-10 bg-gradient-to-br opacity-5 rounded-bl-full pointer-events-none" />
-                        
+
                         <div className="flex items-center gap-2.5">
                           <div className={`p-2 rounded-lg border shrink-0 ${config.colorClass}`}>
                             <config.icon className="h-3.5 w-3.5" />
@@ -276,7 +276,7 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
                             <span className="text-[9px] text-muted-foreground font-bold font-mono bg-muted/80 px-1 py-0.5 rounded leading-none">GL: {config.glCode}</span>
                           </div>
                         </div>
-                        
+
                         <div className="relative mt-1">
                           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₱</span>
                           <Input
@@ -290,7 +290,7 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
                             className="h-9 text-xs pl-7 text-foreground font-black bg-background border-border/80 focus-visible:ring-primary rounded-lg shadow-inner"
                           />
                         </div>
-                        
+
                         {limit.limits && (
                           <div className="text-[9px] text-muted-foreground/80 font-bold border-t border-border/40 pt-2 flex justify-between items-center select-text">
                             <span>Current Active:</span>
@@ -314,7 +314,7 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
                         >
                           <Trash2 className="h-3.5 w-3.5" />
                         </button>
-                        
+
                         <div className="flex items-center gap-2.5 pr-6">
                           <div className={`p-2 rounded-lg border shrink-0 ${config.colorClass}`}>
                             <config.icon className="h-3.5 w-3.5" />
@@ -327,7 +327,7 @@ export function EditLimitModal({ limit, onClose, onSuccess }: EditLimitModalProp
                             </div>
                           </div>
                         </div>
-                        
+
                         <div className="relative mt-1">
                           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₱</span>
                           <Input

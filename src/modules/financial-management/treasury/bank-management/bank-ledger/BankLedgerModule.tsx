@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/bank-management/bank-ledger/BankLedgerModule.tsx
+// src/modules/lgu-management/treasury/bank-management/bank-ledger/BankLedgerModule.tsx
 "use client";
 
 import { Badge } from "@/components/ui/badge";

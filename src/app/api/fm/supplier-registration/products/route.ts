@@ -1,7 +1,7 @@
 import {
   fetchAllProducts,
   searchProducts,
-} from "@/modules/financial-management/supplier-registration/services/products";
+} from "@/modules/lgu-management/supplier-registration/services/products";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = 'force-dynamic';

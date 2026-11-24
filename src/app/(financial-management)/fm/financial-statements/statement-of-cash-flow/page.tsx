@@ -13,7 +13,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the Cash Flow Statement module
-import { CashFlowStatementModule } from "@/modules/financial-management/financial-statements/statement-of-cash-flows";
+import { CashFlowStatementModule } from "@/modules/lgu-management/financial-statements/statement-of-cash-flows";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

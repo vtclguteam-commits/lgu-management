@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/treasury/disbursement/page.tsx
+// src/app/(lgu-management)/fm/treasury/disbursement/page.tsx
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -14,7 +14,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
 
 // ✅ Wire the module you asked for
-import { PriceChangeRequestsModule } from "@/modules/financial-management/product-pricing-management/price-change-request";
+import { PriceChangeRequestsModule } from "@/modules/lgu-management/product-pricing-management/price-change-request";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

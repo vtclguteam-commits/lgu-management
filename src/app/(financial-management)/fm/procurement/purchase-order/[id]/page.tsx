@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import PODetailPage from "@/modules/financial-management/procurement/purchase-order/components/PODetailPage";
+import PODetailPage from "@/modules/lgu-management/procurement/purchase-order/components/PODetailPage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

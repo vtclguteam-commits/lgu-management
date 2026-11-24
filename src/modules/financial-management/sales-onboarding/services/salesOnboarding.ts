@@ -1,4 +1,4 @@
-// src/modules/financial-management/sales-onboarding/services/salesOnboarding.ts
+// src/modules/lgu-management/sales-onboarding/services/salesOnboarding.ts
 
 import { Salesman, Customer, SalesInvoiceType, SalesInvoice, DiscountType, PaymentTerm } from "../types";
 
@@ -87,7 +87,7 @@ export async function fetchCustomers(): Promise<Customer[]> {
   });
 }
 
-export class SalesOnboardingValidationError extends Error {}
+export class SalesOnboardingValidationError extends Error { }
 
 export async function resolveCustomerPaymentTerm(customerCode: string): Promise<number | null> {
   const customerRes = await fetch(
@@ -176,7 +176,7 @@ export async function createSalesInvoice(payload: SalesInvoice): Promise<SalesIn
     headers: getHeaders(),
     body: JSON.stringify(payload),
   });
-  
+
   const json = await res.json();
   if (!res.ok) {
     console.error("Directus create error payload:", json);

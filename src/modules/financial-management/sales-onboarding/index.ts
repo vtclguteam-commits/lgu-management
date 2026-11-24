@@ -1,4 +1,4 @@
-// src/modules/financial-management/sales-onboarding/index.ts
+// src/modules/lgu-management/sales-onboarding/index.ts
 
 export * from "./types";
 export { default as SalesOnboardingModulePage } from "./SalesOnboardingModulePage";

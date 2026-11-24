@@ -1,4 +1,4 @@
-// src/modules/financial-management/treasury/salesmen-expense-approval/providers/fetchProvider.ts
+// src/modules/lgu-management/treasury/salesmen-expense-approval/providers/fetchProvider.ts
 "use client";
 
 import type {

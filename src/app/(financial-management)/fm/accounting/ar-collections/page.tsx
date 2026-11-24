@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import ARCollectionsModule from "@/modules/financial-management/accounting/ar-collections/ARCollectionsModule";
+import ARCollectionsModule from "@/modules/lgu-management/accounting/ar-collections/ARCollectionsModule";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

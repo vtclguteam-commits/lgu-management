@@ -1,4 +1,4 @@
-// src/modules/financial-management/chart-of-accounts/components/ChartOfAccountsTable.tsx
+// src/modules/lgu-management/chart-of-accounts/components/ChartOfAccountsTable.tsx
 "use client";
 
 import * as React from "react";
@@ -96,10 +96,10 @@ export default function ChartOfAccountsTable(props: {
                   {(() => {
                     const addedBy = r.added_by;
                     if (!addedBy) return "-";
-                    
+
                     const idStr = String(addedBy);
-                    const u = users.find((x) => 
-                      String(x.user_id) === idStr || 
+                    const u = users.find((x) =>
+                      String(x.user_id) === idStr ||
                       String(x.id) === idStr
                     );
 
@@ -107,7 +107,7 @@ export default function ChartOfAccountsTable(props: {
 
                     const fname = u.user_fname || u.first_name || u.firstname || "";
                     const lname = u.user_lname || u.last_name || u.lastname || "";
-                    
+
                     const fullName = [fname, lname].filter(Boolean).join(" ");
                     return fullName || "-";
                   })()}

@@ -12,7 +12,7 @@ import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 
 import { cookies } from "next/headers";
 
-import { ProductPrintablesModule } from "@/modules/financial-management/product-pricing-management/product-printables";
+import { ProductPrintablesModule } from "@/modules/lgu-management/product-pricing-management/product-printables";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

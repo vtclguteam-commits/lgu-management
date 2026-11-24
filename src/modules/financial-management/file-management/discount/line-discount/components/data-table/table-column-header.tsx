@@ -1,4 +1,4 @@
-// src/modules/financial-management/line-discount/components/data-table/table-column-header.tsx
+// src/modules/lgu-management/line-discount/components/data-table/table-column-header.tsx
 "use client";
 
 import type { Column } from "@tanstack/react-table";

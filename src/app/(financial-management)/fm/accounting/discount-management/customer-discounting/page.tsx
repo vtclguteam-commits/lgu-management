@@ -1,4 +1,4 @@
-// src/app/(financial-management)/fm/accounting/discount-management/customer-discounting/page.tsx
+// src/app/(lgu-management)/fm/accounting/discount-management/customer-discounting/page.tsx
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/shared/app-sidebar/nav-user";
 import { cookies } from "next/headers";
-import CustomerDiscountingModule from "@/modules/financial-management/accounting/discount-management/customer-discounting";
+import CustomerDiscountingModule from "@/modules/lgu-management/accounting/discount-management/customer-discounting";
 import { getCustomerDiscountingModuleData } from "@/app/api/fm/accounting/discount-management/customer-discounting/_module-data";
 
 export const runtime = "nodejs";
