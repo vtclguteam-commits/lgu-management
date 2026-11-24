@@ -25,8 +25,8 @@ This document analyzes the technical implementation, logic flows, and data struc
 
 ### Backend Implementation
 - **API Routes:**
-  - `src/app/api/fm/treasury/bulk-approval/route.ts`
-  - `src/app/api/fm/treasury/salesman-expense-approval/route.ts`
+  - `src/app/api/lgu/treasury/bulk-approval/route.ts`
+  - `src/app/api/lgu/treasury/salesman-expense-approval/route.ts`
 - **Data Persistence:** Directus (Headless CMS/Database).
 - **RBAC:** 
   - `Bulk Approval`: Based on `disbursement_draft_approver` (hierarchical levels per division).
