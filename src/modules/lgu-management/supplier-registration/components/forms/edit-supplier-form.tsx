@@ -121,7 +121,7 @@ export function EditSupplierForm({
   const { deliveryTerms, isLoading: isLoadingDelivery } = useDeliveryTerms();
 
   const handleNext = async () => {
-    let fieldsToValidate: string[] = [];
+    let fieldsToValidate: (keyof SupplierFormValues)[] = [];
     let nextTab = "";
 
     if (activeTab === "contact") {
@@ -157,7 +157,7 @@ export function EditSupplierForm({
     }
 
     if (fieldsToValidate.length > 0) {
-      const isValid = await form.trigger(fieldsToValidate as any);
+      const isValid = await form.trigger(fieldsToValidate);
       if (isValid) {
         setActiveTab(nextTab);
       }
