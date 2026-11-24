@@ -70,19 +70,6 @@ export function AddPayeeProductsModal({
     return Array.from(uniqueProducts.values());
   }, [products, assignedSet]);
 
-  const allAvailableCount = useMemo(() => {
-    const uniqueIds = new Set<number>();
-    products.forEach((p) => {
-      const productId = Number(
-        p.product_id || (p as { id?: number; product_id?: number }).id,
-      );
-      if (!assignedSet.has(productId)) {
-        uniqueIds.add(productId);
-      }
-    });
-    return uniqueIds.size;
-  }, [products, assignedSet]);
-
   const toggleProduct = (productId: number) => {
     setSelectedIds((prev) =>
       prev.includes(productId)

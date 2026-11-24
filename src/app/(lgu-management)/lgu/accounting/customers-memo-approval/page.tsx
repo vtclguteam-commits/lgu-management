@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/accounting/customers-memo-approval/page.tsx
 // src/app/(lgu-management)/lgu/accounting/customers-memo-approval/page.tsx
-=======
-// src/app/(lgu-management)/fm/accounting/customers-memo-approval/page.tsx
->>>>>>> Stashed changes:src/app/(financial-management)/fm/accounting/customers-memo-approval/page.tsx
 
 import React from "react";
 import CustomersMemoApprovalModule from "@/modules/lgu-management/accounting/customers-memo/components/CustomersMemoApprovalModule";

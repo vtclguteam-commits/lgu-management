@@ -18,13 +18,8 @@ import JournalEntryTable from "./components/JournalEntryTable";
 import JournalEntryDetailModal from "./components/JournalEntryDetailModal";
 import { exportJournalToExcel, exportJournalToPdf } from "./services/export.service";
 
-<<<<<<< Updated upstream:src/modules/lgu-management/financial-statements/journal-entry/JournalEntryModule.tsx
 import { DataTableSkeleton } from "@/app/(lgu-management)/lgu/_components/DataTableSkeleton";
 import { ErrorPage } from "@/app/(lgu-management)/lgu/_components/ErrorPage";
-=======
-import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
-import { ErrorPage } from "@/app/(lgu-management)/fm/_components/ErrorPage";
->>>>>>> Stashed changes:src/modules/financial-management/financial-statements/journal-entry/JournalEntryModule.tsx
 
 /**
  * Main module component that provides the context for all sub-components.

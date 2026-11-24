@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/file-management/discount/discount-type/page.tsx
 // src/app/(lgu-management)/lgu/file-management/discount/discount-type/page.tsx
-=======
-// src/app/(lgu-management)/fm/file-management/discount/discount-type/page.tsx
->>>>>>> Stashed changes:src/app/(financial-management)/fm/file-management/discount/discount-type/page.tsx
 import {
     Breadcrumb,
     BreadcrumbItem,

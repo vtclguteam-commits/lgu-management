@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/accounting/claims-management/generate-transmittal/page.tsx
 // src/app/(lgu-management)/lgu/treasury/disbursement/page.tsx
-=======
-// src/app/(lgu-management)/fm/treasury/disbursement/page.tsx
->>>>>>> Stashed changes:src/app/(financial-management)/fm/accounting/claims-management/generate-transmittal/page.tsx
 import {
     Breadcrumb,
     BreadcrumbItem,

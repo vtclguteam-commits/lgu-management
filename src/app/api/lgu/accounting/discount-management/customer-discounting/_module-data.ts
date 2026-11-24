@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:src/app/api/lgu/accounting/discount-management/customer-discounting/_module-data.ts
 // src/app/api/lgu/accounting/discount-management/customer-discounting/_module-data.ts
-=======
-// src/app/api/fm/accounting/discount-management/customer-discounting/_module-data.ts
->>>>>>> Stashed changes:src/app/api/fm/accounting/discount-management/customer-discounting/_module-data.ts
 import type { CustomerDiscountingModuleData } from "@/modules/lgu-management/accounting/discount-management/customer-discounting";
 import {
   asNumber,

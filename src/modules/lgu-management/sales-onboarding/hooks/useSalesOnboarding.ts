@@ -20,11 +20,7 @@ export function useSalesOnboarding() {
       setIsLoading(true);
       setError(null);
 
-<<<<<<< Updated upstream:src/modules/lgu-management/sales-onboarding/hooks/useSalesOnboarding.ts
       const res = await fetch("/api/lgu/sales-onboarding");
-=======
-      const res = await fetch("/api/fm/sales-onboarding");
->>>>>>> Stashed changes:src/modules/financial-management/sales-onboarding/hooks/useSalesOnboarding.ts
       if (!res.ok) throw new Error("Failed to load dashboard data");
 
       const data = await res.json();

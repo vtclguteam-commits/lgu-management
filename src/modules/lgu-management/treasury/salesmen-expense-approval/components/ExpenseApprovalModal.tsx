@@ -856,13 +856,8 @@ export default function ExpenseApprovalModal({
                               <div className="flex items-center gap-3">
                                 <div
                                   className={`h-8 w-8 rounded-lg flex items-center justify-center text-[10px] font-black shadow-sm transition-all ${isSelected
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                     ? "bg-blue-600 text-white scale-110 shadow-blue-200"
                                     : "bg-slate-100 text-slate-500"
-=======
-                                      ? "bg-blue-600 text-white scale-110 shadow-blue-200"
-                                      : "bg-slate-100 text-slate-500"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                     }`}
                                 >
                                   #
@@ -898,13 +893,8 @@ export default function ExpenseApprovalModal({
                                 size="sm"
                                 disabled={isInteractionDisabled || editableGroupItems.length === 0}
                                 className={`h-7 px-3 rounded-full text-[9px] font-black uppercase tracking-tighter transition-all ${allEditableApproved
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                   ? "bg-emerald-500 hover:bg-emerald-600 text-white border-none shadow-md shadow-emerald-200 dark:shadow-none"
                                   : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 border-slate-200 dark:border-slate-700"
-=======
-                                    ? "bg-emerald-500 hover:bg-emerald-600 text-white border-none shadow-md shadow-emerald-200 dark:shadow-none"
-                                    : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 border-slate-200 dark:border-slate-700"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                   } disabled:opacity-50 disabled:cursor-not-allowed`}
                                 onClick={(event) => {
                                   event.stopPropagation();
@@ -1042,17 +1032,10 @@ export default function ExpenseApprovalModal({
                                       <TableCell className="py-4 text-center">
                                         <Input
                                           className={`h-8 w-28 text-center text-xs font-black tabular-nums transition-all ${isReadOnly
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                             ? "bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed"
                                             : Number(localAmounts[expense.id]) !== Number(expense.amount)
                                               ? "bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700/50 text-amber-700 dark:text-amber-400 shadow-inner"
                                               : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
-=======
-                                              ? "bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed"
-                                              : Number(localAmounts[expense.id]) !== Number(expense.amount)
-                                                ? "bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700/50 text-amber-700 dark:text-amber-400 shadow-inner"
-                                                : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                             }`}
                                           value={localAmounts[expense.id] || ""}
                                           disabled={isBusy || isReadOnly}
@@ -1080,11 +1063,7 @@ export default function ExpenseApprovalModal({
                                               );
                                               showAttachment(attachmentIndex >= 0 ? attachmentIndex : 0);
                                               setFocusedPreviewUrl(
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                 `/api/lgu/expense-assets?id=${String(expense.attachment_url)}`
-=======
-                                                `/api/fm/expense-assets?id=${String(expense.attachment_url)}`
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                               );
                                             }}
                                             aria-label={`Preview evidence for expense ${expense.id}`}
@@ -1112,13 +1091,8 @@ export default function ExpenseApprovalModal({
                                                 <Button
                                                   size="icon"
                                                   className={`h-8 w-8 rounded-lg shadow-sm transition-all ${status === "Approved"
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                     ? "bg-emerald-500 text-white"
                                                     : "bg-slate-100 text-slate-400 hover:bg-emerald-50"
-=======
-                                                      ? "bg-emerald-500 text-white"
-                                                      : "bg-slate-100 text-slate-400 hover:bg-emerald-50"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                                                   onClick={() => setItemStatus(expense, "Approved")}
                                                   disabled={isBusy || isReadOnly}
@@ -1136,13 +1110,8 @@ export default function ExpenseApprovalModal({
                                                 <Button
                                                   size="icon"
                                                   className={`h-8 w-8 rounded-lg shadow-sm transition-all ${status === "With Concern"
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                     ? "bg-amber-500 text-white"
                                                     : "bg-slate-100 text-slate-400 hover:bg-amber-50"
-=======
-                                                      ? "bg-amber-500 text-white"
-                                                      : "bg-slate-100 text-slate-400 hover:bg-amber-50"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                                                   onClick={() => setItemStatus(expense, "With Concern")}
                                                   disabled={isBusy || isReadOnly}
@@ -1160,13 +1129,8 @@ export default function ExpenseApprovalModal({
                                                 <Button
                                                   size="icon"
                                                   className={`h-8 w-8 rounded-lg shadow-sm transition-all ${status === "Rejected"
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                     ? "bg-rose-500 text-white"
                                                     : "bg-slate-100 text-slate-400 hover:bg-rose-50"
-=======
-                                                      ? "bg-rose-500 text-white"
-                                                      : "bg-slate-100 text-slate-400 hover:bg-rose-50"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                                                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                                                   onClick={() => setItemStatus(expense, "Rejected")}
                                                   disabled={isBusy || isReadOnly}
@@ -1476,13 +1440,8 @@ export default function ExpenseApprovalModal({
                           </span>
                           <span
                             className={`text-[8px] font-black px-2 py-0.5 rounded-full uppercase ${itemDecisions[item.id] === "Rejected"
-<<<<<<< Updated upstream:src/modules/lgu-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                               ? "bg-rose-100 text-rose-600"
                               : "bg-amber-100 text-amber-600"
-=======
-                                ? "bg-rose-100 text-rose-600"
-                                : "bg-amber-100 text-amber-600"
->>>>>>> Stashed changes:src/modules/financial-management/treasury/salesmen-expense-approval/components/ExpenseApprovalModal.tsx
                               }`}
                           >
                             {itemDecisions[item.id]}

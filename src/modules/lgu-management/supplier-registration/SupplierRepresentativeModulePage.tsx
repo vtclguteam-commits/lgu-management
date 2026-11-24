@@ -10,15 +10,9 @@ import { Supplier } from "@/modules/lgu-management/supplier-registration/types/s
 import { Plus, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { EditSupplierModal } from "./components/modals/edit-supplier-modal";
-<<<<<<< Updated upstream:src/modules/lgu-management/supplier-registration/SupplierRepresentativeModulePage.tsx
 import { DataTableSkeleton } from "@/app/(lgu-management)/lgu/_components/DataTableSkeleton";
 import { AddSupplierModal } from "./components/modals/add-supplier-modal";
 import { ErrorPage } from "@/app/(lgu-management)/lgu/_components/ErrorPage";
-=======
-import { DataTableSkeleton } from "@/app/(lgu-management)/fm/_components/DataTableSkeleton";
-import { AddSupplierModal } from "./components/modals/add-supplier-modal";
-import { ErrorPage } from "@/app/(lgu-management)/fm/_components/ErrorPage";
->>>>>>> Stashed changes:src/modules/financial-management/supplier-registration/SupplierRepresentativeModulePage.tsx
 
 export default function SupplierRepresentativeModulePage() {
   const { suppliers, isLoading, error, refresh, setSearchQuery } =

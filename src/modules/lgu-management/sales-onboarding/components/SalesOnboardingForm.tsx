@@ -384,13 +384,8 @@ export default function SalesOnboardingForm({
                   })}
                   aria-required="true"
                   className={`h-10 text-xs rounded-xl font-medium ${errors.gross_amount
-<<<<<<< Updated upstream:src/modules/lgu-management/sales-onboarding/components/SalesOnboardingForm.tsx
                     ? "border-red-500 focus-visible:ring-red-500/20"
                     : "border-border/60"
-=======
-                      ? "border-red-500 focus-visible:ring-red-500/20"
-                      : "border-border/60"
->>>>>>> Stashed changes:src/modules/financial-management/sales-onboarding/components/SalesOnboardingForm.tsx
                     }`}
                 />
                 {errors.gross_amount && (
@@ -428,13 +423,8 @@ export default function SalesOnboardingForm({
                     valueAsNumber: true
                   })}
                   className={`h-10 text-xs rounded-xl font-medium ${selectedDiscountTypeId !== "" && selectedDiscountTypeId !== "custom"
-<<<<<<< Updated upstream:src/modules/lgu-management/sales-onboarding/components/SalesOnboardingForm.tsx
                     ? "bg-muted/30 text-muted-foreground cursor-not-allowed border-border/40"
                     : "border-border/60"
-=======
-                      ? "bg-muted/30 text-muted-foreground cursor-not-allowed border-border/40"
-                      : "border-border/60"
->>>>>>> Stashed changes:src/modules/financial-management/sales-onboarding/components/SalesOnboardingForm.tsx
                     }`}
                 />
                 {errors.discount_amount && (

@@ -594,13 +594,8 @@ export function AddPayeeForm({
                         onChange={(event) => field.onChange(event.target.value)}
                         disabled={!allowSupplierTypeSelect}
                         className={`flex h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm ${allowSupplierTypeSelect
-<<<<<<< Updated upstream:src/modules/lgu-management/payee-registration/components/forms/add-payee-form.tsx
                           ? "bg-background text-foreground"
                           : "bg-muted text-muted-foreground"
-=======
-                            ? "bg-background text-foreground"
-                            : "bg-muted text-muted-foreground"
->>>>>>> Stashed changes:src/modules/financial-management/payee-registration/components/forms/add-payee-form.tsx
                           }`}
                       >
                         {allowSupplierTypeSelect ? (

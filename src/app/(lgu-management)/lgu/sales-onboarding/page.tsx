@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/sales-onboarding/page.tsx
 // src/app/(lgu-management)/lgu/sales-onboarding/page.tsx
-=======
-// src/app/(lgu-management)/fm/sales-onboarding/page.tsx
->>>>>>> Stashed changes:src/app/(financial-management)/fm/sales-onboarding/page.tsx
 
 import {
     Breadcrumb,

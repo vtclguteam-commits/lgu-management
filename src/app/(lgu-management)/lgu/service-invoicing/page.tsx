@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream:src/app/(lgu-management)/lgu/service-invoicing/page.tsx
 // src/app/(lgu-management)/lgu/service-invoicing/page.tsx
-=======
-// src/app/(lgu-management)/fm/service-invoicing/page.tsx
->>>>>>> Stashed changes:src/app/(financial-management)/fm/service-invoicing/page.tsx
 
 import {
     Breadcrumb,
