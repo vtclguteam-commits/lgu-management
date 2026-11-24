@@ -1,0 +1,45 @@
+import {
+  fetchAllProducts,
+  searchProducts,
+} from "@/modules/financial-management/supplier-registration/services/products";
+import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = 'force-dynamic';
+
+
+/**
+ * GET /api/fm/supplier-registration/products
+ * Fetch all products or search by query
+ */
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const search = searchParams.get("search");
+    const limit = parseInt(searchParams.get("limit") || "-1");
+    const offset = parseInt(searchParams.get("offset") || "0");
+
+    let products;
+    if (search && search.trim() !== "") {
+      products = await searchProducts(search.trim(), limit, offset);
+    } else {
+      products = await fetchAllProducts(limit, offset);
+    }
+
+    return NextResponse.json(
+      {
+        data: products,
+        count: products.length,
+      },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return NextResponse.json(
+      {
+        error: "Failed to fetch products",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    );
+  }
+}
