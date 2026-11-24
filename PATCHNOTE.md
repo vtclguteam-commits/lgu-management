@@ -10,7 +10,7 @@ Approved price change requests and direct pricing upserts were not reflecting in
 
 ## Fix Implemented
 1. **API Corrections:**
-   - Modified the `applyProposedPrice` payload in `src/app/api/fm/product-pricing/price-change-requests/_actions.ts` to set `status: "approved"` upon request approval.
-   - Modified the upsert payload in `src/app/api/fm/product-pricing/prices-upsert/route.ts` to default to `status: "approved"` instead of `"draft"`.
+   - Modified the `applyProposedPrice` payload in `src/app/api/lgu/product-pricing/price-change-requests/_actions.ts` to set `status: "approved"` upon request approval.
+   - Modified the upsert payload in `src/app/api/lgu/product-pricing/prices-upsert/route.ts` to default to `status: "approved"` instead of `"draft"`.
 2. **Database Reconciliation:**
    - Identified and updated existing price records that were stuck in `"draft"` status to `"approved"`, immediately restoring visibility for recently approved changes.

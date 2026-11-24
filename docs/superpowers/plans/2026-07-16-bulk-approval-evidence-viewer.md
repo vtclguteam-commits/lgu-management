@@ -24,8 +24,8 @@
 ### Task 1: Shared evidence-viewer model and ordering rules
 
 **Files:**
-- Create: `src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.ts`
-- Create: `src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts`
+- Create: `src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.ts`
+- Create: `src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts`
 
 **Interfaces:**
 - Produces: `EvidenceHeader`, `WerSummaryAttachment`, `ExpenseEvidenceAttachment`, `EvidenceViewerItem`, `buildEvidenceViewerState(input)`.
@@ -58,7 +58,7 @@ Assert `allItems.map(i => i.url)` equals `['wer-a', 'line-a', 'line-b']`, `lineI
 Run:
 
 ```powershell
-node --experimental-strip-types --test src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+node --experimental-strip-types --test src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
 ```
 
 Expected: FAIL because `./evidenceViewer.ts` does not exist.
@@ -123,7 +123,7 @@ Expected: all evidence-viewer tests PASS and TypeScript exits 0.
 - [ ] **Step 5: Commit the shared model**
 
 ```powershell
-git add src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.ts src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+git add src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.ts src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
 git commit -m "test: define bulk approval evidence ordering"
 ```
 
@@ -132,10 +132,10 @@ git commit -m "test: define bulk approval evidence ordering"
 ### Task 2: Preserve WER header scope and query status in API contracts
 
 **Files:**
-- Modify: `src/modules/financial-management/treasury/bulk-approval/type.ts`
-- Modify: `src/modules/financial-management/treasury/bulk-approval/services/bulkApproval.types.ts`
-- Modify: `src/modules/financial-management/treasury/bulk-approval/services/myLevelApproval.service.ts`
-- Modify: `src/modules/financial-management/treasury/bulk-approval/services/finalTopSheets.service.ts`
+- Modify: `src/modules/lgu-management/treasury/bulk-approval/type.ts`
+- Modify: `src/modules/lgu-management/treasury/bulk-approval/services/bulkApproval.types.ts`
+- Modify: `src/modules/lgu-management/treasury/bulk-approval/services/myLevelApproval.service.ts`
+- Modify: `src/modules/lgu-management/treasury/bulk-approval/services/finalTopSheets.service.ts`
 
 **Interfaces:**
 - Produces on both detail responses: `attachments_query_ok: boolean`.
@@ -168,7 +168,7 @@ Keep the existing header-aware query and mapping, and add `attachments_query_ok:
 
 ```powershell
 npx tsc --noEmit --pretty false
-npx eslint src/modules/financial-management/treasury/bulk-approval/type.ts src/modules/financial-management/treasury/bulk-approval/services/bulkApproval.types.ts src/modules/financial-management/treasury/bulk-approval/services/myLevelApproval.service.ts src/modules/financial-management/treasury/bulk-approval/services/finalTopSheets.service.ts
+npx eslint src/modules/lgu-management/treasury/bulk-approval/type.ts src/modules/lgu-management/treasury/bulk-approval/services/bulkApproval.types.ts src/modules/lgu-management/treasury/bulk-approval/services/myLevelApproval.service.ts src/modules/lgu-management/treasury/bulk-approval/services/finalTopSheets.service.ts
 ```
 
 Expected: both commands exit 0.
@@ -176,7 +176,7 @@ Expected: both commands exit 0.
 - [ ] **Step 6: Commit the API contract**
 
 ```powershell
-git add src/modules/financial-management/treasury/bulk-approval/type.ts src/modules/financial-management/treasury/bulk-approval/services/bulkApproval.types.ts src/modules/financial-management/treasury/bulk-approval/services/myLevelApproval.service.ts src/modules/financial-management/treasury/bulk-approval/services/finalTopSheets.service.ts src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+git add src/modules/lgu-management/treasury/bulk-approval/type.ts src/modules/lgu-management/treasury/bulk-approval/services/bulkApproval.types.ts src/modules/lgu-management/treasury/bulk-approval/services/myLevelApproval.service.ts src/modules/lgu-management/treasury/bulk-approval/services/finalTopSheets.service.ts src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
 git commit -m "feat: expose WER attachment coverage"
 ```
 
@@ -185,7 +185,7 @@ git commit -m "feat: expose WER attachment coverage"
 ### Task 3: VoteModal split evidence modes and warning
 
 **Files:**
-- Modify: `src/modules/financial-management/treasury/bulk-approval/components/VoteModal.tsx`
+- Modify: `src/modules/lgu-management/treasury/bulk-approval/components/VoteModal.tsx`
 
 **Interfaces:**
 - Consumes: `buildEvidenceViewerState`, `DraftDetail.attachments_query_ok`, header-aware payables and WER attachments.
@@ -220,8 +220,8 @@ Render `WER Summary Attachment` for `wer-summary` and `Expense Attachment` for `
 - [ ] **Step 6: Verify VoteModal**
 
 ```powershell
-node --experimental-strip-types --test src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
-npx eslint src/modules/financial-management/treasury/bulk-approval/components/VoteModal.tsx src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.ts
+node --experimental-strip-types --test src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+npx eslint src/modules/lgu-management/treasury/bulk-approval/components/VoteModal.tsx src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.ts
 npx tsc --noEmit --pretty false
 ```
 
@@ -230,7 +230,7 @@ Expected: tests pass; lint and typecheck exit 0.
 - [ ] **Step 7: Commit VoteModal**
 
 ```powershell
-git add src/modules/financial-management/treasury/bulk-approval/components/VoteModal.tsx src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+git add src/modules/lgu-management/treasury/bulk-approval/components/VoteModal.tsx src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
 git commit -m "feat: compare WER summaries in level approval"
 ```
 
@@ -239,7 +239,7 @@ git commit -m "feat: compare WER summaries in level approval"
 ### Task 4: AuditeeDetailSplitModal split evidence modes and warning
 
 **Files:**
-- Modify: `src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx`
+- Modify: `src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx`
 
 **Interfaces:**
 - Consumes: the same shared evidence helper and `FinalTopSheetResponse` attachment contract.
@@ -264,8 +264,8 @@ Change the carousel, full-screen action, count badge, and split-width condition 
 - [ ] **Step 5: Verify AuditeeDetailSplitModal**
 
 ```powershell
-node --experimental-strip-types --test src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
-npx eslint src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.ts
+node --experimental-strip-types --test src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+npx eslint src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.ts
 npx tsc --noEmit --pretty false
 ```
 
@@ -274,7 +274,7 @@ Expected: tests pass; lint and typecheck exit 0.
 - [ ] **Step 6: Commit final-approver evidence flow**
 
 ```powershell
-git add src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+git add src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
 git commit -m "feat: compare WER summaries in final approval"
 ```
 
@@ -292,8 +292,8 @@ git commit -m "feat: compare WER summaries in final approval"
 - [ ] **Step 1: Run the complete focused verification set**
 
 ```powershell
-node --experimental-strip-types --test src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
-npx eslint src/modules/financial-management/treasury/bulk-approval/components/VoteModal.tsx src/modules/financial-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx src/modules/financial-management/treasury/bulk-approval/services/myLevelApproval.service.ts src/modules/financial-management/treasury/bulk-approval/services/finalTopSheets.service.ts src/modules/financial-management/treasury/bulk-approval/utils/evidenceViewer.ts
+node --experimental-strip-types --test src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.test.ts
+npx eslint src/modules/lgu-management/treasury/bulk-approval/components/VoteModal.tsx src/modules/lgu-management/treasury/bulk-approval/components/AuditeeDetailSplitModal.tsx src/modules/lgu-management/treasury/bulk-approval/services/myLevelApproval.service.ts src/modules/lgu-management/treasury/bulk-approval/services/finalTopSheets.service.ts src/modules/lgu-management/treasury/bulk-approval/utils/evidenceViewer.ts
 npx tsc --noEmit --pretty false
 ```
 
